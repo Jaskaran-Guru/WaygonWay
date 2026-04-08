@@ -32,7 +32,7 @@ public class AuthService {
     // Enhanced login with complete data tracking
     public AuthResponse login(LoginRequest loginRequest, String sessionId, String ipAddress, String userAgent) {
         try {
-            System.out.println("🔐 AuthService: Enhanced login attempt for - " + loginRequest.getUsernameOrEmail());
+            System.out.println("AuthService: Enhanced login attempt for - " + loginRequest.getUsernameOrEmail());
 
             Optional<User> userOpt = userRepository.findByUsernameOrEmail(
                     loginRequest.getUsernameOrEmail(),
@@ -53,7 +53,7 @@ public class AuthService {
                 throw new RuntimeException("Invalid credentials");
             }
 
-            // ✅ Update login history with complete data
+            // Update login history with complete data
             user.updateLoginHistory(sessionId, ipAddress, userAgent);
             user.setUpdatedAt(LocalDateTime.now());
 
@@ -72,11 +72,11 @@ public class AuthService {
             authResponse.setStatus(user.getStatus());
             authResponse.setExpiresAt(LocalDateTime.now().plusDays(1));
 
-            System.out.println("✅ AuthService: Enhanced login successful for - " + user.getUsername());
+            System.out.println("AuthService: Enhanced login successful for - " + user.getUsername());
             return authResponse;
 
         } catch (Exception e) {
-            System.err.println("❌ AuthService: Enhanced login failed - " + e.getMessage());
+            System.err.println("AuthService: Enhanced login failed - " + e.getMessage());
             throw new RuntimeException("Login failed: " + e.getMessage(), e);
         }
     }
@@ -84,7 +84,7 @@ public class AuthService {
     // Enhanced registration with complete profile setup
     public AuthResponse register(RegisterRequest registerRequest, String sessionId, String ipAddress, String userAgent) {
         try {
-            System.out.println("📝 AuthService: Enhanced registration attempt for - " + registerRequest.getUsername());
+            System.out.println("AuthService: Enhanced registration attempt for - " + registerRequest.getUsername());
 
             if (userRepository.existsByUsername(registerRequest.getUsername())) {
                 throw new RuntimeException("Username already exists");
@@ -94,7 +94,7 @@ public class AuthService {
                 throw new RuntimeException("Email already exists");
             }
 
-            // ✅ Create complete user profile
+            // Create complete user profile
             User newUser = new User();
             newUser.setUsername(registerRequest.getUsername());
             newUser.setEmail(registerRequest.getEmail());
@@ -105,7 +105,7 @@ public class AuthService {
             newUser.setRole("USER");
             newUser.setStatus("ACTIVE");
 
-            // ✅ Set complete address
+            // Set complete address
             if (registerRequest.getCity() != null || registerRequest.getState() != null) {
                 User.Address address = new User.Address();
                 address.setCity(registerRequest.getCity());
@@ -114,7 +114,7 @@ public class AuthService {
                 newUser.setAddress(address);
             }
 
-            // ✅ Initialize preferences with defaults
+            // Initialize preferences with defaults
             User.UserPreferences preferences = new User.UserPreferences();
             preferences.setPreferredLanguage("English");
             preferences.setCurrency("INR");
@@ -122,12 +122,12 @@ public class AuthService {
             preferences.setSmsNotifications(true);
             newUser.setPreferences(preferences);
 
-            // ✅ Initialize profile data
+            // Initialize profile data
             User.ProfileData profile = new User.ProfileData();
             profile.setNationality("Indian");
             newUser.setProfile(profile);
 
-            // ✅ Record initial login
+            // Record initial login
             newUser.updateLoginHistory(sessionId, ipAddress, userAgent);
 
             // Save complete user profile
@@ -145,11 +145,11 @@ public class AuthService {
             authResponse.setStatus(savedUser.getStatus());
             authResponse.setExpiresAt(LocalDateTime.now().plusDays(1));
 
-            System.out.println("✅ AuthService: Enhanced registration successful for - " + savedUser.getUsername());
+            System.out.println("AuthService: Enhanced registration successful for - " + savedUser.getUsername());
             return authResponse;
 
         } catch (Exception e) {
-            System.err.println("❌ AuthService: Enhanced registration failed - " + e.getMessage());
+            System.err.println("AuthService: Enhanced registration failed - " + e.getMessage());
             throw new RuntimeException("Registration failed: " + e.getMessage(), e);
         }
     }
@@ -157,7 +157,7 @@ public class AuthService {
     // Get user from token
     public User getUserFromToken(String token) {
         try {
-            System.out.println("🔍 AuthService: Getting user from token");
+            System.out.println("AuthService: Getting user from token");
 
             String userId = jwtUtil.getUserIdFromToken(token);
 
@@ -167,11 +167,11 @@ public class AuthService {
             }
 
             User user = userOpt.get();
-            System.out.println("✅ AuthService: User found - " + user.getUsername());
+            System.out.println("AuthService: User found - " + user.getUsername());
             return user;
 
         } catch (Exception e) {
-            System.err.println("❌ AuthService: Error getting user from token - " + e.getMessage());
+            System.err.println("AuthService: Error getting user from token - " + e.getMessage());
             throw new RuntimeException("Failed to get user from token", e);
         }
     }
@@ -179,7 +179,7 @@ public class AuthService {
     // Change password
     public Map<String, Object> changePassword(String userId, String oldPassword, String newPassword) {
         try {
-            System.out.println("🔐 AuthService: Changing password for user - " + userId);
+            System.out.println("AuthService: Changing password for user - " + userId);
 
             Optional<User> userOpt = userRepository.findById(userId);
             if (userOpt.isEmpty()) {
@@ -206,11 +206,11 @@ public class AuthService {
                     "updatedAt", user.getUpdatedAt()
             );
 
-            System.out.println("✅ AuthService: Password changed successfully for - " + user.getUsername());
+            System.out.println("AuthService: Password changed successfully for - " + user.getUsername());
             return response;
 
         } catch (Exception e) {
-            System.err.println("❌ AuthService: Error changing password - " + e.getMessage());
+            System.err.println("AuthService: Error changing password - " + e.getMessage());
             throw new RuntimeException("Failed to change password: " + e.getMessage(), e);
         }
     }
@@ -218,7 +218,7 @@ public class AuthService {
     // Logout user
     public Map<String, Object> logout(String token) {
         try {
-            System.out.println("🔓 AuthService: Processing logout");
+            System.out.println("AuthService: Processing logout");
 
             // Get user from token
             User user = getUserFromToken(token);
@@ -246,11 +246,11 @@ public class AuthService {
                     "logoutTime", LocalDateTime.now()
             );
 
-            System.out.println("✅ AuthService: Logout successful for - " + user.getUsername());
+            System.out.println("AuthService: Logout successful for - " + user.getUsername());
             return response;
 
         } catch (Exception e) {
-            System.err.println("❌ AuthService: Error during logout - " + e.getMessage());
+            System.err.println("AuthService: Error during logout - " + e.getMessage());
             throw new RuntimeException("Logout failed: " + e.getMessage(), e);
         }
     }
@@ -258,7 +258,7 @@ public class AuthService {
     // Update user profile completely
     public User updateUserProfile(String userId, Map<String, Object> profileData) {
         try {
-            System.out.println("✏️ AuthService: Updating complete user profile - " + userId);
+            System.out.println("AuthService: Updating complete user profile - " + userId);
 
             Optional<User> userOpt = userRepository.findById(userId);
             if (userOpt.isEmpty()) {
@@ -267,7 +267,7 @@ public class AuthService {
 
             User user = userOpt.get();
 
-            // ✅ Update basic info
+            // Update basic info
             if (profileData.containsKey("firstName")) {
                 user.setFirstName((String) profileData.get("firstName"));
             }
@@ -278,7 +278,7 @@ public class AuthService {
                 user.setPhone((String) profileData.get("phone"));
             }
 
-            // ✅ Update address
+            // Update address
             if (profileData.containsKey("address")) {
                 @SuppressWarnings("unchecked")
                 Map<String, String> addressData = (Map<String, String>) profileData.get("address");
@@ -298,7 +298,7 @@ public class AuthService {
                 user.setAddress(address);
             }
 
-            // ✅ Update preferences
+            // Update preferences
             if (profileData.containsKey("preferences")) {
                 @SuppressWarnings("unchecked")
                 Map<String, Object> prefData = (Map<String, Object>) profileData.get("preferences");
@@ -327,7 +327,7 @@ public class AuthService {
                 user.setPreferences(prefs);
             }
 
-            // ✅ Update profile data
+            // Update profile data
             if (profileData.containsKey("profile")) {
                 @SuppressWarnings("unchecked")
                 Map<String, Object> profData = (Map<String, Object>) profileData.get("profile");
@@ -359,11 +359,11 @@ public class AuthService {
             user.setUpdatedAt(LocalDateTime.now());
             User savedUser = userRepository.save(user);
 
-            System.out.println("✅ AuthService: Complete user profile updated - " + savedUser.getUsername());
+            System.out.println("AuthService: Complete user profile updated - " + savedUser.getUsername());
             return savedUser;
 
         } catch (Exception e) {
-            System.err.println("❌ AuthService: Error updating user profile - " + e.getMessage());
+            System.err.println("AuthService: Error updating user profile - " + e.getMessage());
             throw new RuntimeException("Failed to update user profile", e);
         }
     }
@@ -371,7 +371,7 @@ public class AuthService {
     // Validate token and get user
     public User validateTokenAndGetUser(String token) {
         try {
-            System.out.println("🔍 AuthService: Validating token and getting user");
+            System.out.println("AuthService: Validating token and getting user");
 
             if (!jwtUtil.validateToken(token)) {
                 throw new RuntimeException("Invalid or expired token");
@@ -380,7 +380,7 @@ public class AuthService {
             return getUserFromToken(token);
 
         } catch (Exception e) {
-            System.err.println("❌ AuthService: Token validation failed - " + e.getMessage());
+            System.err.println("AuthService: Token validation failed - " + e.getMessage());
             throw new RuntimeException("Token validation failed", e);
         }
     }
@@ -388,12 +388,12 @@ public class AuthService {
     // Get all users (for admin)
     public List<User> getAllUsers() {
         try {
-            System.out.println("👥 AuthService: Getting all users");
+            System.out.println("AuthService: Getting all users");
             List<User> users = userRepository.findAll();
-            System.out.println("✅ AuthService: Retrieved " + users.size() + " users");
+            System.out.println("AuthService: Retrieved " + users.size() + " users");
             return users;
         } catch (Exception e) {
-            System.err.println("❌ AuthService: Error getting all users - " + e.getMessage());
+            System.err.println("AuthService: Error getting all users - " + e.getMessage());
             throw new RuntimeException("Failed to retrieve users", e);
         }
     }
@@ -401,12 +401,12 @@ public class AuthService {
     // Search users
     public List<User> searchUsers(String query) {
         try {
-            System.out.println("🔍 AuthService: Searching users - " + query);
+            System.out.println("AuthService: Searching users - " + query);
             List<User> users = userRepository.searchUsers(query);
-            System.out.println("✅ AuthService: Search completed - Found " + users.size() + " users");
+            System.out.println("AuthService: Search completed - Found " + users.size() + " users");
             return users;
         } catch (Exception e) {
-            System.err.println("❌ AuthService: Error searching users - " + e.getMessage());
+            System.err.println("AuthService: Error searching users - " + e.getMessage());
             throw new RuntimeException("Failed to search users", e);
         }
     }
@@ -414,7 +414,7 @@ public class AuthService {
     // Get user statistics
     public Map<String, Object> getUserStatistics() {
         try {
-            System.out.println("📊 AuthService: Calculating user statistics");
+            System.out.println("AuthService: Calculating user statistics");
 
             List<User> allUsers = getAllUsers();
 
@@ -441,11 +441,11 @@ public class AuthService {
 
             stats.put("generatedAt", LocalDateTime.now());
 
-            System.out.println("✅ AuthService: Statistics calculated successfully");
+            System.out.println("AuthService: Statistics calculated successfully");
             return stats;
 
         } catch (Exception e) {
-            System.err.println("❌ AuthService: Error calculating statistics - " + e.getMessage());
+            System.err.println("AuthService: Error calculating statistics - " + e.getMessage());
             throw new RuntimeException("Failed to calculate statistics", e);
         }
     }

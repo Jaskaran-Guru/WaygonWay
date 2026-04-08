@@ -44,7 +44,7 @@ public class User {
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt = LocalDateTime.now();
 
-    // ✅ Complete Address Information
+    // Complete Address Information
     public static class Address {
         private String street;
         private String city;
@@ -79,7 +79,7 @@ public class User {
         public void setAddressType(String addressType) { this.addressType = addressType; }
     }
 
-    // ✅ User Preferences
+    // User Preferences
     public static class UserPreferences {
         private String preferredLanguage = "English";
         private String currency = "INR";
@@ -114,7 +114,7 @@ public class User {
         public void setFrequentRoutes(List<String> frequentRoutes) { this.frequentRoutes = frequentRoutes; }
     }
 
-    // ✅ Login History & Session Data
+    // Login History & Session Data
     public static class LoginHistory {
         private LocalDateTime lastLogin;
         private String lastLoginIp;
@@ -182,7 +182,7 @@ public class User {
         public void setCurrentlyLoggedIn(boolean currentlyLoggedIn) { isCurrentlyLoggedIn = currentlyLoggedIn; }
     }
 
-    // ✅ Profile Data & Statistics
+    // Profile Data & Statistics
     public static class ProfileData {
         private String profilePicture;
         private String bio;

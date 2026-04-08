@@ -29,7 +29,7 @@ public class UserController {
     @GetMapping
     public ResponseEntity<ApiResponse<List<User>>> getAllUsers() {
         try {
-            System.out.println("📋 UserController: Getting all users");
+            System.out.println("UserController: Getting all users");
 
             List<User> users = userService.getAllUsers();
 
@@ -39,7 +39,7 @@ public class UserController {
             return ResponseEntity.ok(response);
 
         } catch (Exception e) {
-            System.err.println("❌ UserController: Error getting users - " + e.getMessage());
+            System.err.println("UserController: Error getting users - " + e.getMessage());
             return ResponseEntity.badRequest().body(
                     ApiResponse.error("Failed to retrieve users: " + e.getMessage())
             );
@@ -50,7 +50,7 @@ public class UserController {
     @GetMapping("/{userId}")
     public ResponseEntity<ApiResponse<User>> getUserById(@PathVariable String userId) {
         try {
-            System.out.println("🔍 UserController: Getting user by ID - " + userId);
+            System.out.println("UserController: Getting user by ID - " + userId);
 
             User user = userService.getUserById(userId);
 
@@ -59,7 +59,7 @@ public class UserController {
             );
 
         } catch (Exception e) {
-            System.err.println("❌ UserController: Error getting user - " + e.getMessage());
+            System.err.println("UserController: Error getting user - " + e.getMessage());
             return ResponseEntity.badRequest().body(
                     ApiResponse.error("Failed to retrieve user: " + e.getMessage())
             );
@@ -70,7 +70,7 @@ public class UserController {
     @GetMapping("/search")
     public ResponseEntity<ApiResponse<List<User>>> searchUsers(@RequestParam String query) {
         try {
-            System.out.println("🔍 UserController: Searching users - " + query);
+            System.out.println("UserController: Searching users - " + query);
 
             List<User> users = userService.searchUsers(query);
 
@@ -81,7 +81,7 @@ public class UserController {
             return ResponseEntity.ok(response);
 
         } catch (Exception e) {
-            System.err.println("❌ UserController: Search error - " + e.getMessage());
+            System.err.println("UserController: Search error - " + e.getMessage());
             return ResponseEntity.badRequest().body(
                     ApiResponse.error("Search failed: " + e.getMessage())
             );
@@ -92,7 +92,7 @@ public class UserController {
     @GetMapping("/status/{status}")
     public ResponseEntity<ApiResponse<List<User>>> getUsersByStatus(@PathVariable String status) {
         try {
-            System.out.println("📋 UserController: Getting users by status - " + status);
+            System.out.println("UserController: Getting users by status - " + status);
 
             List<User> users = userService.getUsersByStatus(status);
 
@@ -103,7 +103,7 @@ public class UserController {
             return ResponseEntity.ok(response);
 
         } catch (Exception e) {
-            System.err.println("❌ UserController: Error getting users by status - " + e.getMessage());
+            System.err.println("UserController: Error getting users by status - " + e.getMessage());
             return ResponseEntity.badRequest().body(
                     ApiResponse.error("Failed to retrieve users: " + e.getMessage())
             );
@@ -114,7 +114,7 @@ public class UserController {
     @GetMapping("/statistics")
     public ResponseEntity<ApiResponse<Map<String, Object>>> getUserStatistics() {
         try {
-            System.out.println("📊 UserController: Getting user statistics");
+            System.out.println("UserController: Getting user statistics");
 
             Map<String, Object> stats = userService.getUserStatistics();
 
@@ -124,7 +124,7 @@ public class UserController {
             return ResponseEntity.ok(response);
 
         } catch (Exception e) {
-            System.err.println("❌ UserController: Statistics error - " + e.getMessage());
+            System.err.println("UserController: Statistics error - " + e.getMessage());
             return ResponseEntity.badRequest().body(
                     ApiResponse.error("Failed to retrieve statistics: " + e.getMessage())
             );

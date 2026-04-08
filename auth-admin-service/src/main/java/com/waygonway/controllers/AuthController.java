@@ -48,7 +48,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<AuthResponse>> login(@Valid @RequestBody LoginRequest loginRequest) {
         try {
-            System.out.println("🔐 AuthController: Login request for - " + loginRequest.getUsernameOrEmail());
+            System.out.println("AuthController: Login request for - " + loginRequest.getUsernameOrEmail());
 
             AuthResponse authResponse = authService.login(loginRequest);
 
@@ -56,14 +56,14 @@ public class AuthController {
             ApiResponse<AuthResponse> response = ApiResponse.success("Login successful", authResponse);
             response.addMeta("userId", authResponse.getUserId());
             response.addMeta("username", authResponse.getUsername());
-            response.addMeta("type", "login");  // ✅ FIXED: removed getType() call
+            response.addMeta("type", "login");  // FIXED: removed getType() call
             response.addMeta("expiresAt", authResponse.getExpiresAt());
 
             return ResponseEntity.ok(response);
 
 
         } catch (Exception e) {
-            System.err.println("❌ AuthController: Login failed - " + e.getMessage());
+            System.err.println("AuthController: Login failed - " + e.getMessage());
             return ResponseEntity.badRequest().body(
                     ApiResponse.error("Login failed: " + e.getMessage())
             );
@@ -74,7 +74,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<AuthResponse>> register(@Valid @RequestBody RegisterRequest registerRequest) {
         try {
-            System.out.println("📝 AuthController: Registration request for - " + registerRequest.getUsername());
+            System.out.println("AuthController: Registration request for - " + registerRequest.getUsername());
 
             AuthResponse authResponse = authService.register(registerRequest);
 
@@ -86,7 +86,7 @@ public class AuthController {
             return ResponseEntity.ok(response);
 
         } catch (Exception e) {
-            System.err.println("❌ AuthController: Registration failed - " + e.getMessage());
+            System.err.println("AuthController: Registration failed - " + e.getMessage());
             return ResponseEntity.badRequest().body(
                     ApiResponse.error("Registration failed: " + e.getMessage())
             );
@@ -98,7 +98,7 @@ public class AuthController {
     public ResponseEntity<ApiResponse<Map<String, Object>>> validateToken(@RequestBody Map<String, String> request) {
         try {
             String token = request.get("token");
-            System.out.println("🔍 AuthController: Token validation request");
+            System.out.println("AuthController: Token validation request");
 
             User user = authService.getUserFromToken(token);
 
@@ -117,7 +117,7 @@ public class AuthController {
             return ResponseEntity.ok(response);
 
         } catch (Exception e) {
-            System.err.println("❌ AuthController: Token validation failed - " + e.getMessage());
+            System.err.println("AuthController: Token validation failed - " + e.getMessage());
 
             ApiResponse<Map<String, Object>> errorResponse = ApiResponse.error("Token validation failed: " + e.getMessage());
             errorResponse.addMeta("tokenValid", false);
@@ -130,7 +130,7 @@ public class AuthController {
     @GetMapping("/me")
     public ResponseEntity<ApiResponse<User>> getCurrentUser(@RequestHeader("Authorization") String authHeader) {
         try {
-            System.out.println("👤 AuthController: Get current user request");
+            System.out.println("AuthController: Get current user request");
 
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
                 throw new RuntimeException("Invalid authorization header");
@@ -146,7 +146,7 @@ public class AuthController {
             return ResponseEntity.ok(response);
 
         } catch (Exception e) {
-            System.err.println("❌ AuthController: Get current user failed - " + e.getMessage());
+            System.err.println("AuthController: Get current user failed - " + e.getMessage());
             return ResponseEntity.badRequest().body(
                     ApiResponse.error("Failed to get user information: " + e.getMessage())
             );
@@ -159,7 +159,7 @@ public class AuthController {
             @RequestHeader("Authorization") String authHeader,
             @RequestBody Map<String, String> request) {
         try {
-            System.out.println("🔐 AuthController: Change password request");
+            System.out.println("AuthController: Change password request");
 
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
                 throw new RuntimeException("Invalid authorization header");
@@ -182,7 +182,7 @@ public class AuthController {
             return ResponseEntity.ok(response);
 
         } catch (Exception e) {
-            System.err.println("❌ AuthController: Change password failed - " + e.getMessage());
+            System.err.println("AuthController: Change password failed - " + e.getMessage());
             return ResponseEntity.badRequest().body(
                     ApiResponse.error("Password change failed: " + e.getMessage())
             );
@@ -193,7 +193,7 @@ public class AuthController {
     @PostMapping("/logout")
     public ResponseEntity<ApiResponse<Map<String, Object>>> logout(@RequestHeader("Authorization") String authHeader) {
         try {
-            System.out.println("🔓 AuthController: Logout request");
+            System.out.println("AuthController: Logout request");
 
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
                 throw new RuntimeException("Invalid authorization header");
@@ -208,7 +208,7 @@ public class AuthController {
             return ResponseEntity.ok(response);
 
         } catch (Exception e) {
-            System.err.println("❌ AuthController: Logout failed - " + e.getMessage());
+            System.err.println("AuthController: Logout failed - " + e.getMessage());
             return ResponseEntity.badRequest().body(
                     ApiResponse.error("Logout failed: " + e.getMessage())
             );
@@ -220,7 +220,7 @@ public class AuthController {
     public ResponseEntity<ApiResponse<AuthResponse>> refreshToken(@RequestBody Map<String, String> request) {
         try {
             String token = request.get("token");
-            System.out.println("🔄 AuthController: Token refresh request");
+            System.out.println("AuthController: Token refresh request");
 
             // For now, just validate the existing token and return user info
             User user = authService.getUserFromToken(token);
@@ -245,7 +245,7 @@ public class AuthController {
             return ResponseEntity.ok(response);
 
         } catch (Exception e) {
-            System.err.println("❌ AuthController: Token refresh failed - " + e.getMessage());
+            System.err.println("AuthController: Token refresh failed - " + e.getMessage());
             return ResponseEntity.badRequest().body(
                     ApiResponse.error("Token refresh failed: " + e.getMessage())
             );
@@ -257,7 +257,7 @@ public class AuthController {
     public ResponseEntity<ApiResponse<Map<String, Object>>> getTokenInfo(@RequestBody Map<String, String> request) {
         try {
             String token = request.get("token");
-            System.out.println("🔍 AuthController: Token info request");
+            System.out.println("AuthController: Token info request");
 
             String username = jwtUtil.extractUsername(token);
             String userId = jwtUtil.extractUserId(token);
@@ -277,7 +277,7 @@ public class AuthController {
             return ResponseEntity.ok(response);
 
         } catch (Exception e) {
-            System.err.println("❌ AuthController: Token info failed - " + e.getMessage());
+            System.err.println("AuthController: Token info failed - " + e.getMessage());
             return ResponseEntity.badRequest().body(
                     ApiResponse.error("Token info retrieval failed: " + e.getMessage())
             );
@@ -288,7 +288,7 @@ public class AuthController {
     @GetMapping("/check-username/{username}")
     public ResponseEntity<ApiResponse<Map<String, Object>>> checkUsername(@PathVariable String username) {
         try {
-            System.out.println("🔍 AuthController: Checking username availability - " + username);
+            System.out.println("AuthController: Checking username availability - " + username);
 
             boolean exists = authService.getUserFromToken("dummy") != null; // This will be refactored
 
@@ -303,7 +303,7 @@ public class AuthController {
             return ResponseEntity.ok(response);
 
         } catch (Exception e) {
-            System.err.println("❌ AuthController: Username check failed - " + e.getMessage());
+            System.err.println("AuthController: Username check failed - " + e.getMessage());
             return ResponseEntity.badRequest().body(
                     ApiResponse.error("Username check failed: " + e.getMessage())
             );
@@ -316,7 +316,7 @@ public class AuthController {
             @RequestHeader("Authorization") String authHeader,
             @PathVariable String userId) {
         try {
-            System.out.println("🗑️ AuthController: Self-deletion request for - " + userId);
+            System.out.println("AuthController: Self-deletion request for - " + userId);
 
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
                 throw new RuntimeException("Invalid authorization header");
@@ -336,7 +336,7 @@ public class AuthController {
             );
 
         } catch (Exception e) {
-            System.err.println("❌ AuthController: Account deletion failed - " + e.getMessage());
+            System.err.println("AuthController: Account deletion failed - " + e.getMessage());
             return ResponseEntity.badRequest().body(
                     ApiResponse.error("Failed to delete account: " + e.getMessage())
             );

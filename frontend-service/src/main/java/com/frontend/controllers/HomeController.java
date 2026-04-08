@@ -23,7 +23,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model, HttpSession session) {
-        System.out.println("🏠 HomeController: Home page accessed");
+        System.out.println("HomeController: Home page accessed");
 
         // Get current user data
         Map<String, Object> currentUser = userService.getCurrentUser(session);
@@ -47,7 +47,7 @@ public class HomeController {
 
     @GetMapping("/login")
     public String loginPage(Model model, HttpSession session) {
-        System.out.println("🔐 HomeController: Login page accessed");
+        System.out.println("HomeController: Login page accessed");
 
         if (userService.isLoggedIn(session)) {
             return "redirect:/dashboard";
@@ -61,7 +61,7 @@ public class HomeController {
     public String loginSubmit(@RequestParam String usernameOrEmail,
                               @RequestParam String password,
                               Model model, HttpSession session) {
-        System.out.println("🔐 HomeController: Login attempt for - " + usernameOrEmail);
+        System.out.println("HomeController: Login attempt for - " + usernameOrEmail);
 
         try {
             Map<String, Object> response = apiService.login(usernameOrEmail, password);
@@ -72,7 +72,7 @@ public class HomeController {
 
                 userService.setUserSession(session, userData);
 
-                System.out.println("✅ Login successful for user: " + userData.get("username"));
+                System.out.println("Login successful for user: " + userData.get("username"));
                 return "redirect:/dashboard";
 
             } else {
@@ -83,7 +83,7 @@ public class HomeController {
             }
 
         } catch (Exception e) {
-            System.err.println("❌ Login error: " + e.getMessage());
+            System.err.println("Login error: " + e.getMessage());
             model.addAttribute("errorMessage", "Login failed. Please try again.");
             model.addAttribute("pageTitle", "Login - WaygonWay");
             return "login";
@@ -92,7 +92,7 @@ public class HomeController {
 
     @GetMapping("/register")
     public String registerPage(Model model, HttpSession session) {
-        System.out.println("📝 HomeController: Register page accessed");
+        System.out.println("HomeController: Register page accessed");
 
         if (userService.isLoggedIn(session)) {
             return "redirect:/dashboard";
@@ -112,14 +112,14 @@ public class HomeController {
                                  @RequestParam(required = false) String city,
                                  @RequestParam(required = false) String state,
                                  Model model, HttpSession session) {
-        System.out.println("📝 HomeController: Registration attempt for - " + username);
+        System.out.println("HomeController: Registration attempt for - " + username);
 
         try {
             Map<String, Object> response = apiService.register(
                     username, email, password, firstName, lastName, phone, city, state);
 
             if (response.get("success").equals(true)) {
-                System.out.println("✅ Registration successful for user: " + username);
+                System.out.println("Registration successful for user: " + username);
                 model.addAttribute("successMessage", "Registration successful! Please login to continue.");
                 model.addAttribute("pageTitle", "Login - WaygonWay");
                 return "login";
@@ -132,7 +132,7 @@ public class HomeController {
             }
 
         } catch (Exception e) {
-            System.err.println("❌ Registration error: " + e.getMessage());
+            System.err.println("Registration error: " + e.getMessage());
             model.addAttribute("errorMessage", "Registration failed. Please try again.");
             model.addAttribute("pageTitle", "Register - WaygonWay");
             return "register";
@@ -141,7 +141,7 @@ public class HomeController {
 
     @GetMapping("/logout")
     public String logout(HttpSession session, Model model) {
-        System.out.println("🔓 HomeController: Logout accessed");
+        System.out.println("HomeController: Logout accessed");
 
         userService.clearUserSession(session);
         model.addAttribute("successMessage", "Logged out successfully!");
@@ -152,7 +152,7 @@ public class HomeController {
 
     @GetMapping("/dashboard")
     public String dashboard(Model model, HttpSession session) {
-        System.out.println("📊 HomeController: Dashboard accessed");
+        System.out.println("HomeController: Dashboard accessed");
 
         if (!userService.isLoggedIn(session)) {
             return "redirect:/login";
@@ -179,7 +179,7 @@ public class HomeController {
                 }
             }
         } catch (Exception e) {
-            System.err.println("❌ Error getting user bookings: " + e.getMessage());
+            System.err.println("Error getting user bookings: " + e.getMessage());
             model.addAttribute("bookings", new ArrayList<>());
             model.addAttribute("bookingCount", 0);
         }
@@ -189,7 +189,7 @@ public class HomeController {
 
     @GetMapping("/my-bookings")
     public String myBookings(Model model, HttpSession session) {
-        System.out.println("🎫 HomeController: My bookings page accessed");
+        System.out.println("HomeController: My bookings page accessed");
 
         if (!userService.isLoggedIn(session)) {
             return "redirect:/login";
@@ -203,7 +203,7 @@ public class HomeController {
         // Get user bookings
         try {
             String userId = userService.getUserId(session);
-            System.out.println("🔍 Fetching bookings for user ID: " + userId);
+            System.out.println("Fetching bookings for user ID: " + userId);
 
             if (userId != null) {
                 Map<String, Object> response = apiService.getUserTickets(userId);
@@ -212,17 +212,17 @@ public class HomeController {
                     @SuppressWarnings("unchecked")
                     List<Map<String, Object>> bookings = (List<Map<String, Object>>) response.get("data");
                     model.addAttribute("bookings", bookings);
-                    System.out.println("✅ Found " + bookings.size() + " bookings");
+                    System.out.println("Found " + bookings.size() + " bookings");
                 } else {
                     model.addAttribute("bookings", new ArrayList<>());
-                    System.out.println("⚠️ No bookings found or API error");
+                    System.out.println("No bookings found or API error");
                 }
             } else {
                 model.addAttribute("bookings", new ArrayList<>());
-                System.out.println("❌ User ID is null");
+                System.out.println("User ID is null");
             }
         } catch (Exception e) {
-            System.err.println("❌ Error getting user bookings: " + e.getMessage());
+            System.err.println("Error getting user bookings: " + e.getMessage());
             model.addAttribute("bookings", new ArrayList<>());
         }
 
@@ -233,7 +233,7 @@ public class HomeController {
 
     @GetMapping("/search")
     public String searchPage(Model model, HttpSession session) {
-        System.out.println("🔍 HomeController: Search page accessed");
+        System.out.println("HomeController: Search page accessed");
 
         Map<String, Object> currentUser = userService.getCurrentUser(session);
         boolean isLoggedIn = userService.isLoggedIn(session);
@@ -253,7 +253,7 @@ public class HomeController {
                                @RequestParam(required = false, defaultValue = "false") boolean flexibleDates,
                                @RequestParam(required = false, defaultValue = "true") boolean availableOnly,
                                Model model, HttpSession session) {
-        System.out.println("🔍 HomeController: Train search - " + source + " to " + destination);
+        System.out.println("HomeController: Train search - " + source + " to " + destination);
 
         Map<String, Object> currentUser = userService.getCurrentUser(session);
         boolean isLoggedIn = userService.isLoggedIn(session);
@@ -280,13 +280,13 @@ public class HomeController {
                 @SuppressWarnings("unchecked")
                 List<Map<String, Object>> trains = (List<Map<String, Object>>) response.get("data");
                 model.addAttribute("trains", trains);
-                System.out.println("✅ Found " + trains.size() + " trains");
+                System.out.println("Found " + trains.size() + " trains");
             } else {
                 model.addAttribute("trains", new ArrayList<>());
-                System.out.println("⚠️ No trains found or API error");
+                System.out.println("No trains found or API error");
             }
         } catch (Exception e) {
-            System.err.println("❌ Error searching trains: " + e.getMessage());
+            System.err.println("Error searching trains: " + e.getMessage());
             model.addAttribute("trains", new ArrayList<>());
         }
 
@@ -295,7 +295,7 @@ public class HomeController {
 
     @GetMapping("/pnr-status")
     public String pnrStatusPage(Model model, HttpSession session) {
-        System.out.println("🎫 HomeController: PNR status page accessed");
+        System.out.println("HomeController: PNR status page accessed");
 
         Map<String, Object> currentUser = userService.getCurrentUser(session);
         boolean isLoggedIn = userService.isLoggedIn(session);
@@ -310,7 +310,7 @@ public class HomeController {
     @PostMapping("/pnr-status")
     public String checkPNRStatus(@RequestParam String pnr,
                                  Model model, HttpSession session) {
-        System.out.println("🎫 HomeController: PNR check for - " + pnr);
+        System.out.println("HomeController: PNR check for - " + pnr);
 
         Map<String, Object> currentUser = userService.getCurrentUser(session);
         boolean isLoggedIn = userService.isLoggedIn(session);
@@ -329,14 +329,14 @@ public class HomeController {
                 Map<String, Object> booking = (Map<String, Object>) response.get("data");
                 model.addAttribute("booking", booking);
                 model.addAttribute("pnrFound", true);
-                System.out.println("✅ PNR found: " + pnr);
+                System.out.println("PNR found: " + pnr);
             } else {
                 model.addAttribute("pnrFound", false);
                 model.addAttribute("errorMessage", "PNR not found. Please check and try again.");
-                System.out.println("❌ PNR not found: " + pnr);
+                System.out.println("PNR not found: " + pnr);
             }
         } catch (Exception e) {
-            System.err.println("❌ Error checking PNR: " + e.getMessage());
+            System.err.println("Error checking PNR: " + e.getMessage());
             model.addAttribute("pnrFound", false);
             model.addAttribute("errorMessage", "Error checking PNR status. Please try again.");
         }
@@ -349,7 +349,7 @@ public class HomeController {
     @GetMapping("/book-ticket")
     public String bookTicketPage(@RequestParam(required = false) String eventId,
                                  Model model, HttpSession session) {
-        System.out.println("🎫 HomeController: Book ticket page accessed");
+        System.out.println("HomeController: Book ticket page accessed");
 
         if (!userService.isLoggedIn(session)) {
             return "redirect:/login";
@@ -368,7 +368,7 @@ public class HomeController {
                     model.addAttribute("selectedEvent", response.get("data"));
                 }
             } catch (Exception e) {
-                System.err.println("❌ Error getting event details: " + e.getMessage());
+                System.err.println("Error getting event details: " + e.getMessage());
             }
         }
 
@@ -383,7 +383,7 @@ public class HomeController {
                                    @RequestParam String trainClass,
                                    @RequestParam String journeyDate,
                                    Model model, HttpSession session) {
-        System.out.println("🎫 HomeController: Ticket booking attempt");
+        System.out.println("HomeController: Ticket booking attempt");
 
         if (!userService.isLoggedIn(session)) {
             return "redirect:/login";
@@ -407,7 +407,7 @@ public class HomeController {
                 return "book-ticket";
             }
         } catch (Exception e) {
-            System.err.println("❌ Booking error: " + e.getMessage());
+            System.err.println("Booking error: " + e.getMessage());
             model.addAttribute("errorMessage", "Booking failed. Please try again.");
             return "book-ticket";
         }
@@ -416,7 +416,7 @@ public class HomeController {
     @GetMapping("/booking-confirmation")
     public String bookingConfirmation(@RequestParam String pnr,
                                       Model model, HttpSession session) {
-        System.out.println("✅ HomeController: Booking confirmation for PNR: " + pnr);
+        System.out.println("HomeController: Booking confirmation for PNR: " + pnr);
 
         Map<String, Object> currentUser = userService.getCurrentUser(session);
         boolean isLoggedIn = userService.isLoggedIn(session);
@@ -433,7 +433,7 @@ public class HomeController {
                 model.addAttribute("pnr", pnr);
             }
         } catch (Exception e) {
-            System.err.println("❌ Error getting booking details: " + e.getMessage());
+            System.err.println("Error getting booking details: " + e.getMessage());
         }
 
         return "booking-confirmation";
@@ -443,7 +443,7 @@ public class HomeController {
 
     @GetMapping("/admin-dashboard")
     public String adminDashboard(Model model, HttpSession session) {
-        System.out.println("👑 HomeController: Admin dashboard accessed");
+        System.out.println("HomeController: Admin dashboard accessed");
 
         if (!userService.isAdmin(session)) {
             return "redirect:/login";
@@ -464,7 +464,7 @@ public class HomeController {
             model.addAttribute("bookingStats", bookingStats.get("data"));
 
         } catch (Exception e) {
-            System.err.println("❌ Error getting admin stats: " + e.getMessage());
+            System.err.println("Error getting admin stats: " + e.getMessage());
             model.addAttribute("userStats", new HashMap<>());
             model.addAttribute("bookingStats", new HashMap<>());
         }
@@ -474,7 +474,7 @@ public class HomeController {
 
     @GetMapping("/admin/create-demo-data")
     public String createDemoData(Model model, HttpSession session) {
-        System.out.println("📊 HomeController: Creating demo train data");
+        System.out.println("HomeController: Creating demo train data");
 
         if (!userService.isAdmin(session)) {
             return "redirect:/login";
@@ -490,7 +490,7 @@ public class HomeController {
             }
 
         } catch (Exception e) {
-            System.err.println("❌ Error creating demo data: " + e.getMessage());
+            System.err.println("Error creating demo data: " + e.getMessage());
             model.addAttribute("errorMessage", "Error: " + e.getMessage());
         }
 
@@ -501,7 +501,7 @@ public class HomeController {
 
     @GetMapping("/system-status")
     public String systemStatus(Model model, HttpSession session) {
-        System.out.println("🔧 HomeController: System status page accessed");
+        System.out.println("HomeController: System status page accessed");
 
         Map<String, Object> currentUser = userService.getCurrentUser(session);
         boolean isLoggedIn = userService.isLoggedIn(session);
@@ -525,7 +525,7 @@ public class HomeController {
 
     @GetMapping("/profile")
     public String profilePage(Model model, HttpSession session) {
-        System.out.println("👤 HomeController: Profile page accessed");
+        System.out.println("HomeController: Profile page accessed");
 
         if (!userService.isLoggedIn(session)) {
             return "redirect:/login";
@@ -541,7 +541,7 @@ public class HomeController {
 
     @GetMapping("/settings")
     public String settingsPage(Model model, HttpSession session) {
-        System.out.println("⚙️ HomeController: Settings page accessed");
+        System.out.println("HomeController: Settings page accessed");
 
         if (!userService.isLoggedIn(session)) {
             return "redirect:/login";
@@ -560,7 +560,7 @@ public class HomeController {
     @GetMapping("/api/health-check")
     @ResponseBody
     public Map<String, Object> healthCheck() {
-        System.out.println("🏥 HomeController: Health check API called");
+        System.out.println("HomeController: Health check API called");
 
         Map<String, Object> health = apiService.getSystemHealth();
         return Map.of("success", true, "data", health);
@@ -569,7 +569,7 @@ public class HomeController {
     @GetMapping("/api/user-session")
     @ResponseBody
     public Map<String, Object> getUserSession(HttpSession session) {
-        System.out.println("👤 HomeController: User session API called");
+        System.out.println("HomeController: User session API called");
 
         Map<String, Object> sessionInfo = userService.getSessionInfo(session);
         return Map.of("success", true, "data", sessionInfo);
@@ -579,7 +579,7 @@ public class HomeController {
 
     @GetMapping("/error")
     public String errorPage(Model model) {
-        System.out.println("❌ HomeController: Error page accessed");
+        System.out.println("HomeController: Error page accessed");
         model.addAttribute("pageTitle", "Error - WaygonWay");
         return "error";
     }
@@ -588,7 +588,7 @@ public class HomeController {
 
     @GetMapping("/help")
     public String helpPage(Model model, HttpSession session) {
-        System.out.println("❓ HomeController: Help page accessed");
+        System.out.println("HomeController: Help page accessed");
 
         Map<String, Object> currentUser = userService.getCurrentUser(session);
         boolean isLoggedIn = userService.isLoggedIn(session);
@@ -602,7 +602,7 @@ public class HomeController {
 
     @GetMapping("/contact")
     public String contactPage(Model model, HttpSession session) {
-        System.out.println("📞 HomeController: Contact page accessed");
+        System.out.println("HomeController: Contact page accessed");
 
         Map<String, Object> currentUser = userService.getCurrentUser(session);
         boolean isLoggedIn = userService.isLoggedIn(session);
@@ -633,7 +633,7 @@ public class HomeController {
     @RequestMapping("/{path:[^\\.]*}")
     public String handleUndefinedRoutes(@PathVariable String path,
                                         Model model, HttpSession session) {
-        System.out.println("❓ HomeController: Undefined route accessed - /" + path);
+        System.out.println("HomeController: Undefined route accessed - /" + path);
 
         // Skip API and static resource paths
         if (path.startsWith("api") || path.startsWith("css") ||

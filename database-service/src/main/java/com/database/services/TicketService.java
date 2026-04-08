@@ -51,7 +51,7 @@ public class TicketService {
     // Book ticket
     public Ticket bookTicket(Ticket ticketRequest) {
         try {
-            System.out.println("🎫 TicketService: Booking ticket for user - " + ticketRequest.getUserId());
+            System.out.println("TicketService: Booking ticket for user - " + ticketRequest.getUserId());
 
             // Get train details
             Train train = trainService.getTrainById(ticketRequest.getTrainId());
@@ -101,11 +101,11 @@ public class TicketService {
             // Update train seat availability
             trainService.bookSeats(train.getId(), seatsRequested);
 
-            System.out.println("✅ TicketService: Ticket booked successfully - PNR: " + pnr);
+            System.out.println("TicketService: Ticket booked successfully - PNR: " + pnr);
             return savedTicket;
 
         } catch (Exception e) {
-            System.err.println("❌ TicketService: Error booking ticket - " + e.getMessage());
+            System.err.println("TicketService: Error booking ticket - " + e.getMessage());
             throw new RuntimeException("Failed to book ticket: " + e.getMessage(), e);
         }
     }
@@ -131,7 +131,7 @@ public class TicketService {
     // Get ticket by PNR
     public Ticket getTicketByPNR(String pnr) {
         try {
-            System.out.println("🔍 TicketService: Getting ticket by PNR - " + pnr);
+            System.out.println("TicketService: Getting ticket by PNR - " + pnr);
 
             Optional<Ticket> ticketOpt = ticketRepository.findByPnr(pnr);
             if (ticketOpt.isEmpty()) {
@@ -139,11 +139,11 @@ public class TicketService {
             }
 
             Ticket ticket = ticketOpt.get();
-            System.out.println("✅ TicketService: Ticket found - " + ticket.getPnr());
+            System.out.println("TicketService: Ticket found - " + ticket.getPnr());
             return ticket;
 
         } catch (Exception e) {
-            System.err.println("❌ TicketService: Error getting ticket by PNR - " + e.getMessage());
+            System.err.println("TicketService: Error getting ticket by PNR - " + e.getMessage());
             throw new RuntimeException("Failed to retrieve ticket", e);
         }
     }
@@ -151,15 +151,15 @@ public class TicketService {
     // Get user tickets
     public List<Ticket> getUserTickets(String userId) {
         try {
-            System.out.println("🔍 TicketService: Getting tickets for user - " + userId);
+            System.out.println("TicketService: Getting tickets for user - " + userId);
 
             List<Ticket> tickets = ticketRepository.findByUserId(userId);
 
-            System.out.println("✅ TicketService: Retrieved " + tickets.size() + " tickets for user");
+            System.out.println("TicketService: Retrieved " + tickets.size() + " tickets for user");
             return tickets;
 
         } catch (Exception e) {
-            System.err.println("❌ TicketService: Error getting user tickets - " + e.getMessage());
+            System.err.println("TicketService: Error getting user tickets - " + e.getMessage());
             throw new RuntimeException("Failed to retrieve user tickets", e);
         }
     }
@@ -167,15 +167,15 @@ public class TicketService {
     // Get upcoming tickets for user
     public List<Ticket> getUpcomingTickets(String userId) {
         try {
-            System.out.println("🔍 TicketService: Getting upcoming tickets for user - " + userId);
+            System.out.println("TicketService: Getting upcoming tickets for user - " + userId);
 
             List<Ticket> tickets = ticketRepository.findUpcomingTicketsForUser(userId, LocalDateTime.now());
 
-            System.out.println("✅ TicketService: Retrieved " + tickets.size() + " upcoming tickets");
+            System.out.println("TicketService: Retrieved " + tickets.size() + " upcoming tickets");
             return tickets;
 
         } catch (Exception e) {
-            System.err.println("❌ TicketService: Error getting upcoming tickets - " + e.getMessage());
+            System.err.println("TicketService: Error getting upcoming tickets - " + e.getMessage());
             throw new RuntimeException("Failed to retrieve upcoming tickets", e);
         }
     }
@@ -183,7 +183,7 @@ public class TicketService {
     // Cancel ticket
     public Ticket cancelTicket(String pnr, String userId) {
         try {
-            System.out.println("❌ TicketService: Cancelling ticket - PNR: " + pnr);
+            System.out.println("TicketService: Cancelling ticket - PNR: " + pnr);
 
             Ticket ticket = getTicketByPNR(pnr);
 
@@ -213,11 +213,11 @@ public class TicketService {
             // Release seats back to train
             trainService.cancelSeats(ticket.getTrainId(), ticket.getPassengerCount());
 
-            System.out.println("✅ TicketService: Ticket cancelled successfully - PNR: " + pnr);
+            System.out.println("TicketService: Ticket cancelled successfully - PNR: " + pnr);
             return savedTicket;
 
         } catch (Exception e) {
-            System.err.println("❌ TicketService: Error cancelling ticket - " + e.getMessage());
+            System.err.println("TicketService: Error cancelling ticket - " + e.getMessage());
             throw new RuntimeException("Failed to cancel ticket: " + e.getMessage(), e);
         }
     }
@@ -225,12 +225,12 @@ public class TicketService {
     // Get all tickets
     public List<Ticket> getAllTickets() {
         try {
-            System.out.println("📋 TicketService: Getting all tickets");
+            System.out.println("TicketService: Getting all tickets");
             List<Ticket> tickets = ticketRepository.findAll();
-            System.out.println("✅ TicketService: Retrieved " + tickets.size() + " tickets");
+            System.out.println("TicketService: Retrieved " + tickets.size() + " tickets");
             return tickets;
         } catch (Exception e) {
-            System.err.println("❌ TicketService: Error getting all tickets - " + e.getMessage());
+            System.err.println("TicketService: Error getting all tickets - " + e.getMessage());
             throw new RuntimeException("Failed to retrieve tickets", e);
         }
     }
@@ -238,12 +238,12 @@ public class TicketService {
     // Get tickets by status
     public List<Ticket> getTicketsByStatus(String status) {
         try {
-            System.out.println("📋 TicketService: Getting tickets by status - " + status);
+            System.out.println("TicketService: Getting tickets by status - " + status);
             List<Ticket> tickets = ticketRepository.findByBookingStatus(status);
-            System.out.println("✅ TicketService: Retrieved " + tickets.size() + " tickets with status " + status);
+            System.out.println("TicketService: Retrieved " + tickets.size() + " tickets with status " + status);
             return tickets;
         } catch (Exception e) {
-            System.err.println("❌ TicketService: Error getting tickets by status - " + e.getMessage());
+            System.err.println("TicketService: Error getting tickets by status - " + e.getMessage());
             throw new RuntimeException("Failed to retrieve tickets by status", e);
         }
     }
@@ -251,7 +251,7 @@ public class TicketService {
     // Get ticket statistics
     public Map<String, Object> getTicketStatistics() {
         try {
-            System.out.println("📊 TicketService: Calculating ticket statistics");
+            System.out.println("TicketService: Calculating ticket statistics");
 
             List<Ticket> allTickets = getAllTickets();
             List<Ticket> confirmedTickets = ticketRepository.findConfirmedTickets();
@@ -302,11 +302,11 @@ public class TicketService {
 
             stats.put("generatedAt", LocalDateTime.now());
 
-            System.out.println("✅ TicketService: Statistics calculated successfully");
+            System.out.println("TicketService: Statistics calculated successfully");
             return stats;
 
         } catch (Exception e) {
-            System.err.println("❌ TicketService: Error calculating statistics - " + e.getMessage());
+            System.err.println("TicketService: Error calculating statistics - " + e.getMessage());
             throw new RuntimeException("Failed to calculate statistics", e);
         }
     }
@@ -314,16 +314,16 @@ public class TicketService {
     // Search tickets
     public List<Ticket> searchTickets(String searchQuery) {
         try {
-            System.out.println("🔍 TicketService: Searching tickets - " + searchQuery);
+            System.out.println("TicketService: Searching tickets - " + searchQuery);
 
             // Search by PNR pattern
             List<Ticket> tickets = ticketRepository.findByPnrContaining(searchQuery);
 
-            System.out.println("✅ TicketService: Search completed - Found " + tickets.size() + " tickets");
+            System.out.println("TicketService: Search completed - Found " + tickets.size() + " tickets");
             return tickets;
 
         } catch (Exception e) {
-            System.err.println("❌ TicketService: Error searching tickets - " + e.getMessage());
+            System.err.println("TicketService: Error searching tickets - " + e.getMessage());
             throw new RuntimeException("Failed to search tickets", e);
         }
     }
@@ -331,15 +331,15 @@ public class TicketService {
     // Get tickets by date range
     public List<Ticket> getTicketsByDateRange(LocalDateTime startDate, LocalDateTime endDate) {
         try {
-            System.out.println("📅 TicketService: Getting tickets by date range");
+            System.out.println("TicketService: Getting tickets by date range");
 
             List<Ticket> tickets = ticketRepository.findByBookingDateBetween(startDate, endDate);
 
-            System.out.println("✅ TicketService: Retrieved " + tickets.size() + " tickets in date range");
+            System.out.println("TicketService: Retrieved " + tickets.size() + " tickets in date range");
             return tickets;
 
         } catch (Exception e) {
-            System.err.println("❌ TicketService: Error getting tickets by date range - " + e.getMessage());
+            System.err.println("TicketService: Error getting tickets by date range - " + e.getMessage());
             throw new RuntimeException("Failed to retrieve tickets by date range", e);
         }
     }

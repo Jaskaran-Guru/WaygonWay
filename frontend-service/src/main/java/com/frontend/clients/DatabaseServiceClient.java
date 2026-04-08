@@ -30,8 +30,8 @@ public class DatabaseServiceClient {
 
     // Create ticket in database-service
     public Map<String, Object> createTicket(Map<String, Object> ticketData) {
-        logger.info("🔄 Creating ticket via database-service");
-        logger.info("📊 Data: {}", ticketData);
+        logger.info("Creating ticket via database-service");
+        logger.info("Data: {}", ticketData);
 
         try {
             Map<String, Object> request = new HashMap<>();
@@ -57,11 +57,11 @@ public class DatabaseServiceClient {
                     Map.class
             );
 
-            logger.info("✅ Ticket created: {}", response.getBody());
+            logger.info("Ticket created: {}", response.getBody());
             return response.getBody();
 
         } catch (Exception e) {
-            logger.error("❌ Error: {}", e.getMessage());
+            logger.error("Error: {}", e.getMessage());
             Map<String, Object> error = new HashMap<>();
             error.put("error", true);
             error.put("message", e.getMessage());
@@ -78,11 +78,11 @@ public class DatabaseServiceClient {
             );
 
             List<Map<String, Object>> tickets = Arrays.asList(response.getBody());
-            logger.info("✅ Found {} tickets for user", tickets.size());
+            logger.info("Found {} tickets for user", tickets.size());
             return tickets;
 
         } catch (Exception e) {
-            logger.error("❌ Error getting tickets: {}", e.getMessage());
+            logger.error("Error getting tickets: {}", e.getMessage());
             return Arrays.asList();
         }
     }
@@ -95,11 +95,11 @@ public class DatabaseServiceClient {
                     Map.class
             );
 
-            logger.info("✅ PNR found: {}", response.getBody());
+            logger.info("PNR found: {}", response.getBody());
             return response.getBody();
 
         } catch (Exception e) {
-            logger.error("❌ PNR not found: {}", e.getMessage());
+            logger.error("PNR not found: {}", e.getMessage());
             Map<String, Object> error = new HashMap<>();
             error.put("error", true);
             error.put("message", "PNR not found");
@@ -171,7 +171,7 @@ public class DatabaseServiceClient {
      * Get all users for admin panel
      */
     public List<Map<String, Object>> getAllUsers() {
-        logger.info("🔄 [DatabaseServiceClient] Getting all users from database-service");
+        logger.info("[DatabaseServiceClient] Getting all users from database-service");
 
         try {
             ResponseEntity<Map[]> response = restTemplate.getForEntity(
@@ -181,19 +181,19 @@ public class DatabaseServiceClient {
 
             if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
                 List<Map<String, Object>> users = Arrays.asList(response.getBody());
-                logger.info("✅ Retrieved {} users from database-service", users.size());
+                logger.info("Retrieved {} users from database-service", users.size());
                 return users;
             } else {
-                logger.warn("❌ No users found or error: {}", response.getStatusCode());
+                logger.warn("No users found or error: {}", response.getStatusCode());
                 return new ArrayList<>();
             }
 
         } catch (HttpClientErrorException e) {
-            logger.error("❌ HTTP Error getting all users: {} - {}", e.getStatusCode(), e.getResponseBodyAsString());
+            logger.error("HTTP Error getting all users: {} - {}", e.getStatusCode(), e.getResponseBodyAsString());
             return new ArrayList<>();
 
         } catch (Exception e) {
-            logger.error("❌ Error getting all users: {}", e.getMessage(), e);
+            logger.error("Error getting all users: {}", e.getMessage(), e);
             return new ArrayList<>();
         }
     }
@@ -211,11 +211,11 @@ public class DatabaseServiceClient {
             );
 
             boolean healthy = response.getStatusCode() == HttpStatus.OK;
-            logger.info(healthy ? "✅ Database service is healthy" : "❌ Database service unhealthy");
+            logger.info(healthy ? "Database service is healthy" : "Database service unhealthy");
             return healthy;
 
         } catch (Exception e) {
-            logger.error("❌ Database service health check failed: {}", e.getMessage());
+            logger.error("Database service health check failed: {}", e.getMessage());
             return false;
         }
     }

@@ -18,12 +18,12 @@ public class UserService {
     // Get all users
     public List<User> getAllUsers() {
         try {
-            System.out.println("📋 UserService: Getting all users");
+            System.out.println("UserService: Getting all users");
             List<User> users = userRepository.findAll();
-            System.out.println("✅ UserService: Retrieved " + users.size() + " users");
+            System.out.println("UserService: Retrieved " + users.size() + " users");
             return users;
         } catch (Exception e) {
-            System.err.println("❌ UserService: Error getting all users - " + e.getMessage());
+            System.err.println("UserService: Error getting all users - " + e.getMessage());
             throw new RuntimeException("Failed to retrieve users", e);
         }
     }
@@ -31,7 +31,7 @@ public class UserService {
     // Get user by ID
     public User getUserById(String userId) {
         try {
-            System.out.println("🔍 UserService: Getting user by ID - " + userId);
+            System.out.println("UserService: Getting user by ID - " + userId);
 
             Optional<User> userOpt = userRepository.findById(userId);
             if (userOpt.isEmpty()) {
@@ -39,10 +39,10 @@ public class UserService {
             }
 
             User user = userOpt.get();
-            System.out.println("✅ UserService: User found - " + user.getUsername());
+            System.out.println("UserService: User found - " + user.getUsername());
             return user;
         } catch (Exception e) {
-            System.err.println("❌ UserService: Error getting user by ID - " + e.getMessage());
+            System.err.println("UserService: Error getting user by ID - " + e.getMessage());
             throw new RuntimeException("Failed to retrieve user", e);
         }
     }
@@ -50,14 +50,14 @@ public class UserService {
     // Search users
     public List<User> searchUsers(String query) {
         try {
-            System.out.println("🔍 UserService: Searching users with query - " + query);
+            System.out.println("UserService: Searching users with query - " + query);
 
             List<User> users = userRepository.searchUsers(query);
 
-            System.out.println("✅ UserService: Search completed - Found " + users.size() + " users");
+            System.out.println("UserService: Search completed - Found " + users.size() + " users");
             return users;
         } catch (Exception e) {
-            System.err.println("❌ UserService: Error searching users - " + e.getMessage());
+            System.err.println("UserService: Error searching users - " + e.getMessage());
             throw new RuntimeException("Failed to search users", e);
         }
     }
@@ -65,47 +65,47 @@ public class UserService {
     // Get users by status
     public List<User> getUsersByStatus(String status) {
         try {
-            System.out.println("📋 UserService: Getting users by status - " + status);
+            System.out.println("UserService: Getting users by status - " + status);
 
             List<User> users = userRepository.findByStatus(status.toUpperCase());
 
-            System.out.println("✅ UserService: Retrieved " + users.size() + " users with status " + status);
+            System.out.println("UserService: Retrieved " + users.size() + " users with status " + status);
             return users;
         } catch (Exception e) {
-            System.err.println("❌ UserService: Error getting users by status - " + e.getMessage());
+            System.err.println("UserService: Error getting users by status - " + e.getMessage());
             throw new RuntimeException("Failed to retrieve users by status", e);
         }
     }
 
-    // Get active users - ✅ FIXED
+    // Get active users - FIXED
     public List<User> getActiveUsers() {
         try {
-            System.out.println("📋 UserService: Getting active users");
+            System.out.println("UserService: Getting active users");
 
             List<User> users = userRepository.findActiveUsers(); // Using correct method
 
-            System.out.println("✅ UserService: Retrieved " + users.size() + " active users");
+            System.out.println("UserService: Retrieved " + users.size() + " active users");
             return users;
         } catch (Exception e) {
-            System.err.println("❌ UserService: Error getting active users - " + e.getMessage());
+            System.err.println("UserService: Error getting active users - " + e.getMessage());
             throw new RuntimeException("Failed to retrieve active users", e);
         }
     }
 
-    // Get users created today - ✅ FIXED
+    // Get users created today - FIXED
     public List<User> getUsersCreatedToday() {
         try {
-            System.out.println("📋 UserService: Getting users created today");
+            System.out.println("UserService: Getting users created today");
 
             LocalDateTime startOfDay = LocalDate.now().atStartOfDay();
             LocalDateTime endOfDay = LocalDate.now().atTime(LocalTime.MAX);
 
             List<User> users = userRepository.findUsersCreatedBetween(startOfDay, endOfDay); // Using correct method
 
-            System.out.println("✅ UserService: Retrieved " + users.size() + " users created today");
+            System.out.println("UserService: Retrieved " + users.size() + " users created today");
             return users;
         } catch (Exception e) {
-            System.err.println("❌ UserService: Error getting today's users - " + e.getMessage());
+            System.err.println("UserService: Error getting today's users - " + e.getMessage());
             throw new RuntimeException("Failed to retrieve today's users", e);
         }
     }
@@ -113,7 +113,7 @@ public class UserService {
     // Get user statistics
     public Map<String, Object> getUserStatistics() {
         try {
-            System.out.println("📊 UserService: Calculating user statistics");
+            System.out.println("UserService: Calculating user statistics");
 
             List<User> allUsers = getAllUsers();
 
@@ -131,10 +131,10 @@ public class UserService {
 
             stats.put("generatedAt", LocalDateTime.now());
 
-            System.out.println("✅ UserService: Statistics calculated successfully");
+            System.out.println("UserService: Statistics calculated successfully");
             return stats;
         } catch (Exception e) {
-            System.err.println("❌ UserService: Error calculating statistics - " + e.getMessage());
+            System.err.println("UserService: Error calculating statistics - " + e.getMessage());
             throw new RuntimeException("Failed to calculate statistics", e);
         }
     }

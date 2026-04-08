@@ -23,7 +23,7 @@ public class BookingController {
                                        @RequestParam Double price,
                                        Model model) {
 
-        System.out.println("🎫 Booking form: " + trainName + " from " + source + " to " + destination);
+        System.out.println("Booking form: " + trainName + " from " + source + " to " + destination);
 
         model.addAttribute("trainId", trainId);
         model.addAttribute("source", source);
@@ -43,7 +43,7 @@ public class BookingController {
     @PostMapping("/confirm")
     @ResponseBody
     public Map<String, Object> confirmBooking(@RequestBody Map<String, Object> bookingData) {
-        System.out.println("📝 Confirming booking: " + bookingData);
+        System.out.println("Confirming booking: " + bookingData);
 
         try {
             // Call backend API
@@ -56,7 +56,7 @@ public class BookingController {
             }
 
         } catch (Exception e) {
-            System.err.println("❌ Booking error: " + e.getMessage());
+            System.err.println("Booking error: " + e.getMessage());
 
             // Create mock successful booking
             Map<String, Object> mockBooking = new HashMap<>();
@@ -75,7 +75,7 @@ public class BookingController {
 
     @GetMapping("/confirmation/{pnr}")
     public String showBookingConfirmation(@PathVariable String pnr, Model model) {
-        System.out.println("🎫 Confirmation page for PNR: " + pnr);
+        System.out.println("Confirmation page for PNR: " + pnr);
 
         try {
             Map<String, Object> response = apiService.getBookingByPNR(pnr);

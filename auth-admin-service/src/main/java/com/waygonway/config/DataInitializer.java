@@ -22,12 +22,12 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        logger.info("🗄️ DataInitializer: Attempting to check/seed initial data...");
+        logger.info("DataInitializer: Attempting to check/seed initial data...");
 
         try {
             // Create admin user if not exists
             if (!userRepository.existsByUsername("admin")) {
-                logger.info("👑 DataInitializer: Creating default admin user");
+                logger.info("DataInitializer: Creating default admin user");
 
                 User admin = new User();
                 admin.setUsername("admin");
@@ -48,12 +48,12 @@ public class DataInitializer implements CommandLineRunner {
                 admin.setAddress(address);
 
                 userRepository.save(admin);
-                logger.info("✅ DataInitializer: Default admin user created");
+                logger.info("DataInitializer: Default admin user created");
             }
 
             // Create demo user if not exists
             if (!userRepository.existsByUsername("user")) {
-                logger.info("👤 DataInitializer: Creating demo user");
+                logger.info("DataInitializer: Creating demo user");
 
                 User user = new User();
                 user.setUsername("user");
@@ -74,14 +74,14 @@ public class DataInitializer implements CommandLineRunner {
                 user.setAddress(address);
 
                 userRepository.save(user);
-                logger.info("✅ DataInitializer: Demo user created");
+                logger.info("DataInitializer: Demo user created");
             }
 
             long userCount = userRepository.count();
-            logger.info("📊 DataInitializer: Total users in database: {}", userCount);
-            logger.info("✅ DataInitializer: Initial data setup completed");
+            logger.info("DataInitializer: Total users in database: {}", userCount);
+            logger.info("DataInitializer: Initial data setup completed");
         } catch (Exception e) {
-            logger.error("⚠️ DataInitializer: Failed to complete data seeding at startup. The application will continue, but data might be missing. Error: {}", e.getMessage());
+            logger.error("DataInitializer: Failed to complete data seeding at startup. The application will continue, but data might be missing. Error: {}", e.getMessage());
         }
     }
 }

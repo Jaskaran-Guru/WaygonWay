@@ -20,12 +20,12 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {
         try {
-            System.out.println("🔍 CustomUserDetailsService: Loading user - " + usernameOrEmail);
+            System.out.println("CustomUserDetailsService: Loading user - " + usernameOrEmail);
 
             Optional<User> userOpt = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail);
 
             if (userOpt.isEmpty()) {
-                System.err.println("❌ User not found: " + usernameOrEmail);
+                System.err.println("User not found: " + usernameOrEmail);
                 throw new UsernameNotFoundException("User not found: " + usernameOrEmail);
             }
 
@@ -33,7 +33,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
             // Check if user is active
             if (!"ACTIVE".equals(user.getStatus())) {
-                System.err.println("❌ User account is " + user.getStatus() + ": " + usernameOrEmail);
+                System.err.println("User account is " + user.getStatus() + ": " + usernameOrEmail);
                 throw new UsernameNotFoundException("User account is " + user.getStatus());
             }
 
@@ -48,13 +48,13 @@ public class CustomUserDetailsService implements UserDetailsService {
                     .disabled(!"ACTIVE".equals(user.getStatus()))
                     .build();
 
-            System.out.println("✅ CustomUserDetailsService: User loaded successfully - " + user.getUsername() + " with role " + user.getRole());
+            System.out.println("CustomUserDetailsService: User loaded successfully - " + user.getUsername() + " with role " + user.getRole());
             return userDetails;
 
         } catch (UsernameNotFoundException e) {
             throw e;
         } catch (Exception e) {
-            System.err.println("❌ CustomUserDetailsService: Error loading user - " + e.getMessage());
+            System.err.println("CustomUserDetailsService: Error loading user - " + e.getMessage());
             throw new UsernameNotFoundException("Error loading user: " + usernameOrEmail, e);
         }
     }

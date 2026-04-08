@@ -24,15 +24,15 @@ public class UserService {
     // Get all users
     public List<User> getAllUsers() {
         try {
-            System.out.println("📋 UserService: Getting all users");
+            System.out.println("UserService: Getting all users");
 
             List<User> users = userRepository.findAll();
 
-            System.out.println("✅ UserService: Retrieved " + users.size() + " users");
+            System.out.println("UserService: Retrieved " + users.size() + " users");
             return users;
 
         } catch (Exception e) {
-            System.err.println("❌ UserService: Error getting all users - " + e.getMessage());
+            System.err.println("UserService: Error getting all users - " + e.getMessage());
             throw new RuntimeException("Failed to retrieve users", e);
         }
     }
@@ -40,7 +40,7 @@ public class UserService {
     // Get users with pagination
     public Page<User> getUsersWithPagination(int page, int size, String sortBy, String sortDir) {
         try {
-            System.out.println("📋 UserService: Getting users with pagination - Page: " + page + ", Size: " + size);
+            System.out.println("UserService: Getting users with pagination - Page: " + page + ", Size: " + size);
 
             Sort sort = sortDir.equalsIgnoreCase("desc") ?
                     Sort.by(sortBy).descending() :
@@ -49,11 +49,11 @@ public class UserService {
             Pageable pageable = PageRequest.of(page, size, sort);
             Page<User> users = userRepository.findAll(pageable);
 
-            System.out.println("✅ UserService: Retrieved page " + page + " with " + users.getContent().size() + " users");
+            System.out.println("UserService: Retrieved page " + page + " with " + users.getContent().size() + " users");
             return users;
 
         } catch (Exception e) {
-            System.err.println("❌ UserService: Error getting users with pagination - " + e.getMessage());
+            System.err.println("UserService: Error getting users with pagination - " + e.getMessage());
             throw new RuntimeException("Failed to retrieve users with pagination", e);
         }
     }
@@ -61,7 +61,7 @@ public class UserService {
     // Get user by ID
     public User getUserById(String userId) {
         try {
-            System.out.println("🔍 UserService: Getting user by ID - " + userId);
+            System.out.println("UserService: Getting user by ID - " + userId);
 
             Optional<User> userOpt = userRepository.findById(userId);
             if (userOpt.isEmpty()) {
@@ -69,11 +69,11 @@ public class UserService {
             }
 
             User user = userOpt.get();
-            System.out.println("✅ UserService: User found - " + user.getUsername());
+            System.out.println("UserService: User found - " + user.getUsername());
             return user;
 
         } catch (Exception e) {
-            System.err.println("❌ UserService: Error getting user by ID - " + e.getMessage());
+            System.err.println("UserService: Error getting user by ID - " + e.getMessage());
             throw new RuntimeException("Failed to retrieve user", e);
         }
     }
@@ -81,7 +81,7 @@ public class UserService {
     // Update user
     public User updateUser(String userId, User updatedUser) {
         try {
-            System.out.println("✏️ UserService: Updating user - " + userId);
+            System.out.println("UserService: Updating user - " + userId);
 
             User existingUser = getUserById(userId);
 
@@ -108,12 +108,12 @@ public class UserService {
             existingUser.setUpdatedAt(LocalDateTime.now());
 
             User savedUser = userRepository.save(existingUser);
-            System.out.println("✅ UserService: User updated successfully - " + savedUser.getUsername());
+            System.out.println("UserService: User updated successfully - " + savedUser.getUsername());
 
             return savedUser;
 
         } catch (Exception e) {
-            System.err.println("❌ UserService: Error updating user - " + e.getMessage());
+            System.err.println("UserService: Error updating user - " + e.getMessage());
             throw new RuntimeException("Failed to update user", e);
         }
     }
@@ -121,7 +121,7 @@ public class UserService {
     // Delete user
     public Map<String, Object> deleteUser(String userId) {
         try {
-            System.out.println("🗑️ UserService: Deleting user - " + userId);
+            System.out.println("UserService: Deleting user - " + userId);
 
             User user = getUserById(userId);
             userRepository.deleteById(userId);
@@ -132,11 +132,11 @@ public class UserService {
             result.put("username", user.getUsername());
             result.put("deletedAt", LocalDateTime.now());
 
-            System.out.println("✅ UserService: User deleted successfully - " + user.getUsername());
+            System.out.println("UserService: User deleted successfully - " + user.getUsername());
             return result;
 
         } catch (Exception e) {
-            System.err.println("❌ UserService: Error deleting user - " + e.getMessage());
+            System.err.println("UserService: Error deleting user - " + e.getMessage());
             throw new RuntimeException("Failed to delete user", e);
         }
     }
@@ -144,15 +144,15 @@ public class UserService {
     // Search users
     public List<User> searchUsers(String query) {
         try {
-            System.out.println("🔍 UserService: Searching users with query - " + query);
+            System.out.println("UserService: Searching users with query - " + query);
 
             List<User> users = userRepository.searchUsers(query);
 
-            System.out.println("✅ UserService: Search completed - Found " + users.size() + " users");
+            System.out.println("UserService: Search completed - Found " + users.size() + " users");
             return users;
 
         } catch (Exception e) {
-            System.err.println("❌ UserService: Error searching users - " + e.getMessage());
+            System.err.println("UserService: Error searching users - " + e.getMessage());
             throw new RuntimeException("Failed to search users", e);
         }
     }
@@ -160,15 +160,15 @@ public class UserService {
     // Get users by status
     public List<User> getUsersByStatus(String status) {
         try {
-            System.out.println("📋 UserService: Getting users by status - " + status);
+            System.out.println("UserService: Getting users by status - " + status);
 
             List<User> users = userRepository.findByStatus(status.toUpperCase());
 
-            System.out.println("✅ UserService: Retrieved " + users.size() + " users with status " + status);
+            System.out.println("UserService: Retrieved " + users.size() + " users with status " + status);
             return users;
 
         } catch (Exception e) {
-            System.err.println("❌ UserService: Error getting users by status - " + e.getMessage());
+            System.err.println("UserService: Error getting users by status - " + e.getMessage());
             throw new RuntimeException("Failed to retrieve users by status", e);
         }
     }
@@ -176,15 +176,15 @@ public class UserService {
     // Get users by role
     public List<User> getUsersByRole(String role) {
         try {
-            System.out.println("📋 UserService: Getting users by role - " + role);
+            System.out.println("UserService: Getting users by role - " + role);
 
             List<User> users = userRepository.findByRole(role.toUpperCase());
 
-            System.out.println("✅ UserService: Retrieved " + users.size() + " users with role " + role);
+            System.out.println("UserService: Retrieved " + users.size() + " users with role " + role);
             return users;
 
         } catch (Exception e) {
-            System.err.println("❌ UserService: Error getting users by role - " + e.getMessage());
+            System.err.println("UserService: Error getting users by role - " + e.getMessage());
             throw new RuntimeException("Failed to retrieve users by role", e);
         }
     }
@@ -192,19 +192,19 @@ public class UserService {
     // Update user status
     public User updateUserStatus(String userId, String status) {
         try {
-            System.out.println("✏️ UserService: Updating user status - " + userId + " to " + status);
+            System.out.println("UserService: Updating user status - " + userId + " to " + status);
 
             User user = getUserById(userId);
             user.setStatus(status.toUpperCase());
             user.setUpdatedAt(LocalDateTime.now());
 
             User savedUser = userRepository.save(user);
-            System.out.println("✅ UserService: User status updated - " + savedUser.getUsername());
+            System.out.println("UserService: User status updated - " + savedUser.getUsername());
 
             return savedUser;
 
         } catch (Exception e) {
-            System.err.println("❌ UserService: Error updating user status - " + e.getMessage());
+            System.err.println("UserService: Error updating user status - " + e.getMessage());
             throw new RuntimeException("Failed to update user status", e);
         }
     }
@@ -212,19 +212,19 @@ public class UserService {
     // Update user role
     public User updateUserRole(String userId, String role) {
         try {
-            System.out.println("🎭 UserService: Updating user role - " + userId + " to " + role);
+            System.out.println("UserService: Updating user role - " + userId + " to " + role);
 
             User user = getUserById(userId);
             user.setRole(role.toUpperCase());
             user.setUpdatedAt(LocalDateTime.now());
 
             User savedUser = userRepository.save(user);
-            System.out.println("✅ UserService: User role updated - " + savedUser.getUsername());
+            System.out.println("UserService: User role updated - " + savedUser.getUsername());
 
             return savedUser;
 
         } catch (Exception e) {
-            System.err.println("❌ UserService: Error updating user role - " + e.getMessage());
+            System.err.println("UserService: Error updating user role - " + e.getMessage());
             throw new RuntimeException("Failed to update user role", e);
         }
     }
@@ -232,7 +232,7 @@ public class UserService {
     // Get user statistics
     public Map<String, Object> getUserStatistics() {
         try {
-            System.out.println("📊 UserService: Calculating user statistics");
+            System.out.println("UserService: Calculating user statistics");
 
             List<User> allUsers = getAllUsers();
 
@@ -270,11 +270,11 @@ public class UserService {
 
             stats.put("generatedAt", LocalDateTime.now());
 
-            System.out.println("✅ UserService: Statistics calculated successfully");
+            System.out.println("UserService: Statistics calculated successfully");
             return stats;
 
         } catch (Exception e) {
-            System.err.println("❌ UserService: Error calculating statistics - " + e.getMessage());
+            System.err.println("UserService: Error calculating statistics - " + e.getMessage());
             throw new RuntimeException("Failed to calculate statistics", e);
         }
     }
@@ -282,7 +282,7 @@ public class UserService {
     // Export user data
     public Map<String, Object> exportUserData() {
         try {
-            System.out.println("📤 UserService: Exporting user data");
+            System.out.println("UserService: Exporting user data");
 
             List<User> users = getAllUsers();
 
@@ -292,11 +292,11 @@ public class UserService {
             exportData.put("exportedAt", LocalDateTime.now());
             exportData.put("format", "JSON");
 
-            System.out.println("✅ UserService: Data exported successfully - " + users.size() + " users");
+            System.out.println("UserService: Data exported successfully - " + users.size() + " users");
             return exportData;
 
         } catch (Exception e) {
-            System.err.println("❌ UserService: Error exporting data - " + e.getMessage());
+            System.err.println("UserService: Error exporting data - " + e.getMessage());
             throw new RuntimeException("Failed to export user data", e);
         }
     }
@@ -304,18 +304,18 @@ public class UserService {
     // Get users created today
     public List<User> getUsersCreatedToday() {
         try {
-            System.out.println("📋 UserService: Getting today's users");
+            System.out.println("UserService: Getting today's users");
 
             LocalDateTime startOfDay = LocalDate.now().atStartOfDay();
             LocalDateTime endOfDay = LocalDate.now().atTime(LocalTime.MAX);
 
             List<User> todaysUsers = userRepository.findUsersCreatedBetween(startOfDay, endOfDay);
 
-            System.out.println("✅ UserService: Retrieved " + todaysUsers.size() + " users created today");
+            System.out.println("UserService: Retrieved " + todaysUsers.size() + " users created today");
             return todaysUsers;
 
         } catch (Exception e) {
-            System.err.println("❌ UserService: Error getting today's users - " + e.getMessage());
+            System.err.println("UserService: Error getting today's users - " + e.getMessage());
             throw new RuntimeException("Failed to retrieve today's users", e);
         }
     }
@@ -323,7 +323,7 @@ public class UserService {
     // Bulk update user status
     public Map<String, Object> bulkUpdateUserStatus(List<String> userIds, String status) {
         try {
-            System.out.println("🔄 UserService: Bulk updating user status - " + userIds.size() + " users to " + status);
+            System.out.println("UserService: Bulk updating user status - " + userIds.size() + " users to " + status);
 
             List<String> updated = new ArrayList<>();
             List<String> failed = new ArrayList<>();
@@ -334,7 +334,7 @@ public class UserService {
                     updated.add(userId);
                 } catch (Exception e) {
                     failed.add(userId);
-                    System.err.println("❌ Failed to update user " + userId + ": " + e.getMessage());
+                    System.err.println("Failed to update user " + userId + ": " + e.getMessage());
                 }
             }
 
@@ -347,11 +347,11 @@ public class UserService {
             result.put("newStatus", status);
             result.put("updatedAt", LocalDateTime.now());
 
-            System.out.println("✅ UserService: Bulk update completed - " + updated.size() + " successful, " + failed.size() + " failed");
+            System.out.println("UserService: Bulk update completed - " + updated.size() + " successful, " + failed.size() + " failed");
             return result;
 
         } catch (Exception e) {
-            System.err.println("❌ UserService: Error in bulk update - " + e.getMessage());
+            System.err.println("UserService: Error in bulk update - " + e.getMessage());
             throw new RuntimeException("Failed to perform bulk update", e);
         }
     }
@@ -359,15 +359,15 @@ public class UserService {
     // Get users by city
     public List<User> getUsersByCity(String city) {
         try {
-            System.out.println("📋 UserService: Getting users by city - " + city);
+            System.out.println("UserService: Getting users by city - " + city);
 
             List<User> users = userRepository.findByCity(city);
 
-            System.out.println("✅ UserService: Retrieved " + users.size() + " users from " + city);
+            System.out.println("UserService: Retrieved " + users.size() + " users from " + city);
             return users;
 
         } catch (Exception e) {
-            System.err.println("❌ UserService: Error getting users by city - " + e.getMessage());
+            System.err.println("UserService: Error getting users by city - " + e.getMessage());
             throw new RuntimeException("Failed to retrieve users by city", e);
         }
     }
@@ -375,15 +375,15 @@ public class UserService {
     // Get users by state
     public List<User> getUsersByState(String state) {
         try {
-            System.out.println("📋 UserService: Getting users by state - " + state);
+            System.out.println("UserService: Getting users by state - " + state);
 
             List<User> users = userRepository.findByState(state);
 
-            System.out.println("✅ UserService: Retrieved " + users.size() + " users from " + state);
+            System.out.println("UserService: Retrieved " + users.size() + " users from " + state);
             return users;
 
         } catch (Exception e) {
-            System.err.println("❌ UserService: Error getting users by state - " + e.getMessage());
+            System.err.println("UserService: Error getting users by state - " + e.getMessage());
             throw new RuntimeException("Failed to retrieve users by state", e);
         }
     }

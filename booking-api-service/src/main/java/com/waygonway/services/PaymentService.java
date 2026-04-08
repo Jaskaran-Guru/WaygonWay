@@ -61,7 +61,7 @@ public class PaymentService {
     }
 
     private Map<String, Object> simulatePayment(Double amount) {
-        System.out.println("💳 [SIMULATION] Creating payment intent for $" + amount);
+        System.out.println("[SIMULATION] Creating payment intent for $" + amount);
         try { Thread.sleep(500); } catch (InterruptedException ignore) {}
 
         String mockClientSecret = "pi_mock_" + UUID.randomUUID().toString().replace("-", "") + "_secret_mock";

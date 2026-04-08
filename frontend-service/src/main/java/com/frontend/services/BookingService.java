@@ -7,7 +7,7 @@ import java.util.*;
 public class BookingService {
 
     public List<Map<String, Object>> getUserBookings(String userId) {
-        System.out.println("🎫 HARDCODED: Getting bookings for " + userId);
+        System.out.println("HARDCODED: Getting bookings for " + userId);
 
         List<Map<String, Object>> bookings = new ArrayList<>();
 
@@ -52,12 +52,12 @@ public class BookingService {
         bookings.add(booking1);
         bookings.add(booking2);
 
-        System.out.println("✅ HARDCODED: Returning " + bookings.size() + " bookings");
+        System.out.println("HARDCODED: Returning " + bookings.size() + " bookings");
         return bookings;
     }
 
     public Map<String, Object> createBooking(Map<String, Object> bookingData) {
-        System.out.println("🎫 HARDCODED: Creating booking");
+        System.out.println("HARDCODED: Creating booking");
 
         Map<String, Object> result = new HashMap<>();
         result.put("pnr", "WW" + System.currentTimeMillis());
@@ -67,7 +67,7 @@ public class BookingService {
     }
 
     public Optional<Map<String, Object>> getBookingByPNR(String pnr) {
-        System.out.println("🔍 HARDCODED: PNR search for " + pnr);
+        System.out.println("HARDCODED: PNR search for " + pnr);
 
         if ("WW123456789".equals(pnr) || "WW987654321".equals(pnr)) {
             Map<String, Object> booking = new HashMap<>();

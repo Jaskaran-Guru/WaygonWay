@@ -21,10 +21,10 @@ public class GatewayExceptionHandler implements ErrorWebExceptionHandler {
 
     @Override
     public Mono<Void> handle(ServerWebExchange exchange, Throwable ex) {
-        logger.error("🚨 Gateway Error: {} - URI: {}", ex.getMessage(), exchange.getRequest().getURI());
+        logger.error("Gateway Error: {} - URI: {}", ex.getMessage(), exchange.getRequest().getURI());
         
         if (ex instanceof java.net.ConnectException || ex instanceof java.net.SocketTimeoutException) {
-            logger.error("🔌 Connectivity Issue: The downstream service might be down or unreachable.");
+            logger.error("Connectivity Issue: The downstream service might be down or unreachable.");
         }
 
         byte[] bytes = String.format("{\"status\": 500, \"error\": \"Internal Server Error\", \"message\": \"%s\"}", 

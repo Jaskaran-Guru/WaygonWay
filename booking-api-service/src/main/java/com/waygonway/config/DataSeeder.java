@@ -19,12 +19,12 @@ public class DataSeeder implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         try {
-            System.out.println("🔍 DataSeeder: Checking database for events...");
+            System.out.println("DataSeeder: Checking database for events...");
             long count = eventRepository.count();
             
             // Only seed if database is empty
             if (count == 0) {
-                System.out.println("🌱 DataSeeder: Database is empty. Seeding initial event data...");
+                System.out.println("DataSeeder: Database is empty. Seeding initial event data...");
 
                 List<Event> events = Arrays.asList(
                     createEvent("Avengers: Secret Wars", "MOVIE", "PVR IMAX Cinemas", "Mumbai", 
@@ -89,12 +89,12 @@ public class DataSeeder implements CommandLineRunner {
                 );
 
                 eventRepository.saveAll(events);
-                System.out.println("✅ DataSeeder: Successfully seeded " + events.size() + " events into MongoDB Atlas!");
+                System.out.println("DataSeeder: Successfully seeded " + events.size() + " events into MongoDB Atlas!");
             } else {
-                System.out.println("✅ DataSeeder: Database already has " + count + " events, skipping seed.");
+                System.out.println("DataSeeder: Database already has " + count + " events, skipping seed.");
             }
         } catch (Exception e) {
-            System.err.println("❌ DataSeeder: Error during seeding process: " + e.getMessage());
+            System.err.println("DataSeeder: Error during seeding process: " + e.getMessage());
             // We don't rethrow to avoid blocking startup
         }
     }

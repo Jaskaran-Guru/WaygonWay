@@ -18,13 +18,13 @@ public class NotificationService {
             String recipientEmail = booking.getCustomerEmail();
             
             // Email simulation - log the ticket would be sent
-            System.out.println("📧 [TICKET] Booking confirmed for " + booking.getCustomerName() +
+            System.out.println("[TICKET] Booking confirmed for " + booking.getCustomerName() +
                 " | PNR: " + booking.getPnr() +
                 " | Email: " + (recipientEmail != null ? recipientEmail : "N/A") +
                 " | PDF Size: " + pdfBytes.length + " bytes");
 
         } catch (Exception e) {
-            System.err.println("❌ Failed to generate ticket: " + e.getMessage());
+            System.err.println("Failed to generate ticket: " + e.getMessage());
         }
     }
 

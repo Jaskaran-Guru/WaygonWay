@@ -24,7 +24,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        logger.info("🔒 SecurityConfig: Configuring security for auth-admin service");
+        logger.info("SecurityConfig: Configuring security for auth-admin service");
 
         http
                 .cors(cors -> cors.configurationSource(request -> {
@@ -38,11 +38,11 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .exceptionHandling(exceptions -> exceptions
                         .authenticationEntryPoint((request, response, authException) -> {
-                            logger.error("❌ 401 Unauthorized: {} for URI: {}", authException.getMessage(), request.getRequestURI());
+                            logger.error("401 Unauthorized: {} for URI: {}", authException.getMessage(), request.getRequestURI());
                             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage());
                         })
                         .accessDeniedHandler((request, response, accessDeniedException) -> {
-                            logger.error("❌ 403 Forbidden: {} for URI: {}", accessDeniedException.getMessage(), request.getRequestURI());
+                            logger.error("403 Forbidden: {} for URI: {}", accessDeniedException.getMessage(), request.getRequestURI());
                             response.sendError(HttpServletResponse.SC_FORBIDDEN, accessDeniedException.getMessage());
                         })
                 )
@@ -61,7 +61,7 @@ public class SecurityConfig {
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
 
-        logger.info("✅ SecurityConfig: Auth-admin service security configured with JWT Filter");
+        logger.info("SecurityConfig: Auth-admin service security configured with JWT Filter");
         return http.build();
     }
 }

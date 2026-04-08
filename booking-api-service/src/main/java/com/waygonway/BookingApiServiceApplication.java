@@ -17,6 +17,6 @@ public class BookingApiServiceApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(BookingApiServiceApplication.class, args);
-        System.out.println("🎫 Booking API Service started successfully!");
+        System.out.println("Booking API Service started successfully!");
     }
 }

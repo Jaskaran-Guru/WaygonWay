@@ -21,7 +21,7 @@ public class AdminController {
     @GetMapping("/users")
     public ResponseEntity<ApiResponse<List<User>>> getAllUsers() {
         try {
-            System.out.println("👑 AdminController: Getting all users");
+            System.out.println("AdminController: Getting all users");
 
             List<User> users = userService.getAllUsers();
 
@@ -31,7 +31,7 @@ public class AdminController {
             return ResponseEntity.ok(response);
 
         } catch (Exception e) {
-            System.err.println("❌ AdminController: Error getting users - " + e.getMessage());
+            System.err.println("AdminController: Error getting users - " + e.getMessage());
             return ResponseEntity.badRequest().body(
                     ApiResponse.error("Failed to retrieve users: " + e.getMessage())
             );
@@ -46,7 +46,7 @@ public class AdminController {
             @RequestParam(defaultValue = "id") String sortBy,
             @RequestParam(defaultValue = "asc") String sortDir) {
         try {
-            System.out.println("📋 AdminController: Getting paged users - Page: " + page + ", Size: " + size);
+            System.out.println("AdminController: Getting paged users - Page: " + page + ", Size: " + size);
 
             org.springframework.data.domain.Page<User> users = userService.getUsersWithPagination(page, size, sortBy, sortDir);
 
@@ -55,7 +55,7 @@ public class AdminController {
             );
 
         } catch (Exception e) {
-            System.err.println("❌ AdminController: Paged users error - " + e.getMessage());
+            System.err.println("AdminController: Paged users error - " + e.getMessage());
             return ResponseEntity.badRequest().body(
                     ApiResponse.error("Failed to retrieve paged users: " + e.getMessage())
             );
@@ -66,7 +66,7 @@ public class AdminController {
     @GetMapping("/statistics")
     public ResponseEntity<ApiResponse<Map<String, Object>>> getUserStatistics() {
         try {
-            System.out.println("📊 AdminController: Getting user statistics");
+            System.out.println("AdminController: Getting user statistics");
 
             Map<String, Object> stats = userService.getUserStatistics();
 
@@ -75,7 +75,7 @@ public class AdminController {
             );
 
         } catch (Exception e) {
-            System.err.println("❌ AdminController: Statistics error - " + e.getMessage());
+            System.err.println("AdminController: Statistics error - " + e.getMessage());
             return ResponseEntity.badRequest().body(
                     ApiResponse.error("Failed to retrieve statistics: " + e.getMessage())
             );
@@ -89,7 +89,7 @@ public class AdminController {
             @RequestBody Map<String, String> request) {
         try {
             String status = request.get("status");
-            System.out.println("✏️ AdminController: Updating user status - " + userId + " to " + status);
+            System.out.println("AdminController: Updating user status - " + userId + " to " + status);
 
             User user = userService.updateUserStatus(userId, status);
 
@@ -98,7 +98,7 @@ public class AdminController {
             );
 
         } catch (Exception e) {
-            System.err.println("❌ AdminController: Update status error - " + e.getMessage());
+            System.err.println("AdminController: Update status error - " + e.getMessage());
             return ResponseEntity.badRequest().body(
                     ApiResponse.error("Failed to update user status: " + e.getMessage())
             );
@@ -112,7 +112,7 @@ public class AdminController {
             @RequestBody Map<String, String> request) {
         try {
             String role = request.get("role");
-            System.out.println("🎭 AdminController: Updating user role - " + userId + " to " + role);
+            System.out.println("AdminController: Updating user role - " + userId + " to " + role);
 
             User user = userService.updateUserRole(userId, role);
 
@@ -121,7 +121,7 @@ public class AdminController {
             );
 
         } catch (Exception e) {
-            System.err.println("❌ AdminController: Update role error - " + e.getMessage());
+            System.err.println("AdminController: Update role error - " + e.getMessage());
             return ResponseEntity.badRequest().body(
                     ApiResponse.error("Failed to update user role: " + e.getMessage())
             );
@@ -132,7 +132,7 @@ public class AdminController {
     @DeleteMapping("/users/{userId}")
     public ResponseEntity<ApiResponse<Map<String, Object>>> deleteUser(@PathVariable String userId) {
         try {
-            System.out.println("🗑️ AdminController: Deleting user - " + userId);
+            System.out.println("AdminController: Deleting user - " + userId);
 
             Map<String, Object> result = userService.deleteUser(userId);
 
@@ -141,7 +141,7 @@ public class AdminController {
             );
 
         } catch (Exception e) {
-            System.err.println("❌ AdminController: Delete user error - " + e.getMessage());
+            System.err.println("AdminController: Delete user error - " + e.getMessage());
             return ResponseEntity.badRequest().body(
                     ApiResponse.error("Failed to delete user: " + e.getMessage())
             );
@@ -152,7 +152,7 @@ public class AdminController {
     @GetMapping("/users/search")
     public ResponseEntity<ApiResponse<List<User>>> searchUsers(@RequestParam String query) {
         try {
-            System.out.println("🔍 AdminController: Searching users - " + query);
+            System.out.println("AdminController: Searching users - " + query);
 
             List<User> users = userService.searchUsers(query);
 
@@ -163,7 +163,7 @@ public class AdminController {
             return ResponseEntity.ok(response);
 
         } catch (Exception e) {
-            System.err.println("❌ AdminController: Search error - " + e.getMessage());
+            System.err.println("AdminController: Search error - " + e.getMessage());
             return ResponseEntity.badRequest().body(
                     ApiResponse.error("Search failed: " + e.getMessage())
             );
@@ -179,7 +179,7 @@ public class AdminController {
             List<String> userIds = (List<String>) request.get("userIds");
             String status = (String) request.get("status");
 
-            System.out.println("🔄 AdminController: Bulk updating " + userIds.size() + " users to " + status);
+            System.out.println("AdminController: Bulk updating " + userIds.size() + " users to " + status);
 
             Map<String, Object> result = userService.bulkUpdateUserStatus(userIds, status);
 
@@ -188,7 +188,7 @@ public class AdminController {
             );
 
         } catch (Exception e) {
-            System.err.println("❌ AdminController: Bulk update error - " + e.getMessage());
+            System.err.println("AdminController: Bulk update error - " + e.getMessage());
             return ResponseEntity.badRequest().body(
                     ApiResponse.error("Bulk update failed: " + e.getMessage())
             );
@@ -199,7 +199,7 @@ public class AdminController {
     @GetMapping("/users/city/{city}")
     public ResponseEntity<ApiResponse<List<User>>> getUsersByCity(@PathVariable String city) {
         try {
-            System.out.println("🏙️ AdminController: Getting users by city - " + city);
+            System.out.println("AdminController: Getting users by city - " + city);
 
             List<User> users = userService.getUsersByCity(city);
 
@@ -210,7 +210,7 @@ public class AdminController {
             return ResponseEntity.ok(response);
 
         } catch (Exception e) {
-            System.err.println("❌ AdminController: Get users by city error - " + e.getMessage());
+            System.err.println("AdminController: Get users by city error - " + e.getMessage());
             return ResponseEntity.badRequest().body(
                     ApiResponse.error("Failed to retrieve users: " + e.getMessage())
             );
@@ -221,7 +221,7 @@ public class AdminController {
     @GetMapping("/users/export")
     public ResponseEntity<ApiResponse<Map<String, Object>>> exportUserData() {
         try {
-            System.out.println("📤 AdminController: Exporting user data");
+            System.out.println("AdminController: Exporting user data");
 
             Map<String, Object> exportData = userService.exportUserData();
 
@@ -230,7 +230,7 @@ public class AdminController {
             );
 
         } catch (Exception e) {
-            System.err.println("❌ AdminController: Export error - " + e.getMessage());
+            System.err.println("AdminController: Export error - " + e.getMessage());
             return ResponseEntity.badRequest().body(
                     ApiResponse.error("Export failed: " + e.getMessage())
             );

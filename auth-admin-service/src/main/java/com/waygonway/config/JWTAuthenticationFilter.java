@@ -30,7 +30,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
         String uri = request.getRequestURI();
         String method = request.getMethod();
-        logger.info("🔍 JWT Filter: Processing {} {}", method, uri);
+        logger.info("JWT Filter: Processing {} {}", method, uri);
 
         try {
             String authHeader = request.getHeader("Authorization");
@@ -42,7 +42,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                 try {
                     username = jwtUtil.extractUsername(token);
                 } catch (Exception e) {
-                    logger.error("❌ JWT Error: {}", e.getMessage());
+                    logger.error("JWT Error: {}", e.getMessage());
                 }
             }
 
@@ -65,7 +65,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             }
 
         } catch (Exception e) {
-            logger.error("❌ JWT Filter Error: {}", e.getMessage());
+            logger.error("JWT Filter Error: {}", e.getMessage());
         }
 
         filterChain.doFilter(request, response);

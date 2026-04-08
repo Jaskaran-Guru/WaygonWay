@@ -27,8 +27,8 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
     @Bean
     @Override
     public MongoClient mongoClient() {
-        System.out.println("🗄️ MongoConfig: Configuring MongoDB client");
-        System.out.println("🔗 Connection String: " + connectionString);
+        System.out.println("MongoConfig: Configuring MongoDB client");
+        System.out.println("Connection String: " + connectionString);
 
         ConnectionString connString = new ConnectionString(connectionString);
 
@@ -45,14 +45,14 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
                 .build();
 
         MongoClient client = MongoClients.create(settings);
-        System.out.println("✅ MongoConfig: MongoDB client configured successfully");
+        System.out.println("MongoConfig: MongoDB client configured successfully");
 
         return client;
     }
 
     @Bean
     public MongoTemplate mongoTemplate() {
-        System.out.println("🗄️ MongoConfig: Creating MongoTemplate");
+        System.out.println("MongoConfig: Creating MongoTemplate");
 
         MongoTemplate template = new MongoTemplate(mongoClient(), getDatabaseName());
 
@@ -60,7 +60,7 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
         MappingMongoConverter converter = (MappingMongoConverter) template.getConverter();
         converter.setTypeMapper(new DefaultMongoTypeMapper(null));
 
-        System.out.println("✅ MongoConfig: MongoTemplate created successfully");
+        System.out.println("MongoConfig: MongoTemplate created successfully");
         return template;
     }
 
