@@ -12,11 +12,11 @@ services:
       - key: PORT
         value: 10000
       - key: AUTH_SERVICE_URL
-        value: http://auth-admin-service:10000
+        value: https://auth-admin-service.onrender.com
       - key: BOOKING_SERVICE_URL
-        value: http://booking-api-service:10000
+        value: https://booking-api-service-3vo9.onrender.com
       - key: DATABASE_SERVICE_URL
-        value: http://database-service:10000
+        value: https://database-service-42qw.onrender.com
 
   # Auth Admin Service
   - type: web
