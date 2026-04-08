@@ -16,4 +16,9 @@ FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
 COPY --from=build /app/database-service/target/database-service-1.0.0.jar app.jar
 EXPOSE 10000
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", \
+  "-XX:TieredStopAtLevel=1", \
+  "-XX:+UseSerialGC", \
+  "-Xmx256m", \
+  "-Djava.security.egd=file:/dev/./urandom", \
+  "-jar", "app.jar"]

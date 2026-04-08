@@ -1,42 +1,33 @@
+# Safe production profile - MongoDB only (no PostgreSQL, no Redis)
+# This overrides only production-specific settings
+
 server:
-  port: 8082
+  port: ${PORT:10000}
 
 spring:
   application:
     name: booking-api-service
 
-stripe:
-  secret:
-    key: ${STRIPE_SECRET_KEY:sk_test_placeholder}
-
-  # PostgreSQL Database (Production configuration)
-  datasource:
-    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/waygonway_db}
-    username: ${DATABASE_USER:postgres}
-    password: ${DATABASE_PASSWORD:postgres}
-    driver-class-name: org.postgresql.Driver
-  
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    hibernate:
-      ddl-auto: update
-    show-sql: false
-
-  # MongoDB (Event & Booking metadata)
+  # MongoDB Atlas only - same as default profile
   data:
     mongodb:
-      uri: ${MONGO_URI:mongodb+srv://gurujaskaran2006_db_user:<db_password>@cluster0.imdqenc.mongodb.net/waygonway_db?retryWrites=true&w=majority}
+      uri: ${MONGODB_URI}
       auto-index-creation: true
-    
-    # Redis for Distributed Locking and Caching
-    redis:
-      host: ${REDIS_HOST:localhost}
-      port: ${REDIS_PORT:6379}
-      password: ${REDIS_PASSWORD:}
+
+  # Keep all problematic autoconfigures excluded
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+
+stripe:
+  secret:
+    key: ${STRIPE_SECRET_KEY}
 
 logging:
   level:
     com.waygonway: INFO
-    org.springframework.data.mongodb: INFO
-  pattern:
-    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    org.springframework.data.mongodb: WARN
+    root: WARN

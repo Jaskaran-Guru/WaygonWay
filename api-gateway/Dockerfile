@@ -34,4 +34,9 @@ FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
 COPY --from=backend-build /app/api-gateway/target/api-gateway-1.0.0.jar app.jar
 EXPOSE 10000
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", \
+  "-XX:TieredStopAtLevel=1", \
+  "-XX:+UseSerialGC", \
+  "-Xmx256m", \
+  "-Djava.security.egd=file:/dev/./urandom", \
+  "-jar", "app.jar"]

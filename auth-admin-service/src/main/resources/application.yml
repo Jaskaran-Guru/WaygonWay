@@ -39,12 +39,12 @@ jwt:
 # Logging Configuration
 logging:
   level:
-    com.waygonway: DEBUG
-    org.springframework: DEBUG
-    org.springframework.security: DEBUG
-    org.springframework.web: INFO
-    org.springframework.data.mongodb: DEBUG
-    root: INFO
+    com.waygonway: INFO
+    org.springframework: WARN
+    org.springframework.security: WARN
+    org.springframework.web: WARN
+    org.springframework.data.mongodb: WARN
+    root: WARN
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
