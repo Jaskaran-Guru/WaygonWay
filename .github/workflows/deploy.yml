@@ -1,38 +1,84 @@
-name: CI/CD Pipeline
+name: Build and Deploy to Render
 
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+
+env:
+  REGISTRY: ghcr.io
+  REPO_OWNER: jaskaran-guru
 
 jobs:
-  build-and-test:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    strategy:
+      matrix:
+        service: [api-gateway, auth-admin-service, booking-api-service, database-service]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build dependencies faster with buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ${{ matrix.service }}/Dockerfile
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/waygonway-${{ matrix.service }}:latest
+          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/waygonway-${{ matrix.service }}:buildcache
+          cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/waygonway-${{ matrix.service }}:buildcache,mode=max
+
+  trigger-render-deploy:
+    needs: build-and-push
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+      - name: Trigger API Gateway Deploy
+        run: |
+          if [ -n "${{ secrets.RENDER_API_GATEWAY_HOOK }}" ]; then
+            echo "Triggering API Gateway..."
+            curl -s -X POST -d "" "${{ secrets.RENDER_API_GATEWAY_HOOK }}"
+          else
+            echo "RENDER_API_GATEWAY_HOOK not found. Skipping."
+          fi
 
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: maven
+      - name: Trigger Auth Admin Deploy
+        run: |
+          if [ -n "${{ secrets.RENDER_AUTH_HOOK }}" ]; then
+            echo "Triggering Auth Admin Service..."
+            curl -s -X POST -d "" "${{ secrets.RENDER_AUTH_HOOK }}"
+          else
+            echo "RENDER_AUTH_HOOK not found. Skipping."
+          fi
 
-    - name: Build and Test Booking API
-      run: cd booking-api-service && ./mvnw clean test
+      - name: Trigger Booking API Deploy
+        run: |
+          if [ -n "${{ secrets.RENDER_BOOKING_HOOK }}" ]; then
+            echo "Triggering Booking API Service..."
+            curl -s -X POST -d "" "${{ secrets.RENDER_BOOKING_HOOK }}"
+          else
+            echo "RENDER_BOOKING_HOOK not found. Skipping."
+          fi
 
-  docker-build:
-    needs: build-and-test
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    steps:
-    - uses: actions/checkout@v3
-
-    - name: Build Booking API Docker Image
-      run: |
-        cd booking-api-service
-        ./mvnw clean package -DskipTests
-        docker build -t waygonway/booking-api:latest .
-        
-    # Example deployment step to AWS ECR / Render would go here
+      - name: Trigger Database Deploy
+        run: |
+          if [ -n "${{ secrets.RENDER_DATABASE_HOOK }}" ]; then
+            echo "Triggering Database Service..."
+            curl -s -X POST -d "" "${{ secrets.RENDER_DATABASE_HOOK }}"
+          else
+            echo "RENDER_DATABASE_HOOK not found. Skipping."
+          fi

@@ -2,9 +2,9 @@ services:
   # API Gateway
   - type: web
     name: api-gateway
-    env: docker
-    dockerContext: .
-    dockerfilePath: api-gateway/Dockerfile
+    env: image
+    image:
+      url: ghcr.io/jaskaran-guru/waygonway-api-gateway:latest
     plan: free
     region: singapore
     healthCheckPath: /actuator/health
@@ -21,9 +21,9 @@ services:
   # Auth Admin Service
   - type: web
     name: auth-admin-service
-    env: docker
-    dockerContext: .
-    dockerfilePath: auth-admin-service/Dockerfile
+    env: image
+    image:
+      url: ghcr.io/jaskaran-guru/waygonway-auth-admin-service:latest
     plan: free
     region: singapore
     healthCheckPath: /actuator/health
@@ -38,9 +38,9 @@ services:
   # Booking API Service
   - type: web
     name: booking-api-service
-    env: docker
-    dockerContext: .
-    dockerfilePath: booking-api-service/Dockerfile
+    env: image
+    image:
+      url: ghcr.io/jaskaran-guru/waygonway-booking-api-service:latest
     plan: free
     region: singapore
     healthCheckPath: /actuator/health
@@ -57,9 +57,9 @@ services:
   # Database Service
   - type: web
     name: database-service
-    env: docker
-    dockerContext: .
-    dockerfilePath: database-service/Dockerfile
+    env: image
+    image:
+      url: ghcr.io/jaskaran-guru/waygonway-database-service:latest
     plan: free
     region: singapore
     healthCheckPath: /actuator/health
