@@ -1,5 +1,6 @@
 import React from 'react';
-import { Download, CheckCircle, MapPin, Calendar, Ticket, User, CreditCard } from 'lucide-react';
+import { Download, CheckCircle, MapPin, Calendar, Ticket, User, CreditCard, Loader2 } from 'lucide-react';
+import { bookingApi } from '../services/api';
 
 interface BillProps {
   booking: {
@@ -16,8 +17,25 @@ interface BillProps {
 }
 
 const Bill: React.FC<BillProps> = ({ booking, onClose }) => {
-  const handlePrint = () => {
-    window.print();
+  const [downloading, setDownloading] = React.useState(false);
+
+  const handleDownload = async () => {
+    setDownloading(true);
+    try {
+      const response = await bookingApi.downloadBill(booking.pnr);
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `Bill_${booking.pnr}.pdf`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    } catch (error) {
+      console.error("Failed to download bill:", error);
+      alert("Failed to download bill. Please try again.");
+    } finally {
+      setDownloading(false);
+    }
   };
 
   return (
@@ -92,11 +110,12 @@ const Bill: React.FC<BillProps> = ({ booking, onClose }) => {
 
           <div className="flex flex-col sm:flex-row gap-4 pt-4 print:hidden">
             <button 
-              onClick={handlePrint}
-              className="flex-1 bg-slate-900 text-white font-bold py-4 rounded-2xl flex items-center justify-center space-x-2 hover:bg-slate-800 transition-all shadow-xl"
+              onClick={handleDownload}
+              disabled={downloading}
+              className="flex-1 bg-slate-900 text-white font-bold py-4 rounded-2xl flex items-center justify-center space-x-2 hover:bg-slate-800 transition-all shadow-xl disabled:opacity-50"
             >
-              <Download className="w-5 h-5" />
-              <span>Download PDF</span>
+              {downloading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Download className="w-5 h-5" />}
+              <span>{downloading ? 'Generating...' : 'Download PDF'}</span>
             </button>
             <button 
               onClick={onClose}

@@ -51,6 +51,7 @@ export const bookingApi = {
   getAdminEventsPaged: (page: number, size: number) => api.get(`/api/v1/admin/events/paged?page=${page}&size=${size}`),
   getBookingsPaged: (page: number, size: number) => api.get(`/api/v1/bookings/paged?page=${page}&size=${size}`),
   updateBookingStatus: (pnr: string, status: string) => api.put(`/api/v1/bookings/status/${pnr}`, { status }),
+  downloadBill: (pnr: string) => api.get(`/api/v1/bookings/bill/${pnr}`, { responseType: 'blob' }),
 };
 
 export const organizerApi = {

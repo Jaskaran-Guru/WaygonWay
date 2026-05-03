@@ -14,7 +14,7 @@ public class NotificationService {
     @Async
     public void sendTicketEmail(Booking booking) {
         try {
-            byte[] pdfBytes = generateTicketPdf(booking);
+            byte[] pdfBytes = generateBillPdf(booking);
             String recipientEmail = booking.getCustomerEmail();
             
             // Email simulation - log the ticket would be sent
@@ -28,7 +28,7 @@ public class NotificationService {
         }
     }
 
-    private byte[] generateTicketPdf(Booking booking) throws Exception {
+    public byte[] generateBillPdf(Booking booking) throws Exception {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document, out);
@@ -38,20 +38,30 @@ public class NotificationService {
         Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 24);
         Font subFont = FontFactory.getFont(FontFactory.HELVETICA, 16);
         Font textFont = FontFactory.getFont(FontFactory.HELVETICA, 12);
+        Font boldTextFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12);
         
-        Paragraph title = new Paragraph("WAYGONWAY ADMISSION PASS", titleFont);
+        Paragraph title = new Paragraph("WAYGONWAY - BILL & ADMISSION PASS", titleFont);
         title.setAlignment(Element.ALIGN_CENTER);
         document.add(title);
         
         document.add(new Paragraph(" "));
+        document.add(new Paragraph("Event Details:", boldTextFont));
         document.add(new Paragraph("Event: " + booking.getEventName(), subFont));
         document.add(new Paragraph("Date: " + booking.getEventDateTime(), textFont));
         document.add(new Paragraph("Venue: " + booking.getVenue(), textFont));
         document.add(new Paragraph(" "));
+        
+        document.add(new Paragraph("Booking Info:", boldTextFont));
         document.add(new Paragraph("Booking Reference (PNR): " + booking.getPnr(), subFont));
         document.add(new Paragraph("Customer Name: " + booking.getCustomerName(), textFont));
         document.add(new Paragraph("Seats: " + booking.getSeats(), textFont));
         document.add(new Paragraph(" "));
+        
+        document.add(new Paragraph("Payment Details:", boldTextFont));
+        document.add(new Paragraph("Status: PAID", textFont));
+        document.add(new Paragraph("Total Amount Paid: $" + String.format("%.2f", booking.getTotalAmount()), subFont));
+        document.add(new Paragraph(" "));
+        
         document.add(new Paragraph("Please bring this digital pass and a valid ID to the gate.", textFont));
         
         document.close();
