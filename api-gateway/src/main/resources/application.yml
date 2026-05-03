@@ -23,16 +23,21 @@ spring:
               - OPTIONS
             allowedHeaders: "*"
       default-filters:
+        # Forward the real client IP to downstream services so per-IP rate limiting works correctly.
+        # Without this, all traffic appears to come from the gateway's own IP and all users share one bucket.
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
         - name: Retry
           args:
-            retries: 4
+            retries: 2
+            # Only retry on true infrastructure failures — NOT on 429 (rate limit) or 4xx client errors.
             statuses: BAD_GATEWAY, SERVICE_UNAVAILABLE, GATEWAY_TIMEOUT
-            methods: GET, POST, PUT, DELETE, OPTIONS
+            # Only retry idempotent methods. Retrying POST/PUT/DELETE risks duplicate bookings/payments.
+            methods: GET
             backoff:
-              firstBackoff: 2000ms
-              maxBackoff: 20000ms
+              firstBackoff: 500ms
+              maxBackoff: 5000ms
               factor: 2
-              basedOnPreviousValue: true
+              basedOnPreviousValue: false
       routes:
         # Auth Admin Service (8081)
         - id: auth-service
