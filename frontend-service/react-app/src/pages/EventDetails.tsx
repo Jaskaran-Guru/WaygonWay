@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { bookingApi } from '../services/api';
 import SeatLayout from '../components/SeatLayout';
+import Bill from '../components/Bill';
 import { Calendar, MapPin, Ticket, ChevronLeft, Loader2, CreditCard } from 'lucide-react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
@@ -57,6 +58,8 @@ const EventDetails = () => {
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
   const [bookingLoading, setBookingLoading] = useState(false);
   const [bookingResponse, setBookingResponse] = useState<any>(null);
+  const [showBill, setShowBill] = useState(false);
+  const [finalBooking, setFinalBooking] = useState<any>(null);
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -99,9 +102,13 @@ const EventDetails = () => {
 
   const handlePaymentSuccess = async () => {
     try {
-      await bookingApi.updateBookingStatus(bookingResponse.pnr, 'PAID');
-      alert("Payment Successful! PNR: " + bookingResponse.pnr);
-      navigate('/my-bookings');
+      const response = await bookingApi.updateBookingStatus(bookingResponse.pnr, 'PAID');
+      setFinalBooking({
+        ...response.data.data,
+        eventDateTime: event.startDateTime // Merge event time if not in booking
+      });
+      setShowBill(true);
+      setBookingResponse(null);
     } catch (err) {
       alert("Error confirming payment.");
     }
@@ -236,6 +243,16 @@ const EventDetails = () => {
                 )}
             </div>
         </div>
+      )}
+      {/* Bill Section */}
+      {showBill && finalBooking && (
+        <Bill 
+          booking={finalBooking} 
+          onClose={() => {
+            setShowBill(false);
+            navigate('/my-bookings');
+          }} 
+        />
       )}
     </div>
   );

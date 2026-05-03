@@ -84,12 +84,15 @@ const Home = () => {
   });
 
   const getCategoryImage = (category: string) => {
-    switch (category.toUpperCase()) {
-      case 'MOVIE': return "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&q=80&w=800";
-      case 'CONCERT': return "https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?auto=format&fit=crop&q=80&w=800";
-      case 'COMEDY': return "https://images.unsplash.com/photo-1585647347384-2593bcac551e?auto=format&fit=crop&q=80&w=800";
-      default: return "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&q=80&w=800";
-    }
+    if (!category) return "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&q=80&w=800";
+    
+    const cat = category.toUpperCase();
+    if (cat === 'MOVIE') return "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&q=80&w=800";
+    if (cat === 'CONCERT') return "https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?auto=format&fit=crop&q=80&w=800";
+    if (cat === 'COMEDY' || cat === 'STANDUP' || cat === 'STAND-UP') return "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&q=80&w=800";
+    if (cat === 'EVERGREEN') return "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&q=80&w=800";
+    
+    return "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&q=80&w=800";
   };
 
   return (

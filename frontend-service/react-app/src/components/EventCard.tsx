@@ -18,7 +18,14 @@ const EventCard: React.FC<EventCardProps> = ({ id, image, title, date, location,
       className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-indigo-500/50 transition-all group cursor-pointer shadow-lg shadow-slate-950/50"
     >
       <div className="relative h-48 overflow-hidden">
-        <img src={image} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        <img 
+          src={image} 
+          alt={title} 
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&q=80&w=800";
+          }}
+        />
         <div className="absolute bottom-4 right-4 bg-indigo-600 px-3 py-1 rounded-full font-bold text-sm text-white">
           {price}
         </div>
