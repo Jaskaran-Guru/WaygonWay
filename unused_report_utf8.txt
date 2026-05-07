@@ -1,5 +1,0 @@
-﻿File: .\booking-api-service\src\test\java\com\waygonway\services\BookingServiceTest.java
-  - Unused field: private NotificationService notificationService;
-File: .\frontend-service\src\main\java\com\frontend\FrontendServiceApplication.java
-  - Unused import: import org.springframework.context.annotation.Bean;
-  - Unused import: import org.springframework.web.client.RestTemplate;
