@@ -1,3 +1,12 @@
+---
+title: WaygonWay
+emoji: 🚀
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+pinned: false
+---
+
 # WaygonWay - Ticket Reservation System 🎫
 
 WaygonWay is a modern, microservices-based ticket reservation system designed for high scalability and reliability. It provides a comprehensive platform for booking events, managing user authentication, and performing administrative tasks.
@@ -83,9 +92,24 @@ WaygonWay/
 ├── shared-config/         # Common Configuration files
 ├── docker-compose.yml     # Docker Orchestration
 ├── build_all.cmd          # Automated Build Script
-└── run_all.cmd            # Automated Start Script
+├── run_all.cmd            # Automated Start Script
+└── Dockerfile             # Consolidated HF Deployment
 ```
 
-## 📝 License
+## 🤗 Hugging Face Deployment
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details (if applicable).
+This project is optimized for deployment on **Hugging Face Spaces** using Docker. All services run consolidated in a single Space for maximum stability and free-tier efficiency.
+
+### Deployment Steps:
+
+1.  **Create a New Space**: Go to Hugging Face, click "New Space", and select **Docker** as the SDK.
+2.  **Upload Files**: Upload the entire repository (including `Dockerfile` and `start.sh`) to the Space.
+3.  **Configure Secrets**: Go to **Settings > Variables and secrets** in your Space and add the following:
+    - `MONGODB_URI`: Your MongoDB Atlas connection string.
+    - `JWT_SECRET`: A secure random string for tokens.
+    - `STRIPE_SECRET_KEY`: (Optional) Your Stripe secret key.
+4.  **Wait for Build**: Hugging Face will automatically build the image and start the services.
+
+The application will be available at `https://<your-username>-<space-name>.hf.space`.
+
+
