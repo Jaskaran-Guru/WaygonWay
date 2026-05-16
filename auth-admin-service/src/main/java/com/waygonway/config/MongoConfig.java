@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 public class MongoConfig extends AbstractMongoClientConfiguration {
 
-    @Value("${spring.data.mongodb.uri:mongodb:
+    @Value("${spring.data.mongodb.uri:mongodb://localhost:27017/waygonway_db}")
     private String connectionString;
 
     @Override
