@@ -1,5 +1,5 @@
 import React from 'react';
-import { Download, CheckCircle, MapPin, Calendar, Ticket, User, CreditCard, Loader2 } from 'lucide-react';
+import { Download, CheckCircle, MapPin, Calendar, Ticket, User, Loader2 } from 'lucide-react';
 import { bookingApi } from '../services/api';
 
 interface BillProps {
