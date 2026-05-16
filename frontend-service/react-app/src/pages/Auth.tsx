@@ -21,7 +21,7 @@ const Auth = () => {
       if (isLogin) {
         const response = await authApi.login({ usernameOrEmail: username, password });
         localStorage.setItem('token', response.data.data.token);
-        localStorage.setItem('user', JSON.stringify(response.data.data.user || { username }));
+        localStorage.setItem('user', JSON.stringify(response.data.data));
         navigate('/');
       } else {
         await authApi.register({ 

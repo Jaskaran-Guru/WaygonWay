@@ -37,7 +37,7 @@ const Navbar = () => {
             {user && (
               <div className="flex items-center space-x-6">
                 <Link to="/my-bookings" className="text-indigo-400 hover:text-indigo-300 font-bold">My Bookings</Link>
-                {(user.role === 'ADMIN' || user.username === 'admin') && (
+                {(user.role === 'ADMIN' || user.username === 'admin' || user.email === 'admin@waygonway.com') && (
                   <div className="flex items-center space-x-6 px-4 border-l border-slate-800 ml-4">
                     <Link to="/admin" className="text-purple-400 hover:text-purple-300 font-bold uppercase tracking-tight text-xs bg-purple-500/10 px-3 py-1 rounded-lg border border-purple-500/20 shadow-sm">Dashboard</Link>
                     <Link to="/admin/events" className="text-slate-300 hover:text-white font-bold">Events</Link>
@@ -110,7 +110,7 @@ const Navbar = () => {
                   <div className="h-px bg-slate-800 my-4"></div>
                   <Link to="/my-bookings" onClick={toggleMobileMenu} className="text-xl font-bold text-indigo-400">My Bookings</Link>
                   <Link to="/profile" onClick={toggleMobileMenu} className="text-xl font-bold text-slate-300 flex items-center space-x-2"><User className="w-5 h-5" /><span>Profile</span></Link>
-                  {(user.role === 'ADMIN' || user.username === 'admin') && (
+                  {(user.role === 'ADMIN' || user.username === 'admin' || user.email === 'admin@waygonway.com') && (
                     <div className="flex flex-col space-y-4 pt-4 border-t border-slate-800">
                       <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">Admin Control</span>
                       <Link to="/admin" onClick={toggleMobileMenu} className="text-lg font-bold text-purple-400">Dashboard</Link>

@@ -19,7 +19,9 @@ import OrganizerDashboard from './pages/OrganizerDashboard';
 // Simple AdminRoute component if not found elsewhere
 const AdminRoute = ({ children }: { children: React.ReactNode }) => {
   const user = JSON.parse(localStorage.getItem('user') || 'null');
-  if (!user || (user.role !== 'ADMIN' && user.username !== 'admin')) {
+  const isAdmin = user && (user.role === 'ADMIN' || user.username === 'admin' || user.email === 'admin@waygonway.com');
+  
+  if (!isAdmin) {
     return <Home />;
   }
   return <>{children}</>;
