@@ -19,7 +19,7 @@ public class DatabaseServiceClient {
 
     private static final Logger logger = LoggerFactory.getLogger(DatabaseServiceClient.class);
 
-    @Value("${waygonway.services.database:http:
+    @Value("${waygonway.services.database:http://localhost:8083}")
     private String databaseServiceUrl;
 
     private final RestTemplate restTemplate;

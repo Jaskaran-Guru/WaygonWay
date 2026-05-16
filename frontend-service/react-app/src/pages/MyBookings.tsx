@@ -150,7 +150,7 @@ const MyBookings = () => {
               <div className="bg-slate-50 border-2 border-dashed border-slate-200 rounded-3xl p-8 flex flex-col items-center justify-center space-y-4">
                 <div className="w-48 h-48 bg-white p-4 shadow-inner rounded-2xl">
                   <img 
-                    src={`https:
+                    src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${selectedTicket.pnr}`}
                     alt="Ticket QR Code"
                     className="w-full h-full mix-blend-multiply"
                   />

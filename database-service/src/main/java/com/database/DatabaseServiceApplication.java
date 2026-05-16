@@ -12,9 +12,9 @@ public class DatabaseServiceApplication {
         System.out.println("\n===== DATABASE SERVICE STARTED =====");
         System.out.println("Port: 8083");
         System.out.println("Service: Database Management & Analytics");
-        System.out.println("Health: http:
-        System.out.println("Users: GET http:
-        System.out.println("Analytics: GET http:
+        System.out.println("Health: http://localhost:8083/health");
+        System.out.println("Users: GET http://localhost:8083/api/v1/database/users");
+        System.out.println("Analytics: GET http://localhost:8083/api/v1/database/analytics");
         System.out.println("======================================\n");
     }
 }

@@ -15,7 +15,7 @@ public class ApiService {
     
     public boolean isAuthServiceHealthy() {
         try {
-            ResponseEntity<Map> response = restTemplate.getForEntity("http:
+            ResponseEntity<Map> response = restTemplate.getForEntity("http://localhost:8081/api/v1/auth/health", Map.class);
             return response.getStatusCode() == HttpStatus.OK;
         } catch (Exception e) {
             System.err.println("Auth service health check failed: " + e.getMessage());
@@ -25,7 +25,7 @@ public class ApiService {
 
     public boolean isBookingServiceHealthy() {
         try {
-            ResponseEntity<Map> response = restTemplate.getForEntity("http:
+            ResponseEntity<Map> response = restTemplate.getForEntity("http://localhost:8082/api/v1/events/health", Map.class);
             return response.getStatusCode() == HttpStatus.OK;
         } catch (Exception e) {
             System.err.println("Booking service health check failed: " + e.getMessage());
@@ -35,7 +35,7 @@ public class ApiService {
 
     public boolean isDatabaseServiceHealthy() {
         try {
-            ResponseEntity<Map> response = restTemplate.getForEntity("http:
+            ResponseEntity<Map> response = restTemplate.getForEntity("http://localhost:8083/health", Map.class);
             return response.getStatusCode() == HttpStatus.OK;
         } catch (Exception e) {
             System.err.println("Database service health check failed: " + e.getMessage());
@@ -55,7 +55,7 @@ public class ApiService {
     
     public Map<String, Object> login(String email, String password) {
         try {
-            String url = "http:
+            String url = "http://localhost:8081/api/v1/auth/login";
 
             Map<String, String> loginData = new HashMap<>();
             loginData.put("email", email);
@@ -84,7 +84,7 @@ public class ApiService {
     public Map<String, Object> register(String name, String email, String password, String phone,
                                         String address, String city, String state, String pincode) {
         try {
-            String url = "http:
+            String url = "http://localhost:8081/api/v1/auth/register";
 
             Map<String, String> registerData = new HashMap<>();
             registerData.put("name", name);
@@ -119,7 +119,7 @@ public class ApiService {
     
     public Map<String, Object> searchTrains(String source, String destination, String travelDate) {
         try {
-            String url = String.format("http:
+            String url = String.format("http://localhost:8082/api/v1/transport/schedules?source=%s&destination=%s&date=%s",
                     source, destination, travelDate);
 
             Map<String, Object> response = restTemplate.getForObject(url, Map.class);
@@ -136,7 +136,7 @@ public class ApiService {
 
     public Map<String, Object> getEventById(String id) {
         try {
-            String url = "http:
+            String url = "http://localhost:8082/api/v1/events/" + id;
             Map<String, Object> response = restTemplate.getForObject(url, Map.class);
             return response != null ? response : Map.of("success", false, "error", "Event not found");
 
@@ -158,7 +158,7 @@ public class ApiService {
     
     public Map<String, Object> createBooking(Map<String, Object> bookingData) {
         try {
-            String url = "http:
+            String url = "http://localhost:8082/api/v1/bookings";
 
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
@@ -204,7 +204,7 @@ public class ApiService {
 
     public Map<String, Object> getBookingByPNR(String pnr) {
         try {
-            String url = "http:
+            String url = "http://localhost:8082/api/v1/bookings/status/" + pnr;
             Map<String, Object> response = restTemplate.getForObject(url, Map.class);
             return response != null ? response : Map.of("success", false, "error", "PNR not found");
 
@@ -228,7 +228,7 @@ public class ApiService {
 
     public Map<String, Object> getUserTickets(String userId) {
         try {
-            String url = "http:
+            String url = "http://localhost:8082/api/v1/bookings/user/" + userId;
             Map<String, Object> response = restTemplate.getForObject(url, Map.class);
             return response != null ? response : Map.of("success", false, "data", new ArrayList<>());
 
@@ -282,7 +282,7 @@ public class ApiService {
     
     public Map<String, Object> createDemoData() {
         try {
-            String url = "http:
+            String url = "http://localhost:8082/api/v1/admin/demo-data";
             ResponseEntity<Map> response = restTemplate.postForEntity(url, null, Map.class);
             return response.getBody();
 

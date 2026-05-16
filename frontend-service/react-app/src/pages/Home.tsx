@@ -84,15 +84,15 @@ const Home = () => {
   });
 
   const getCategoryImage = (category: string) => {
-    if (!category) return "https:
+    if (!category) return "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80";
     
     const cat = category.toUpperCase();
-    if (cat === 'MOVIE') return "https:
-    if (cat === 'CONCERT') return "https:
-    if (cat === 'COMEDY' || cat === 'STANDUP' || cat === 'STAND-UP') return "https:
-    if (cat === 'EVERGREEN') return "https:
+    if (cat === 'MOVIE') return "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80";
+    if (cat === 'CONCERT') return "https://images.unsplash.com/photo-1459749411177-042180ce673c?auto=format&fit=crop&q=80";
+    if (cat === 'COMEDY' || cat === 'STANDUP' || cat === 'STAND-UP') return "https://images.unsplash.com/photo-1514525253344-ad8130026e6d?auto=format&fit=crop&q=80";
+    if (cat === 'EVERGREEN') return "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80";
     
-    return "https:
+    return "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80";
   };
 
   return (
