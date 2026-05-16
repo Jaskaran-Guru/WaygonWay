@@ -1,9 +1,9 @@
 ---
-title: WaygonWay
-emoji: *
-colorFrom: blue
-colorTo: indigo
-sdk: docker
+title: "WaygonWay"
+emoji: "🎫"
+colorFrom: "blue"
+colorTo: "indigo"
+sdk: "docker"
 pinned: false
 ---
 
