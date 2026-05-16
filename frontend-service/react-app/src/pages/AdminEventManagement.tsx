@@ -20,7 +20,7 @@ const AdminEventManagement = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingEvent, setEditingEvent] = useState<any>(null);
   
-  // Pagination State
+  
   const [page, setPage] = useState(0);
   const [size] = useState(10);
   const [totalPages, setTotalPages] = useState(0);
@@ -106,7 +106,7 @@ const AdminEventManagement = () => {
       setEditingEvent(event);
       setFormData({
         ...event,
-        startDateTime: event.startDateTime.split('.')[0], // Format for datetime-local
+        startDateTime: event.startDateTime.split('.')[0], 
         endDateTime: event.endDateTime?.split('.')[0] || ''
       });
     } else {
@@ -145,7 +145,7 @@ const AdminEventManagement = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
-      {/* Header */}
+      {}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0 text-white">
         <div className="space-y-1 text-white">
           <h1 className="text-3xl font-black text-white">Event Management</h1>
@@ -169,7 +169,7 @@ const AdminEventManagement = () => {
         </div>
       </div>
 
-      {/* Filters & Search */}
+      {}
       <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
         <div className="relative flex-1">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
@@ -245,7 +245,7 @@ const AdminEventManagement = () => {
               </tbody>
             </table>
 
-            {/* Pagination Controls */}
+            {}
             <div className="bg-slate-950/50 px-8 py-5 border-t border-slate-800 flex items-center justify-between">
               <div className="text-slate-500 text-xs font-bold">
                 Showing <span className="text-white">{events.length}</span> of <span className="text-white">{totalElements}</span> events
@@ -283,7 +283,7 @@ const AdminEventManagement = () => {
         </div>
       )}
 
-      {/* Modal */}
+      {}
       {isModalOpen && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
           <div className="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-2xl max-h-[90vh] overflow-y-auto overflow-x-hidden shadow-2xl relative animate-in zoom-in-95 duration-200">

@@ -19,7 +19,7 @@ spring:
     resources:
       static-locations: classpath:/static/
 
-# Logging
+
 logging:
   level:
     com.frontend: DEBUG

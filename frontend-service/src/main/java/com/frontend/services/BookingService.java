@@ -11,7 +11,7 @@ public class BookingService {
 
         List<Map<String, Object>> bookings = new ArrayList<>();
 
-        // Hardcoded Booking 1
+        
         Map<String, Object> booking1 = new HashMap<>();
         booking1.put("pnr", "WW123456789");
         booking1.put("fromStation", "New Delhi");
@@ -30,7 +30,7 @@ public class BookingService {
         passengers1.add(p1);
         booking1.put("passengers", passengers1);
 
-        // Hardcoded Booking 2
+        
         Map<String, Object> booking2 = new HashMap<>();
         booking2.put("pnr", "WW987654321");
         booking2.put("fromStation", "Bangalore");

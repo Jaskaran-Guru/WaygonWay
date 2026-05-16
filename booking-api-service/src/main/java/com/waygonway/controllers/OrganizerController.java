@@ -30,7 +30,7 @@ public class OrganizerController {
 
     @GetMapping("/bookings")
     public Map<String, Object> getOrganizerBookings(@RequestParam String organizerId) {
-        // Find all events owned by organizer
+        
         List<Event> events = eventRepository.findByOrganizerId(organizerId);
         List<String> eventIds = events.stream().map(Event::getId).collect(Collectors.toList());
         
@@ -38,7 +38,7 @@ public class OrganizerController {
             return Map.of("success", true, "data", List.of());
         }
 
-        // Find all bookings for these events
+        
         List<Booking> bookings = bookingRepository.findByEventIdIn(eventIds);
         return Map.of("success", true, "data", bookings);
     }

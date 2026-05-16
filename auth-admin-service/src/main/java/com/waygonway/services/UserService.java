@@ -21,7 +21,7 @@ public class UserService {
     private UserRepository userRepository;
 
 
-    // Get all users
+    
     public List<User> getAllUsers() {
         try {
             System.out.println("UserService: Getting all users");
@@ -37,7 +37,7 @@ public class UserService {
         }
     }
 
-    // Get users with pagination
+    
     public Page<User> getUsersWithPagination(int page, int size, String sortBy, String sortDir) {
         try {
             System.out.println("UserService: Getting users with pagination - Page: " + page + ", Size: " + size);
@@ -58,7 +58,7 @@ public class UserService {
         }
     }
 
-    // Get user by ID
+    
     public User getUserById(String userId) {
         try {
             System.out.println("UserService: Getting user by ID - " + userId);
@@ -78,14 +78,14 @@ public class UserService {
         }
     }
 
-    // Update user
+    
     public User updateUser(String userId, User updatedUser) {
         try {
             System.out.println("UserService: Updating user - " + userId);
 
             User existingUser = getUserById(userId);
 
-            // Update fields
+            
             if (updatedUser.getFirstName() != null) {
                 existingUser.setFirstName(updatedUser.getFirstName());
             }
@@ -118,7 +118,7 @@ public class UserService {
         }
     }
 
-    // Delete user
+    
     public Map<String, Object> deleteUser(String userId) {
         try {
             System.out.println("UserService: Deleting user - " + userId);
@@ -141,7 +141,7 @@ public class UserService {
         }
     }
 
-    // Search users
+    
     public List<User> searchUsers(String query) {
         try {
             System.out.println("UserService: Searching users with query - " + query);
@@ -157,7 +157,7 @@ public class UserService {
         }
     }
 
-    // Get users by status
+    
     public List<User> getUsersByStatus(String status) {
         try {
             System.out.println("UserService: Getting users by status - " + status);
@@ -173,7 +173,7 @@ public class UserService {
         }
     }
 
-    // Get users by role
+    
     public List<User> getUsersByRole(String role) {
         try {
             System.out.println("UserService: Getting users by role - " + role);
@@ -189,7 +189,7 @@ public class UserService {
         }
     }
 
-    // Update user status
+    
     public User updateUserStatus(String userId, String status) {
         try {
             System.out.println("UserService: Updating user status - " + userId + " to " + status);
@@ -209,7 +209,7 @@ public class UserService {
         }
     }
 
-    // Update user role
+    
     public User updateUserRole(String userId, String role) {
         try {
             System.out.println("UserService: Updating user role - " + userId + " to " + role);
@@ -229,7 +229,7 @@ public class UserService {
         }
     }
 
-    // Get user statistics
+    
     public Map<String, Object> getUserStatistics() {
         try {
             System.out.println("UserService: Calculating user statistics");
@@ -244,13 +244,13 @@ public class UserService {
             stats.put("adminUsers", allUsers.stream().filter(u -> "ADMIN".equals(u.getRole())).count());
             stats.put("regularUsers", allUsers.stream().filter(u -> "USER".equals(u.getRole())).count());
 
-            // Today's registrations
+            
             LocalDateTime startOfDay = LocalDate.now().atStartOfDay();
             LocalDateTime endOfDay = LocalDate.now().atTime(LocalTime.MAX);
             List<User> todaysUsers = userRepository.findUsersCreatedBetween(startOfDay, endOfDay);
             stats.put("todaysRegistrations", todaysUsers.size());
 
-            // City-wise distribution
+            
             Map<String, Long> cityStats = allUsers.stream()
                     .filter(u -> u.getAddress() != null && u.getAddress().getCity() != null)
                     .collect(Collectors.groupingBy(
@@ -259,7 +259,7 @@ public class UserService {
                     ));
             stats.put("cityDistribution", cityStats);
 
-            // State-wise distribution
+            
             Map<String, Long> stateStats = allUsers.stream()
                     .filter(u -> u.getAddress() != null && u.getAddress().getState() != null)
                     .collect(Collectors.groupingBy(
@@ -279,7 +279,7 @@ public class UserService {
         }
     }
 
-    // Export user data
+    
     public Map<String, Object> exportUserData() {
         try {
             System.out.println("UserService: Exporting user data");
@@ -301,7 +301,7 @@ public class UserService {
         }
     }
 
-    // Get users created today
+    
     public List<User> getUsersCreatedToday() {
         try {
             System.out.println("UserService: Getting today's users");
@@ -320,7 +320,7 @@ public class UserService {
         }
     }
 
-    // Bulk update user status
+    
     public Map<String, Object> bulkUpdateUserStatus(List<String> userIds, String status) {
         try {
             System.out.println("UserService: Bulk updating user status - " + userIds.size() + " users to " + status);
@@ -356,7 +356,7 @@ public class UserService {
         }
     }
 
-    // Get users by city
+    
     public List<User> getUsersByCity(String city) {
         try {
             System.out.println("UserService: Getting users by city - " + city);
@@ -372,7 +372,7 @@ public class UserService {
         }
     }
 
-    // Get users by state
+    
     public List<User> getUsersByState(String state) {
         try {
             System.out.println("UserService: Getting users by state - " + state);
@@ -388,12 +388,12 @@ public class UserService {
         }
     }
 
-    // Check if user exists by username
+    
     public boolean existsByUsername(String username) {
         return userRepository.existsByUsername(username);
     }
 
-    // Check if user exists by email
+    
     public boolean existsByEmail(String email) {
         return userRepository.existsByEmail(email);
     }

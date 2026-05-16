@@ -17,7 +17,7 @@ public class SupportTicket {
     private String subject;
     private String description;
     
-    // OPEN, IN_PROGRESS, RESOLVED
+    
     private String status;
     private String resolutionNotes;
     

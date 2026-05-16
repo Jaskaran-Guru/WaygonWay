@@ -25,7 +25,7 @@ public class DataInitializer implements CommandLineRunner {
         logger.info("DataInitializer: Attempting to check/seed initial data...");
 
         try {
-            // Create admin user if not exists
+            
             if (!userRepository.existsByUsername("admin")) {
                 logger.info("DataInitializer: Creating default admin user");
 
@@ -39,7 +39,7 @@ public class DataInitializer implements CommandLineRunner {
                 admin.setRole("ADMIN");
                 admin.setStatus("ACTIVE");
 
-                // Set address
+                
                 User.Address address = new User.Address();
                 address.setCity("New Delhi");
                 address.setState("Delhi");
@@ -51,7 +51,7 @@ public class DataInitializer implements CommandLineRunner {
                 logger.info("DataInitializer: Default admin user created");
             }
 
-            // Create demo user if not exists
+            
             if (!userRepository.existsByUsername("user")) {
                 logger.info("DataInitializer: Creating demo user");
 
@@ -65,7 +65,7 @@ public class DataInitializer implements CommandLineRunner {
                 user.setRole("USER");
                 user.setStatus("ACTIVE");
 
-                // Set address
+                
                 User.Address address = new User.Address();
                 address.setCity("Mumbai");
                 address.setState("Maharashtra");

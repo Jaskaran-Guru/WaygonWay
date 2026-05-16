@@ -41,7 +41,7 @@
             position: relative;
         }
 
-        /* ─── Background Effects ─── */
+        /*  Background Effects  */
         body::before {
             content: '';
             position: fixed;
@@ -67,7 +67,7 @@
             opacity: 0.4;
         }
 
-        /* ─── Navbar ─── */
+        /*  Navbar  */
         .navbar {
             background: rgba(26, 11, 46, 0.85);
             backdrop-filter: blur(30px);
@@ -132,7 +132,7 @@
             transform: translateY(-2px);
         }
 
-        /* ─── Container ─── */
+        /*  Container  */
         .container {
             position: relative;
             z-index: 1;
@@ -140,7 +140,7 @@
             padding-bottom: 3.5rem;
         }
 
-        /* ─── Page Header ─── */
+        /*  Page Header  */
         .page-header {
             text-align: center;
             margin-bottom: 3rem;
@@ -167,7 +167,7 @@
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* ─── Booking Card ─── */
+        /*  Booking Card  */
         .booking-card {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
             border: 1.5px solid rgba(212, 175, 55, 0.2);
@@ -197,7 +197,7 @@
         .booking-card:nth-child(4) { animation-delay: 0.2s; }
         .booking-card:nth-child(5) { animation-delay: 0.25s; }
 
-        /* ─── PNR Badge ─── */
+        /*  PNR Badge  */
         .pnr-badge {
             display: inline-flex;
             align-items: center;
@@ -214,7 +214,7 @@
             box-shadow: 0 4px 15px rgba(77, 168, 218, 0.15);
         }
 
-        /* ─── Status Badge ─── */
+        /*  Status Badge  */
         .status-badge {
             display: inline-flex;
             align-items: center;
@@ -231,7 +231,7 @@
             box-shadow: 0 4px 15px rgba(16, 185, 129, 0.15);
         }
 
-        /* ─── Train Name ─── */
+        /*  Train Name  */
         .train-name {
             font-family: 'Playfair Display', serif;
             font-weight: 700;
@@ -258,7 +258,7 @@
             box-shadow: 0 4px 15px rgba(77, 168, 218, 0.2);
         }
 
-        /* ─── Detail Items ─── */
+        /*  Detail Items  */
         .detail-item {
             display: flex;
             align-items: center;
@@ -303,7 +303,7 @@
 
         .detail-item strong { color: var(--white); font-weight: 700; }
 
-        /* ─── Fare ─── */
+        /*  Fare  */
         .fare-amount {
             font-family: 'Playfair Display', serif;
             font-weight: 800;
@@ -322,7 +322,7 @@
             color: rgba(254, 246, 228, 0.4);
         }
 
-        /* ─── Action Buttons ─── */
+        /*  Action Buttons  */
         .action-btn {
             display: flex;
             align-items: center;
@@ -379,7 +379,7 @@
             box-shadow: 0 6px 20px rgba(239, 68, 68, 0.2);
         }
 
-        /* ─── Card Divider ─── */
+        /*  Card Divider  */
         .card-vdivider {
             width: 1px;
             background: linear-gradient(180deg, transparent, rgba(212, 175, 55, 0.3), transparent);
@@ -388,7 +388,7 @@
             flex-shrink: 0;
         }
 
-        /* ─── Pagination ─── */
+        /*  Pagination  */
         .pagination .page-link {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03)) !important;
             border: 1.5px solid rgba(212, 175, 55, 0.2) !important;
@@ -418,7 +418,7 @@
             transform: translateY(-2px);
         }
 
-        /* ─── Empty State ─── */
+        /*  Empty State  */
         .empty-card {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
             border: 1.5px solid rgba(212, 175, 55, 0.2);
@@ -497,7 +497,7 @@
             transform: translateY(-3px);
         }
 
-        /* ─── Modal ─── */
+        /*  Modal  */
         .modal-content {
             background: rgba(26, 11, 46, 0.95);
             border: 1.5px solid rgba(212, 175, 55, 0.25);
@@ -576,7 +576,7 @@
             margin-bottom: 1.2rem;
         }
 
-        /* ─── Responsive ─── */
+        /*  Responsive  */
         @media (max-width: 768px) {
             .booking-card {
                 padding: 1.8rem 1.5rem;
@@ -653,7 +653,7 @@
                                         <div class="col-md-6">
                                             <div class="detail-item">
                                                 <span class="d-dot blue"><i class="fas fa-route"></i></span>
-                                                <strong>${booking.source}</strong>&nbsp;→&nbsp;<strong>${booking.destination}</strong>
+                                                <strong>${booking.source}</strong>&nbsp;&nbsp;<strong>${booking.destination}</strong>
                                             </div>
                                             <div class="detail-item">
                                                 <span class="d-dot amber"><i class="fas fa-calendar"></i></span>
@@ -679,7 +679,7 @@
                                 <!-- Right: Fare + Actions -->
                                 <div class="d-flex flex-column align-items-end justify-content-between" style="min-width:180px">
                                     <div class="text-end mb-3">
-                                        <div class="fare-amount">₹${booking.totalAmount}</div>
+                                        <div class="fare-amount">${booking.totalAmount}</div>
                                         <div class="fare-label">Total Fare</div>
                                     </div>
 

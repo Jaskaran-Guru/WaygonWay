@@ -12,7 +12,7 @@ def check_file(filepath):
     content = "".join(lines)
     unused = []
     
-    # Check imports
+    
     for i, line in enumerate(lines):
         if line.strip().startswith('import ') and not line.strip().startswith('import static'):
             match = re.search(r'import\s+([\w\.]+);', line)
@@ -20,7 +20,7 @@ def check_file(filepath):
                 full_imp = match.group(1)
                 class_name = full_imp.split('.')[-1]
                 
-                # Check if class_name is used elsewhere
+                
                 count = 0
                 for j, l in enumerate(lines):
                     if i == j: continue
@@ -30,7 +30,7 @@ def check_file(filepath):
                 if count == 0:
                     unused.append((i+1, "Unused import: " + full_imp))
                     
-    # Check private fields
+    
     for i, line in enumerate(lines):
         match = re.search(r'private\s+[\w<>]+\s+(\w+)\s*;', line)
         if match:

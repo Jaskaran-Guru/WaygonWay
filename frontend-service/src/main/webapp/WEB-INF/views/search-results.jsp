@@ -58,7 +58,7 @@
             z-index: 0; pointer-events: none; opacity: 0.4;
         }
 
-        /* ─── Floating Orbs ─── */
+        /*  Floating Orbs  */
         .floating-shapes { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
 
         .shape { position: absolute; border-radius: 50%; filter: blur(80px); animation: float-orb 12s ease-in-out infinite; }
@@ -72,7 +72,7 @@
             66%       { transform: translate(-40px,20px) scale(0.9); }
         }
 
-        /* ─── Navbar ─── */
+        /*  Navbar  */
         .navbar {
             background: rgba(26,11,46,0.85);
             backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
@@ -126,14 +126,14 @@
 
         .btn-nav-logout:hover { background: rgba(239,68,68,0.2); transform: translateY(-2px); }
 
-        /* ─── Container ─── */
+        /*  Container  */
         .container { position: relative; z-index: 1; padding-top: 2rem; padding-bottom: 3.5rem; }
 
-        /* ─── Animations ─── */
+        /*  Animations  */
         @keyframes fade-up   { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
         @keyframes fade-scale{ from { opacity:0; transform:translateY(20px) scale(0.97); } to { opacity:1; transform:translateY(0) scale(1); } }
 
-        /* ─── Search Summary Header ─── */
+        /*  Search Summary Header  */
         .search-summary {
             background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%);
             border: 1px solid rgba(212,175,55,0.2);
@@ -209,7 +209,7 @@
 
         .btn-modify:hover { background: rgba(212,175,55,0.1); border-color: var(--gold); transform: translateY(-2px); }
 
-        /* ─── Train Card ─── */
+        /*  Train Card  */
         .train-card {
             background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 100%);
             border: 1px solid rgba(212,175,55,0.18);
@@ -239,7 +239,7 @@
         .train-card:nth-child(4) { animation-delay: 0.26s; }
         .train-card:nth-child(5) { animation-delay: 0.33s; }
 
-        /* ─── Train Name / Number ─── */
+        /*  Train Name / Number  */
         .train-name {
             font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.05rem;
             color: var(--white); margin-bottom: 3px; line-height: 1.3;
@@ -257,7 +257,7 @@
             padding: 3px 10px; border-radius: 100px;
         }
 
-        /* ─── Time Block ─── */
+        /*  Time Block  */
         .time-block { text-align: center; }
 
         .time-block .time {
@@ -271,7 +271,7 @@
             text-transform: uppercase; color: var(--aqua);
         }
 
-        /* ─── Journey Arrow ─── */
+        /*  Journey Arrow  */
         .journey-arrow {
             display: flex; flex-direction: column; align-items: center; gap: 4px;
         }
@@ -284,7 +284,7 @@
         .journey-arrow .j-icon { color: var(--aqua); font-size: 0.8rem; }
         .journey-arrow .j-dur { font-size: 0.7rem; color: var(--text-muted); white-space: nowrap; }
 
-        /* ─── Price Badge ─── */
+        /*  Price Badge  */
         .price-badge {
             background: linear-gradient(135deg, rgba(52,211,153,0.18), rgba(16,185,129,0.12));
             border: 1px solid rgba(52,211,153,0.28);
@@ -299,7 +299,7 @@
             display: flex; align-items: center; justify-content: center; gap: 4px;
         }
 
-        /* ─── Book Button ─── */
+        /*  Book Button  */
         .btn-book {
             background: linear-gradient(135deg, var(--ocean) 0%, var(--aqua) 100%);
             border: none; border-radius: 12px !important;
@@ -333,7 +333,7 @@
 
         .btn-book-login:hover { background: rgba(212,175,55,0.1); transform: translateY(-2px); }
 
-        /* ─── Train Description ─── */
+        /*  Train Description  */
         .train-desc-row {
             margin-top: 1.2rem; padding-top: 1.2rem;
             border-top: 1px solid rgba(255,255,255,0.07);
@@ -346,7 +346,7 @@
 
         .train-desc i { color: rgba(212,175,55,0.4); margin-top: 2px; flex-shrink: 0; }
 
-        /* ─── Empty State ─── */
+        /*  Empty State  */
         .empty-card {
             background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.03) 100%);
             border: 1px solid rgba(212,175,55,0.18);
@@ -407,7 +407,7 @@
 
         .btn-search-again:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(50,130,184,0.5); color: white; }
 
-        /* ─── Modal ─── */
+        /*  Modal  */
         .modal-content {
             background: linear-gradient(135deg, #1e0f38 0%, var(--midnight) 100%);
             border: 1px solid rgba(212,175,55,0.25);
@@ -497,7 +497,7 @@
         .btn-proceed:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(50,130,184,0.5); }
         .btn-proceed:hover::before { opacity: 1; }
 
-        /* ─── Responsive ─── */
+        /*  Responsive  */
         @media (max-width: 768px) {
             .train-card { padding: 1.4rem 1.2rem; }
             .search-summary { padding: 1.4rem 1.5rem; }
@@ -640,7 +640,7 @@
 
                         <!-- Price & Seats -->
                         <div class="col-md-2 text-center">
-                            <div class="price-badge">₹${train.price}</div>
+                            <div class="price-badge">${train.price}</div>
                             <div class="seats-available">
                                 <i class="fas fa-check-circle"></i>${train.availableSeats} seats left
                             </div>
@@ -713,7 +713,7 @@
 
 </div>
 
-<!-- ─── Booking Modal ─── -->
+<!--  Booking Modal  -->
 <div class="modal fade" id="bookingModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -791,7 +791,7 @@
     function bookTrain(eventId, trainName) {
         document.getElementById('eventId').value = eventId;
         document.getElementById('modalTitle').innerHTML =
-            '<i class="fas fa-ticket-alt me-2" style="color:var(--aqua)"></i>Book — ' + trainName;
+            '<i class="fas fa-ticket-alt me-2" style="color:var(--aqua)"></i>Book  ' + trainName;
         new bootstrap.Modal(document.getElementById('bookingModal')).show();
     }
 </script>

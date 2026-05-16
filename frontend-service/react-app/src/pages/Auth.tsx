@@ -28,7 +28,7 @@ const Auth = () => {
           username, 
           email, 
           password,
-          firstName: "New", // Default for now to pass validation
+          firstName: "New", 
           lastName: "User"
         });
         alert("Registration successful! Please login.");
@@ -44,7 +44,7 @@ const Auth = () => {
 
   return (
     <div className="max-w-md mx-auto my-20 p-8 bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl relative overflow-hidden">
-      {/* Background Glow */}
+      {}
       <div className="absolute -top-24 -left-24 w-48 h-48 bg-indigo-500/10 blur-3xl rounded-full"></div>
       
       <div className="relative z-10 space-y-8">
@@ -98,7 +98,7 @@ const Auth = () => {
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
               <input 
                 type="password" 
-                placeholder="••••••••"
+                placeholder=""
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full bg-slate-950 border border-slate-800 rounded-xl py-3 pl-10 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/50"

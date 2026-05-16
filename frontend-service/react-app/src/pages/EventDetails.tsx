@@ -7,7 +7,7 @@ import { Calendar, MapPin, Ticket, ChevronLeft, Loader2, CreditCard } from 'luci
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
-// Replace with your real Stripe public key
+
 const stripePromise = loadStripe('pk_test_placeholder');
 
 const CheckoutForm = ({ onCancel, onSuccess }: { onCancel: () => void, onSuccess: () => void }) => {
@@ -82,7 +82,7 @@ const EventDetails = () => {
     try {
       const response = await bookingApi.createBooking({
         eventId: event.id,
-        userId: "USER123", // Mock User
+        userId: "USER123", 
         customerName: "Jass Karan",
         seats: selectedSeats.join(','),
         paymentMethod: "CARD"
@@ -105,7 +105,7 @@ const EventDetails = () => {
       const response = await bookingApi.updateBookingStatus(bookingResponse.pnr, 'PAID');
       setFinalBooking({
         ...response.data.data,
-        eventDateTime: event.startDateTime // Merge event time if not in booking
+        eventDateTime: event.startDateTime 
       });
       setShowBill(true);
       setBookingResponse(null);
@@ -132,7 +132,7 @@ const EventDetails = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
         <div className="lg:col-span-2 space-y-12">
-          {/* Header */}
+          {}
           <div className="space-y-4">
             <h1 className="text-5xl font-black text-white">{event.eventName}</h1>
             <div className="flex flex-wrap gap-6 text-slate-400">
@@ -151,14 +151,14 @@ const EventDetails = () => {
             </div>
           </div>
 
-          {/* Seat Map */}
+          {}
           <div className="space-y-6">
             <h2 className="text-2xl font-bold text-white">Select Your Seats</h2>
             <SeatLayout onSelect={setSelectedSeats} />
           </div>
         </div>
 
-        {/* Sidebar / Summary */}
+        {}
         <div className="lg:col-span-1">
           <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8 sticky top-24 space-y-8">
             <h3 className="text-xl font-bold text-white border-b border-slate-800 pb-4">Booking Summary</h3>
@@ -202,7 +202,7 @@ const EventDetails = () => {
         </div>
       </div>
 
-      {/* Stripe Payment Modal */}
+      {}
       {bookingResponse && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md">
             <div className="bg-white rounded-[2.5rem] w-full max-w-md p-8 shadow-2xl space-y-6 transform transition-all">
@@ -244,7 +244,7 @@ const EventDetails = () => {
             </div>
         </div>
       )}
-      {/* Bill Section */}
+      {}
       {showBill && finalBooking && (
         <Bill 
           booking={finalBooking} 

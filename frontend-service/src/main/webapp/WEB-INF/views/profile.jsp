@@ -38,7 +38,7 @@
             padding-top: 80px;
         }
 
-        /* ─── Background Pattern ─── */
+        /*  Background Pattern  */
         body::before {
             content: '';
             position: fixed; inset: 0;
@@ -59,7 +59,7 @@
             z-index: 0; pointer-events: none; opacity: 0.4;
         }
 
-        /* ─── Floating Orbs ─── */
+        /*  Floating Orbs  */
         .floating-shapes { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
 
         .shape {
@@ -92,7 +92,7 @@
             66%       { transform: translate(-40px, 20px) scale(0.9); }
         }
 
-        /* ─── Navbar ─── */
+        /*  Navbar  */
         .navbar {
             background: rgba(26, 11, 46, 0.85);
             backdrop-filter: blur(30px);
@@ -147,10 +147,10 @@
 
         .btn-nav-logout:hover { background: rgba(239, 68, 68, 0.2); transform: translateY(-2px); }
 
-        /* ─── Page Container ─── */
+        /*  Page Container  */
         .container { position: relative; z-index: 1; padding-top: 2.5rem; padding-bottom: 3.5rem; }
 
-        /* ─── Animations ─── */
+        /*  Animations  */
         @keyframes fade-up {
             from { opacity: 0; transform: translateY(24px); }
             to   { opacity: 1; transform: translateY(0); }
@@ -161,7 +161,7 @@
             to   { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* ─── Page Header ─── */
+        /*  Page Header  */
         .page-header {
             text-align: center; margin-bottom: 2.5rem;
             animation: fade-up 0.6s ease both;
@@ -200,7 +200,7 @@
 
         .page-header p { color: var(--text-muted); font-size: 0.95rem; }
 
-        /* ─── Avatar Block ─── */
+        /*  Avatar Block  */
         .avatar-block {
             display: flex; flex-direction: column; align-items: center;
             margin-bottom: 2.5rem;
@@ -248,7 +248,7 @@
             padding: 3px 14px; border-radius: 100px;
         }
 
-        /* ─── Profile Card ─── */
+        /*  Profile Card  */
         .profile-card {
             background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%);
             border: 1px solid rgba(212, 175, 55, 0.2);
@@ -261,7 +261,7 @@
             animation: fade-scale 0.8s ease 0.1s both;
         }
 
-        /* ─── Section Title ─── */
+        /*  Section Title  */
         .section-title {
             font-size: 0.68rem; font-weight: 700;
             letter-spacing: 1.5px; text-transform: uppercase;
@@ -282,7 +282,7 @@
             color: var(--gold-light); font-size: 0.6rem;
         }
 
-        /* ─── Form Fields ─── */
+        /*  Form Fields  */
         .field-group { display: flex; flex-direction: column; gap: 7px; }
 
         .field-label {
@@ -324,14 +324,14 @@
             padding-left: 4px; margin-top: 2px;
         }
 
-        /* ─── Divider ─── */
+        /*  Divider  */
         .form-divider {
             height: 1px;
             background: linear-gradient(90deg, transparent, rgba(212,175,55,0.2), transparent);
             margin: 2rem 0;
         }
 
-        /* ─── Submit Button ─── */
+        /*  Submit Button  */
         .btn-update {
             background: linear-gradient(135deg, var(--ocean) 0%, var(--aqua) 100%);
             border: none; border-radius: 14px !important;
@@ -355,7 +355,7 @@
         .btn-update:hover::before { opacity: 1; }
         .btn-update:active { transform: translateY(-1px); }
 
-        /* ─── Success / Error Alerts ─── */
+        /*  Success / Error Alerts  */
         .alert-success-dark {
             background: rgba(52, 211, 153, 0.1);
             border: 1px solid rgba(52, 211, 153, 0.28);
@@ -372,7 +372,7 @@
             margin-bottom: 1.5rem;
         }
 
-        /* ─── Input Icon Wrapper ─── */
+        /*  Input Icon Wrapper  */
         .input-icon-wrap { position: relative; }
 
         .input-icon-wrap .i-icon {
@@ -382,7 +382,7 @@
 
         .input-icon-wrap .form-control { padding-left: 40px !important; }
 
-        /* ─── Responsive ─── */
+        /*  Responsive  */
         @media (max-width: 768px) {
             .profile-card { padding: 2rem 1.8rem; }
         }

@@ -62,7 +62,7 @@ public class BookingServiceTest {
                 "eventId", "EVT-100",
                 "userId", "USER-1",
                 "customerName", "John Doe",
-                "seats", "A1,A2" // 2 seats
+                "seats", "A1,A2" 
         );
 
         Booking result = bookingService.createBooking(requestData);
@@ -71,7 +71,7 @@ public class BookingServiceTest {
         assertEquals("PENDING", result.getStatus());
         assertEquals(200.0, result.getTotalAmount());
         assertEquals("pi_secret", result.getClientSecret());
-        assertEquals(48, testEvent.getAvailableSeats()); // 50 - 2
+        assertEquals(48, testEvent.getAvailableSeats()); 
         
         verify(redlockService).releaseLock("lock:event:EVT-100");
         verify(eventRepository).save(testEvent);

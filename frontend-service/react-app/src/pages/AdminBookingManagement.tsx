@@ -19,7 +19,7 @@ const AdminBookingManagement = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState('ALL');
   
-  // Pagination State
+  
   const [page, setPage] = useState(0);
   const [size] = useState(10);
   const [totalPages, setTotalPages] = useState(0);
@@ -93,7 +93,7 @@ const AdminBookingManagement = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
-      {/* Header */}
+      {}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
         <div>
           <h1 className="text-4xl font-black text-white flex items-center space-x-3 text-white">
@@ -111,7 +111,7 @@ const AdminBookingManagement = () => {
         </button>
       </div>
 
-      {/* Filters & Search */}
+      {}
       <div className="bg-slate-900/50 border border-slate-800 p-6 rounded-3xl flex flex-col md:flex-row gap-4 text-white">
         <div className="relative flex-1">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
@@ -140,7 +140,7 @@ const AdminBookingManagement = () => {
         </div>
       </div>
 
-      {/* Bookings Table */}
+      {}
       <div className="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl">
         {loading ? (
           <div className="py-20 flex flex-col items-center justify-center space-y-4">
@@ -171,7 +171,7 @@ const AdminBookingManagement = () => {
                     <td className="px-8 py-6">
                       <p className="text-white font-bold text-lg leading-none">{booking.customerName}</p>
                       <p className="text-slate-500 text-sm mt-1">
-                        {booking.eventName} • <span className="text-indigo-400/70">{booking.eventCategory}</span>
+                        {booking.eventName}  <span className="text-indigo-400/70">{booking.eventCategory}</span>
                       </p>
                     </td>
                     <td className="px-8 py-6">
@@ -220,7 +220,7 @@ const AdminBookingManagement = () => {
               </tbody>
             </table>
 
-            {/* Pagination Controls */}
+            {}
             <div className="bg-slate-950/50 px-8 py-5 border-t border-slate-800 flex items-center justify-between">
               <div className="text-slate-500 text-xs font-bold">
                 Showing <span className="text-white">{bookings.length}</span> of <span className="text-white">{totalElements}</span> transactions

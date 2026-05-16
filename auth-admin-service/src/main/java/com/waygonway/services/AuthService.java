@@ -29,7 +29,7 @@ public class AuthService {
     @Autowired
     private JwtUtil jwtUtil;
 
-    // Enhanced login with complete data tracking
+    
     public AuthResponse login(LoginRequest loginRequest, String sessionId, String ipAddress, String userAgent) {
         try {
             System.out.println("AuthService: Enhanced login attempt for - " + loginRequest.getUsernameOrEmail());
@@ -53,11 +53,11 @@ public class AuthService {
                 throw new RuntimeException("Invalid credentials");
             }
 
-            // Update login history with complete data
+            
             user.updateLoginHistory(sessionId, ipAddress, userAgent);
             user.setUpdatedAt(LocalDateTime.now());
 
-            // Save updated user with login history
+            
             userRepository.save(user);
 
             String token = jwtUtil.generateToken(user.getUsername(), user.getId(), user.getRole());
@@ -81,7 +81,7 @@ public class AuthService {
         }
     }
 
-    // Enhanced registration with complete profile setup
+    
     public AuthResponse register(RegisterRequest registerRequest, String sessionId, String ipAddress, String userAgent) {
         try {
             System.out.println("AuthService: Enhanced registration attempt for - " + registerRequest.getUsername());
@@ -94,7 +94,7 @@ public class AuthService {
                 throw new RuntimeException("Email already exists");
             }
 
-            // Create complete user profile
+            
             User newUser = new User();
             newUser.setUsername(registerRequest.getUsername());
             newUser.setEmail(registerRequest.getEmail());
@@ -105,7 +105,7 @@ public class AuthService {
             newUser.setRole("USER");
             newUser.setStatus("ACTIVE");
 
-            // Set complete address
+            
             if (registerRequest.getCity() != null || registerRequest.getState() != null) {
                 User.Address address = new User.Address();
                 address.setCity(registerRequest.getCity());
@@ -114,7 +114,7 @@ public class AuthService {
                 newUser.setAddress(address);
             }
 
-            // Initialize preferences with defaults
+            
             User.UserPreferences preferences = new User.UserPreferences();
             preferences.setPreferredLanguage("English");
             preferences.setCurrency("INR");
@@ -122,15 +122,15 @@ public class AuthService {
             preferences.setSmsNotifications(true);
             newUser.setPreferences(preferences);
 
-            // Initialize profile data
+            
             User.ProfileData profile = new User.ProfileData();
             profile.setNationality("Indian");
             newUser.setProfile(profile);
 
-            // Record initial login
+            
             newUser.updateLoginHistory(sessionId, ipAddress, userAgent);
 
-            // Save complete user profile
+            
             User savedUser = userRepository.save(newUser);
 
             String token = jwtUtil.generateToken(savedUser.getUsername(), savedUser.getId(), savedUser.getRole());
@@ -154,7 +154,7 @@ public class AuthService {
         }
     }
 
-    // Get user from token
+    
     public User getUserFromToken(String token) {
         try {
             System.out.println("AuthService: Getting user from token");
@@ -176,7 +176,7 @@ public class AuthService {
         }
     }
 
-    // Change password
+    
     public Map<String, Object> changePassword(String userId, String oldPassword, String newPassword) {
         try {
             System.out.println("AuthService: Changing password for user - " + userId);
@@ -188,12 +188,12 @@ public class AuthService {
 
             User user = userOpt.get();
 
-            // Verify old password
+            
             if (!passwordUtil.verifyPassword(oldPassword, user.getPassword())) {
                 throw new RuntimeException("Current password is incorrect");
             }
 
-            // Hash and set new password
+            
             user.setPassword(passwordUtil.hashPassword(newPassword));
             user.setUpdatedAt(LocalDateTime.now());
 
@@ -215,19 +215,19 @@ public class AuthService {
         }
     }
 
-    // Logout user
+    
     public Map<String, Object> logout(String token) {
         try {
             System.out.println("AuthService: Processing logout");
 
-            // Get user from token
+            
             User user = getUserFromToken(token);
 
-            // Update login history - set currently logged in to false
+            
             if (user.getLoginHistory() != null) {
                 user.getLoginHistory().setCurrentlyLoggedIn(false);
 
-                // Update last session logout time
+                
                 if (user.getLoginHistory().getRecentLogins() != null &&
                         !user.getLoginHistory().getRecentLogins().isEmpty()) {
 
@@ -255,7 +255,7 @@ public class AuthService {
         }
     }
 
-    // Update user profile completely
+    
     public User updateUserProfile(String userId, Map<String, Object> profileData) {
         try {
             System.out.println("AuthService: Updating complete user profile - " + userId);
@@ -267,7 +267,7 @@ public class AuthService {
 
             User user = userOpt.get();
 
-            // Update basic info
+            
             if (profileData.containsKey("firstName")) {
                 user.setFirstName((String) profileData.get("firstName"));
             }
@@ -278,7 +278,7 @@ public class AuthService {
                 user.setPhone((String) profileData.get("phone"));
             }
 
-            // Update address
+            
             if (profileData.containsKey("address")) {
                 @SuppressWarnings("unchecked")
                 Map<String, String> addressData = (Map<String, String>) profileData.get("address");
@@ -298,7 +298,7 @@ public class AuthService {
                 user.setAddress(address);
             }
 
-            // Update preferences
+            
             if (profileData.containsKey("preferences")) {
                 @SuppressWarnings("unchecked")
                 Map<String, Object> prefData = (Map<String, Object>) profileData.get("preferences");
@@ -327,7 +327,7 @@ public class AuthService {
                 user.setPreferences(prefs);
             }
 
-            // Update profile data
+            
             if (profileData.containsKey("profile")) {
                 @SuppressWarnings("unchecked")
                 Map<String, Object> profData = (Map<String, Object>) profileData.get("profile");
@@ -368,7 +368,7 @@ public class AuthService {
         }
     }
 
-    // Validate token and get user
+    
     public User validateTokenAndGetUser(String token) {
         try {
             System.out.println("AuthService: Validating token and getting user");
@@ -385,7 +385,7 @@ public class AuthService {
         }
     }
 
-    // Get all users (for admin)
+    
     public List<User> getAllUsers() {
         try {
             System.out.println("AuthService: Getting all users");
@@ -398,7 +398,7 @@ public class AuthService {
         }
     }
 
-    // Search users
+    
     public List<User> searchUsers(String query) {
         try {
             System.out.println("AuthService: Searching users - " + query);
@@ -411,7 +411,7 @@ public class AuthService {
         }
     }
 
-    // Get user statistics
+    
     public Map<String, Object> getUserStatistics() {
         try {
             System.out.println("AuthService: Calculating user statistics");
@@ -424,7 +424,7 @@ public class AuthService {
             stats.put("adminUsers", allUsers.stream().filter(User::isAdmin).count());
             stats.put("regularUsers", allUsers.stream().filter(u -> !u.isAdmin()).count());
 
-            // Users registered today
+            
             LocalDateTime startOfDay = LocalDate.now().atStartOfDay();
             LocalDateTime endOfDay = LocalDate.now().atTime(LocalTime.MAX);
 
@@ -433,7 +433,7 @@ public class AuthService {
                     .count();
             stats.put("todaysRegistrations", todaysUsers);
 
-            // Currently logged in users
+            
             long loggedInUsers = allUsers.stream()
                     .filter(u -> u.getLoginHistory() != null && u.getLoginHistory().isCurrentlyLoggedIn())
                     .count();
@@ -450,12 +450,12 @@ public class AuthService {
         }
     }
 
-    // Simple login method (backward compatibility)
+    
     public AuthResponse login(LoginRequest loginRequest) {
         return login(loginRequest, "WEB-SESSION", "127.0.0.1", "WebApp");
     }
 
-    // Simple registration method (backward compatibility)
+    
     public AuthResponse register(RegisterRequest registerRequest) {
         return register(registerRequest, "WEB-SESSION", "127.0.0.1", "WebApp");
     }

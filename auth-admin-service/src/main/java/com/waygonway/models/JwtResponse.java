@@ -10,10 +10,10 @@ public class JwtResponse {
     private String email;
     private List<String> roles;
 
-    // Default constructor
+    
     public JwtResponse() {}
 
-    // Full constructor - MATCHES THE ERROR SIGNATURE
+    
     public JwtResponse(String token, String type, String id, String username, String email, List<String> roles) {
         this.token = token;
         this.type = type;
@@ -23,7 +23,7 @@ public class JwtResponse {
         this.roles = roles;
     }
 
-    // Getters and Setters
+    
     public String getToken() { return token; }
     public void setToken(String token) { this.token = token; }
 

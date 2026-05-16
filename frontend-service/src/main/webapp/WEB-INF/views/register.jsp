@@ -38,7 +38,7 @@
             padding: 2.5rem 0;
         }
 
-        /* ─── Background Pattern ─── */
+        /*  Background Pattern  */
         body::before {
             content: '';
             position: fixed; inset: 0;
@@ -59,7 +59,7 @@
             z-index: 0; pointer-events: none; opacity: 0.4;
         }
 
-        /* ─── Floating Orbs ─── */
+        /*  Floating Orbs  */
         .floating-shapes { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
 
         .shape {
@@ -92,10 +92,10 @@
             66%       { transform: translate(-40px, 20px) scale(0.9); }
         }
 
-        /* ─── Page Container ─── */
+        /*  Page Container  */
         .container { position: relative; z-index: 1; }
 
-        /* ─── Animations ─── */
+        /*  Animations  */
         @keyframes fade-up {
             from { opacity: 0; transform: translateY(24px); }
             to   { opacity: 1; transform: translateY(0); }
@@ -106,7 +106,7 @@
             to   { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* ─── Brand Header ─── */
+        /*  Brand Header  */
         .brand-header {
             text-align: center;
             margin-bottom: 2rem;
@@ -166,7 +166,7 @@
 
         .brand-header p { color: var(--text-muted); font-size: 0.95rem; }
 
-        /* ─── Register Card ─── */
+        /*  Register Card  */
         .register-card {
             background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%);
             border: 1px solid rgba(212, 175, 55, 0.2);
@@ -180,7 +180,7 @@
             margin-bottom: 1.5rem;
         }
 
-        /* ─── Section Title ─── */
+        /*  Section Title  */
         .section-title {
             font-size: 0.68rem; font-weight: 700;
             letter-spacing: 1.5px; text-transform: uppercase;
@@ -201,7 +201,7 @@
             color: var(--gold-light); font-size: 0.6rem;
         }
 
-        /* ─── Form Fields ─── */
+        /*  Form Fields  */
         .field-group { display: flex; flex-direction: column; gap: 7px; }
 
         .field-label {
@@ -250,14 +250,14 @@
 
         .pw-toggle:hover { color: var(--gold-light); }
 
-        /* ─── Form Divider ─── */
+        /*  Form Divider  */
         .form-divider {
             height: 1px;
             background: linear-gradient(90deg, transparent, rgba(212,175,55,0.2), transparent);
             margin: 1.8rem 0;
         }
 
-        /* ─── Submit Button ─── */
+        /*  Submit Button  */
         .btn-register {
             background: linear-gradient(135deg, var(--ocean) 0%, var(--aqua) 100%);
             border: none; border-radius: 16px !important;
@@ -281,7 +281,7 @@
         .btn-register:hover::before { opacity: 1; }
         .btn-register:active { transform: translateY(-1px); }
 
-        /* ─── Error Alert ─── */
+        /*  Error Alert  */
         .alert-danger {
             background: rgba(239,68,68,0.1) !important;
             border: 1px solid rgba(239,68,68,0.28) !important;
@@ -292,7 +292,7 @@
         .btn-close { filter: invert(1) opacity(0.5); }
         .btn-close:hover { filter: invert(1) opacity(0.9); }
 
-        /* ─── Footer Links ─── */
+        /*  Footer Links  */
         .card-footer-links {
             text-align: center; margin-top: 1.8rem;
             animation: fade-up 0.7s ease 0.3s both;
@@ -319,7 +319,7 @@
 
         .card-footer-links a.link-back:hover { color: var(--text-muted) !important; }
 
-        /* ─── Step Progress ─── */
+        /*  Step Progress  */
         .step-pills {
             display: flex; align-items: center; justify-content: center;
             gap: 0; margin-bottom: 2.5rem;
@@ -366,7 +366,7 @@
             background: linear-gradient(90deg, rgba(50,130,184,0.4), rgba(255,255,255,0.1));
         }
 
-        /* ─── Responsive ─── */
+        /*  Responsive  */
         @media (max-width: 768px) {
             .register-card { padding: 2rem 1.8rem; }
             .step-line { width: 30px; }

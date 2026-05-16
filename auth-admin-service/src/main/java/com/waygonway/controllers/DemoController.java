@@ -12,7 +12,7 @@ import java.util.Map;
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class DemoController {
 
-    // Public endpoint - no authentication required
+    
     @GetMapping("/public")
     public ResponseEntity<ApiResponse<Map<String, Object>>> publicEndpoint() {
         Map<String, Object> data = new HashMap<>();
@@ -28,7 +28,7 @@ public class DemoController {
         return ResponseEntity.ok(response);
     }
 
-    // Demo endpoint for testing
+    
     @GetMapping("/hello")
     public ResponseEntity<ApiResponse<String>> hello() {
         return ResponseEntity.ok(
@@ -36,7 +36,7 @@ public class DemoController {
         );
     }
 
-    // System information
+    
     @GetMapping("/system-info")
     public ResponseEntity<ApiResponse<Map<String, Object>>> getSystemInfo() {
         Map<String, Object> systemInfo = new HashMap<>();
@@ -60,7 +60,7 @@ public class DemoController {
         return ResponseEntity.ok(response);
     }
 
-    // Test database connectivity
+    
     @GetMapping("/db-test")
     public ResponseEntity<ApiResponse<Map<String, Object>>> testDatabase() {
         try {
@@ -87,7 +87,7 @@ public class DemoController {
         }
     }
 
-    // Service status
+    
     @GetMapping("/status")
     public ResponseEntity<ApiResponse<Map<String, Object>>> getServiceStatus() {
         Map<String, Object> status = new HashMap<>();

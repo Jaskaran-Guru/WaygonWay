@@ -51,7 +51,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                     String role = jwtUtil.getRoleFromToken(token);
                     java.util.List<org.springframework.security.core.GrantedAuthority> authorities = new java.util.ArrayList<>();
                     if (role != null) {
-                        // Spring Security expects ROLE_ prefix for hasRole()
+                        
                         String roleName = role.startsWith("ROLE_") ? role : "ROLE_" + role;
                         authorities.add(new org.springframework.security.core.authority.SimpleGrantedAuthority(roleName));
                     }

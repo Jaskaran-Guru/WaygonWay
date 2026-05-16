@@ -17,14 +17,14 @@ public class JwtUtil {
     @Value("${jwt.secret:waygonway-secret-key-2025}")
     private String secretKey;
 
-    @Value("${jwt.expiration:86400}") // 24 hours in seconds
+    @Value("${jwt.expiration:86400}") 
     private Long expirationTime;
 
     private Algorithm getAlgorithm() {
         return Algorithm.HMAC256(secretKey);
     }
 
-    // Generate JWT token
+    
     public String generateToken(String username, String userId, String role) {
         try {
             Date expirationDate = Date.from(
@@ -48,7 +48,7 @@ public class JwtUtil {
         }
     }
 
-    // Validate JWT token
+    
     public boolean validateToken(String token) {
         try {
             JWTVerifier verifier = JWT.require(getAlgorithm())
@@ -63,7 +63,7 @@ public class JwtUtil {
         }
     }
 
-    // Extract username from token
+    
     public String getUsernameFromToken(String token) {
         try {
             DecodedJWT decodedJWT = JWT.decode(token);
@@ -73,7 +73,7 @@ public class JwtUtil {
         }
     }
 
-    // Extract userId from token
+    
     public String getUserIdFromToken(String token) {
         try {
             DecodedJWT decodedJWT = JWT.decode(token);
@@ -83,7 +83,7 @@ public class JwtUtil {
         }
     }
 
-    // Extract role from token
+    
     public String getRoleFromToken(String token) {
         try {
             DecodedJWT decodedJWT = JWT.decode(token);
@@ -93,7 +93,7 @@ public class JwtUtil {
         }
     }
 
-    // Check if token is expired
+    
     public boolean isTokenExpired(String token) {
         try {
             DecodedJWT decodedJWT = JWT.decode(token);
@@ -103,22 +103,22 @@ public class JwtUtil {
         }
     }
 
-    // Extract username from token - alias for getUsernameFromToken
+    
     public String extractUsername(String token) {
         return getUsernameFromToken(token);
     }
 
-    // Extract userId from token - alias for getUserIdFromToken
+    
     public String extractUserId(String token) {
         return getUserIdFromToken(token);
     }
 
-    // Extract role from token - alias for getRoleFromToken
+    
     public String extractRole(String token) {
         return getRoleFromToken(token);
     }
 
-    // Extract expiration date from token
+    
     public Date extractExpiration(String token) {
         try {
             DecodedJWT decodedJWT = JWT.decode(token);
@@ -128,7 +128,7 @@ public class JwtUtil {
         }
     }
 
-    // Get token expiration as LocalDateTime
+    
     public LocalDateTime getTokenExpiration(String token) {
         try {
             Date expirationDate = extractExpiration(token);
@@ -140,14 +140,14 @@ public class JwtUtil {
         }
     }
 
-    // Get remaining time until token expires (in minutes)
+    
     public long getRemainingMinutes(String token) {
         try {
             LocalDateTime expiration = getTokenExpiration(token);
             LocalDateTime now = LocalDateTime.now();
 
             if (expiration.isBefore(now)) {
-                return 0; // Token already expired
+                return 0; 
             }
 
             return java.time.Duration.between(now, expiration).toMinutes();
@@ -156,7 +156,7 @@ public class JwtUtil {
         }
     }
 
-    // Refresh token (generate new token with same claims)
+    
     public String refreshToken(String oldToken) {
         try {
             if (isTokenExpired(oldToken)) {

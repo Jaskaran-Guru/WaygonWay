@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 public class MongoConfig extends AbstractMongoClientConfiguration {
 
-    @Value("${spring.data.mongodb.uri:mongodb://localhost:27017/waygonway_db}")
+    @Value("${spring.data.mongodb.uri:mongodb:
     private String connectionString;
 
     @Override
@@ -56,7 +56,7 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
 
         MongoTemplate template = new MongoTemplate(mongoClient(), getDatabaseName());
 
-        // Remove _class field from documents
+        
         MappingMongoConverter converter = (MappingMongoConverter) template.getConverter();
         converter.setTypeMapper(new DefaultMongoTypeMapper(null));
 

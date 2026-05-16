@@ -10,9 +10,9 @@ public class Event {
     @Id
     private String id;
     private String eventName;
-    private String category; // MOVIE, CONCERT, COMEDY, etc.
+    private String category; 
     private String venue;
-    private String location; // City
+    private String location; 
     private String description;
     
     private Double basePrice;
@@ -26,7 +26,7 @@ public class Event {
 
     public Event() {}
 
-    // Getters and Setters
+    
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
 

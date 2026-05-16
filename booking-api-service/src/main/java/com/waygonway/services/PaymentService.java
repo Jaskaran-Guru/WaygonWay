@@ -23,12 +23,7 @@ public class PaymentService {
         Stripe.apiKey = stripeSecretKey;
     }
 
-    /**
-     * Creates a Stripe PaymentIntent or simulates it if missing actual key.
-     * @param amount The amount to charge (in dollars, will be converted to cents)
-     * @param currency The currency string e.g. "usd"
-     * @return A map containing status and clientSecret
-     */
+    
     public Map<String, Object> createPaymentIntent(Double amount, String currency) {
         if (stripeSecretKey == null || stripeSecretKey.contains("placeholder") || stripeSecretKey.trim().isEmpty()) {
             return simulatePayment(amount);
@@ -36,7 +31,7 @@ public class PaymentService {
 
         try {
             PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()
-                    .setAmount((long) (amount * 100)) // Stripe amounts are in cents
+                    .setAmount((long) (amount * 100)) 
                     .setCurrency(currency)
                     .setAutomaticPaymentMethods(
                         PaymentIntentCreateParams.AutomaticPaymentMethods.builder()

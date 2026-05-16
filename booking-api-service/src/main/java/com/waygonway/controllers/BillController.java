@@ -31,7 +31,7 @@ public class BillController {
 
         Booking booking = bookingOpt.get();
         
-        // Ensure only PAID bookings can have a bill generated
+        
         if (!"PAID".equalsIgnoreCase(booking.getStatus())) {
             return ResponseEntity.badRequest().body("Bill can only be generated for paid bookings.".getBytes());
         }

@@ -42,7 +42,7 @@ const Bill: React.FC<BillProps> = ({ booking, onClose }) => {
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/95 backdrop-blur-xl animate-in fade-in duration-300">
       <div className="bg-white text-slate-900 w-full max-w-2xl rounded-[2.5rem] overflow-hidden shadow-2xl shadow-indigo-500/20 flex flex-col md:flex-row print:shadow-none print:w-full print:max-w-none">
         
-        {/* Left Side - Visual Header */}
+        {}
         <div className="bg-indigo-600 p-12 text-white flex flex-col justify-between md:w-1/3 print:hidden">
           <div>
             <div className="bg-white/20 w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
@@ -53,7 +53,7 @@ const Bill: React.FC<BillProps> = ({ booking, onClose }) => {
           <p className="text-indigo-100 text-sm font-medium">Your ticket is confirmed. Enjoy the show!</p>
         </div>
 
-        {/* Right Side - Bill Details */}
+        {}
         <div className="flex-1 p-8 md:p-12 space-y-8 bg-white">
           <div className="flex justify-between items-start">
             <div>

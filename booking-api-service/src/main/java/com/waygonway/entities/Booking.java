@@ -18,13 +18,13 @@ public class Booking {
     private String customerName;
     private String customerEmail;
 
-    private String eventId; // Reference to MongoDB Event
+    private String eventId; 
     private String eventName;
     private String eventCategory;
     private String venue;
-    private String seats; // e.g., "A1,A2"
+    private String seats; 
 
-    private String status; // PENDING, CONFIRMED, CANCELLED
+    private String status; 
 
     private Double totalAmount;
     private LocalDateTime eventDateTime;
@@ -39,7 +39,7 @@ public class Booking {
         this.bookingDateTime = LocalDateTime.now();
     }
 
-    // Getters and Setters
+    
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
 

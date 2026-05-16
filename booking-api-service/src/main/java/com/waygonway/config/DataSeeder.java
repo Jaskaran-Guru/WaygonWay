@@ -22,7 +22,7 @@ public class DataSeeder implements CommandLineRunner {
             System.out.println("DataSeeder: Checking database for events...");
             long count = eventRepository.count();
             
-            // Only seed if database is empty
+            
             if (count == 0) {
                 System.out.println("DataSeeder: Database is empty. Seeding initial event data...");
 
@@ -95,7 +95,7 @@ public class DataSeeder implements CommandLineRunner {
             }
         } catch (Exception e) {
             System.err.println("DataSeeder: Error during seeding process: " + e.getMessage());
-            // We don't rethrow to avoid blocking startup
+            
         }
     }
 

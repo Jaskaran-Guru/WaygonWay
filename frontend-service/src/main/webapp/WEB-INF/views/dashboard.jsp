@@ -41,7 +41,7 @@
             position: relative;
         }
 
-        /* ─── Background Effects ─── */
+        /*  Background Effects  */
         body::before {
             content: '';
             position: fixed;
@@ -67,7 +67,7 @@
             opacity: 0.4;
         }
 
-        /* ─── Navbar ─── */
+        /*  Navbar  */
         .navbar {
             background: rgba(26, 11, 46, 0.85);
             backdrop-filter: blur(30px);
@@ -145,7 +145,7 @@
             margin: 8px 0;
         }
 
-        /* ─── Container ─── */
+        /*  Container  */
         .container {
             position: relative;
             z-index: 1;
@@ -153,7 +153,7 @@
             padding-bottom: 3.5rem;
         }
 
-        /* ─── Base Card ─── */
+        /*  Base Card  */
         .dashboard-card {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
             border: 1px solid rgba(212, 175, 55, 0.2);
@@ -179,7 +179,7 @@
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* ─── Welcome Card ─── */
+        /*  Welcome Card  */
         .welcome-text {
             font-family: 'Playfair Display', serif;
             font-weight: 800;
@@ -226,7 +226,7 @@
             box-shadow: 0 12px 35px rgba(50, 130, 184, 0.45);
         }
 
-        /* ─── Stat Cards ─── */
+        /*  Stat Cards  */
         .stat-card {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
             border: 1.5px solid var(--glass-border);
@@ -325,7 +325,7 @@
             text-transform: uppercase;
         }
 
-        /* ─── Section Heading ─── */
+        /*  Section Heading  */
         .section-heading {
             display: flex;
             align-items: center;
@@ -364,7 +364,7 @@
             letter-spacing: -0.3px;
         }
 
-        /* ─── Quick Action Buttons ─── */
+        /*  Quick Action Buttons  */
         .qa-btn {
             display: flex;
             flex-direction: column;
@@ -464,7 +464,7 @@
             box-shadow: 0 12px 35px rgba(212, 175, 55, 0.2);
         }
 
-        /* ─── Table ─── */
+        /*  Table  */
         .table-responsive {
             border-radius: 18px;
             overflow: hidden;
@@ -637,7 +637,7 @@
             box-shadow: 0 0 10px var(--gold);
         }
 
-        /* ─── Responsive ─── */
+        /*  Responsive  */
         @media (max-width: 768px) {
             .dashboard-card { padding: 2rem 1.8rem; }
             .container { padding-top: 2rem; }
@@ -783,7 +783,7 @@
                                 <tr>
                                     <td><strong>${booking.pnr}</strong></td>
                                     <td>${booking.trainName}</td>
-                                    <td>${booking.source} → ${booking.destination}</td>
+                                    <td>${booking.source}  ${booking.destination}</td>
                                     <td>${booking.journeyDate}</td>
                                     <td><span class="badge-status">${booking.status}</span></td>
                                     <td>

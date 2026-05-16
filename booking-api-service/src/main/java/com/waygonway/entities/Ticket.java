@@ -19,18 +19,18 @@ public class Ticket {
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime bookingTime;
 
-    // Associated objects for response
+    
     private Event event;
     private Object user;
 
-    // Constructors
+    
     public Ticket() {
         this.bookingStatus = "PENDING";
         this.paymentStatus = "PENDING";
         this.bookingTime = LocalDateTime.now();
     }
 
-    // Getters and Setters
+    
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
 

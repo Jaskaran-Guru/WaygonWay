@@ -38,7 +38,7 @@
             padding-top: 80px;
         }
 
-        /* ─── Background Pattern ─── */
+        /*  Background Pattern  */
         body::before {
             content: '';
             position: fixed;
@@ -64,7 +64,7 @@
             opacity: 0.4;
         }
 
-        /* ─── Floating Orbs ─── */
+        /*  Floating Orbs  */
         .floating-shapes {
             position: fixed;
             inset: 0;
@@ -109,7 +109,7 @@
             66%       { transform: translate(-40px, 20px) scale(0.9); }
         }
 
-        /* ─── Navbar ─── */
+        /*  Navbar  */
         .navbar {
             background: rgba(26, 11, 46, 0.85);
             backdrop-filter: blur(30px);
@@ -220,10 +220,10 @@
             transform: translateY(-2px);
         }
 
-        /* ─── Page Container ─── */
+        /*  Page Container  */
         .container { position: relative; z-index: 1; padding-top: 2.5rem; padding-bottom: 3.5rem; }
 
-        /* ─── Page Header ─── */
+        /*  Page Header  */
         .page-header {
             text-align: center;
             margin-bottom: 2.5rem;
@@ -287,7 +287,7 @@
             to   { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* ─── Glass Card Base ─── */
+        /*  Glass Card Base  */
         .glass-card {
             background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%);
             border: 1px solid rgba(212, 175, 55, 0.2);
@@ -300,7 +300,7 @@
                 inset 0 1px 0 rgba(255,255,255,0.1);
         }
 
-        /* ─── Search Card ─── */
+        /*  Search Card  */
         .search-card {
             padding: 2.8rem 3rem;
             animation: fade-scale 0.7s ease 0.1s both;
@@ -329,7 +329,7 @@
 
         .search-card-header p { color: var(--text-muted); font-size: 0.88rem; }
 
-        /* ─── PNR Input ─── */
+        /*  PNR Input  */
         .field-label {
             font-size: 0.7rem;
             font-weight: 700;
@@ -376,7 +376,7 @@
             margin-top: 8px;
         }
 
-        /* ─── Search Button ─── */
+        /*  Search Button  */
         .btn-search {
             background: linear-gradient(135deg, var(--ocean) 0%, var(--aqua) 100%) !important;
             border: none !important;
@@ -405,7 +405,7 @@
         .btn-search:hover::before { opacity: 1; }
         .btn-search:active { transform: translateY(-1px) !important; }
 
-        /* ─── Error Alert ─── */
+        /*  Error Alert  */
         .alert-danger {
             background: rgba(239,68,68,0.1) !important;
             border: 1px solid rgba(239,68,68,0.28) !important;
@@ -416,7 +416,7 @@
             padding: 1rem 1.2rem;
         }
 
-        /* ─── Status Card ─── */
+        /*  Status Card  */
         .status-card {
             padding: 2.2rem 2.5rem;
             margin-top: 1.6rem;
@@ -444,7 +444,7 @@
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
 
-        /* ─── Status Header ─── */
+        /*  Status Header  */
         .status-header {
             display: flex; align-items: center; justify-content: space-between;
             margin-bottom: 2rem; flex-wrap: wrap; gap: 12px;
@@ -496,7 +496,7 @@
             color: #fca5a5;
         }
 
-        /* ─── Detail Groups ─── */
+        /*  Detail Groups  */
         .detail-group-title {
             font-size: 0.68rem; font-weight: 700;
             letter-spacing: 1.5px; text-transform: uppercase;
@@ -540,7 +540,7 @@
 
         .meta-text { color: rgba(254, 246, 228, 0.35); font-size: 0.82rem; }
 
-        /* ─── Action Buttons ─── */
+        /*  Action Buttons  */
         .btn-action-sm {
             display: inline-flex; align-items: center; gap: 7px;
             font-size: 0.8rem; font-weight: 600;
@@ -564,7 +564,7 @@
             background: rgba(212, 175, 55, 0.1); transform: translateY(-2px);
         }
 
-        /* ─── Not Found ─── */
+        /*  Not Found  */
         .not-found-inner { text-align: center; padding: 2rem 1rem; }
 
         .not-found-icon {
@@ -614,7 +614,7 @@
             color: var(--aqua); font-size: 0.55rem; flex-shrink: 0;
         }
 
-        /* ─── Help Card ─── */
+        /*  Help Card  */
         .help-card {
             padding: 2rem 2.5rem;
             margin-top: 1.6rem;
@@ -700,7 +700,7 @@
             font-size: 0.77rem; margin-top: 8px;
         }
 
-        /* ─── Responsive ─── */
+        /*  Responsive  */
         @media (max-width: 768px) {
             .search-card, .help-card { padding: 2rem 1.8rem; }
             .status-card { padding: 1.8rem 1.6rem; }
@@ -806,7 +806,7 @@
                 </c:if>
             </div>
 
-            <!-- ── PNR Found ── -->
+            <!--  PNR Found  -->
             <c:if test="${pnrFound == true}">
                 <div class="glass-card status-card status-confirmed">
                     <div class="status-header">
@@ -833,7 +833,7 @@
                             </div>
                             <div class="detail-item">
                                 <span class="d-dot ocean"><i class="fas fa-route"></i></span>
-                                ${booking.source} → ${booking.destination}
+                                ${booking.source}  ${booking.destination}
                             </div>
 
                             <div class="detail-group-title mt-3">Journey Details</div>
@@ -873,7 +873,7 @@
                             </div>
                             <div class="detail-item">
                                 <span class="d-dot teal"><i class="fas fa-credit-card"></i></span>
-                                Fare: <strong style="color:#6ee7b7">₹${booking.totalAmount}</strong>
+                                Fare: <strong style="color:#6ee7b7">${booking.totalAmount}</strong>
                             </div>
                             <div class="detail-item">
                                 <span class="d-dot teal"><i class="fas fa-bed"></i></span>
@@ -900,7 +900,7 @@
                 </div>
             </c:if>
 
-            <!-- ── PNR Not Found ── -->
+            <!--  PNR Not Found  -->
             <c:if test="${pnrFound == false && not empty searchedPNR}">
                 <div class="glass-card status-card status-cancelled">
                     <div class="not-found-inner">

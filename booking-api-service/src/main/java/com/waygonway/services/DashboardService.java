@@ -23,7 +23,7 @@ public class DashboardService {
         var events = eventRepository.findAll();
 
         double totalRevenue = bookings.stream()
-                .filter(b -> "PAID".equals(b.getStatus()) || "CONFIRMED".equals(b.getStatus())) // Simplified check
+                .filter(b -> "PAID".equals(b.getStatus()) || "CONFIRMED".equals(b.getStatus())) 
                 .mapToDouble(b -> b.getTotalAmount() != null ? b.getTotalAmount() : 0.0)
                 .sum();
 

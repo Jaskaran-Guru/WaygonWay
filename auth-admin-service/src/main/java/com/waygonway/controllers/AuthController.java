@@ -25,7 +25,7 @@ public class AuthController {
     @Autowired
     private JwtUtil jwtUtil;
 
-    // Health check
+    
     @GetMapping("/health")
     public ResponseEntity<ApiResponse<String>> health() {
         return ResponseEntity.ok(
@@ -33,7 +33,7 @@ public class AuthController {
         );
     }
 
-    // Ping check
+    
     @GetMapping("/ping")
     public Map<String, Object> ping() {
         return Map.of(
@@ -44,7 +44,7 @@ public class AuthController {
         );
     }
 
-    // User login
+    
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<AuthResponse>> login(@Valid @RequestBody LoginRequest loginRequest) {
         try {
@@ -52,11 +52,11 @@ public class AuthController {
 
             AuthResponse authResponse = authService.login(loginRequest);
 
-            // Around line 40-45, replace this block:
+            
             ApiResponse<AuthResponse> response = ApiResponse.success("Login successful", authResponse);
             response.addMeta("userId", authResponse.getUserId());
             response.addMeta("username", authResponse.getUsername());
-            response.addMeta("type", "login");  // FIXED: removed getType() call
+            response.addMeta("type", "login");  
             response.addMeta("expiresAt", authResponse.getExpiresAt());
 
             return ResponseEntity.ok(response);
@@ -70,7 +70,7 @@ public class AuthController {
         }
     }
 
-    // User registration
+    
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<AuthResponse>> register(@Valid @RequestBody RegisterRequest registerRequest) {
         try {
@@ -93,7 +93,7 @@ public class AuthController {
         }
     }
 
-    // Validate token
+    
     @PostMapping("/validate")
     public ResponseEntity<ApiResponse<Map<String, Object>>> validateToken(@RequestBody Map<String, String> request) {
         try {
@@ -126,7 +126,7 @@ public class AuthController {
         }
     }
 
-    // Get current user info
+    
     @GetMapping("/me")
     public ResponseEntity<ApiResponse<User>> getCurrentUser(@RequestHeader("Authorization") String authHeader) {
         try {
@@ -153,7 +153,7 @@ public class AuthController {
         }
     }
 
-    // Change password
+    
     @PutMapping("/change-password")
     public ResponseEntity<ApiResponse<Map<String, Object>>> changePassword(
             @RequestHeader("Authorization") String authHeader,
@@ -189,7 +189,7 @@ public class AuthController {
         }
     }
 
-    // Logout
+    
     @PostMapping("/logout")
     public ResponseEntity<ApiResponse<Map<String, Object>>> logout(@RequestHeader("Authorization") String authHeader) {
         try {
@@ -215,17 +215,17 @@ public class AuthController {
         }
     }
 
-    // Refresh token (future implementation)
+    
     @PostMapping("/refresh")
     public ResponseEntity<ApiResponse<AuthResponse>> refreshToken(@RequestBody Map<String, String> request) {
         try {
             String token = request.get("token");
             System.out.println("AuthController: Token refresh request");
 
-            // For now, just validate the existing token and return user info
+            
             User user = authService.getUserFromToken(token);
 
-            // Generate new token
+            
             String newToken = jwtUtil.generateToken(user.getUsername(), user.getId(), user.getRole());
 
             AuthResponse authResponse = new AuthResponse(
@@ -252,7 +252,7 @@ public class AuthController {
         }
     }
 
-    // Get JWT token info (for debugging)
+    
     @PostMapping("/token-info")
     public ResponseEntity<ApiResponse<Map<String, Object>>> getTokenInfo(@RequestBody Map<String, String> request) {
         try {
@@ -284,13 +284,13 @@ public class AuthController {
         }
     }
 
-    // Check if username exists
+    
     @GetMapping("/check-username/{username}")
     public ResponseEntity<ApiResponse<Map<String, Object>>> checkUsername(@PathVariable String username) {
         try {
             System.out.println("AuthController: Checking username availability - " + username);
 
-            boolean exists = authService.getUserFromToken("dummy") != null; // This will be refactored
+            boolean exists = authService.getUserFromToken("dummy") != null; 
 
             Map<String, Object> result = new HashMap<>();
             result.put("username", username);
@@ -310,7 +310,7 @@ public class AuthController {
         }
     }
 
-    // Delete user account (self-deletion)
+    
     @DeleteMapping("/{userId}")
     public ResponseEntity<ApiResponse<Map<String, Object>>> deleteAccount(
             @RequestHeader("Authorization") String authHeader,

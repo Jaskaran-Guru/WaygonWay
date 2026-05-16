@@ -27,7 +27,7 @@ const Navbar = () => {
             <span className="text-2xl font-black text-white tracking-tighter uppercase italic">WaygonWay</span>
           </Link>
 
-          {/* Desktop Menu */}
+          {}
           <div className="hidden lg:flex items-center space-x-8 text-white text-sm">
             <div className="flex space-x-6 mr-4 border-r border-slate-800 pr-8">
               <Link to="/" className="text-slate-300 hover:text-white transition-colors font-bold tracking-wide">Live Events</Link>
@@ -79,7 +79,7 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
+          {}
           <div className="lg:hidden">
             <button onClick={toggleMobileMenu} className="p-2 text-slate-400 hover:text-white transition-colors">
               {isMobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
@@ -88,7 +88,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Sidebar Overlay */}
+      {}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-[60] lg:hidden">
           <div className="fixed inset-0 bg-slate-950/90 backdrop-blur-sm transition-opacity" onClick={toggleMobileMenu}></div>

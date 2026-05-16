@@ -12,17 +12,17 @@ public class PasswordUtil {
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
-    // Hash password
+    
     public String hashPassword(String plainPassword) {
         return passwordEncoder.encode(plainPassword);
     }
 
-    // Verify password
+    
     public boolean verifyPassword(String plainPassword, String hashedPassword) {
         return passwordEncoder.matches(plainPassword, hashedPassword);
     }
 
-    // Generate random password
+    
     public String generateRandomPassword() {
         String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         StringBuilder password = new StringBuilder();

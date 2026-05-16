@@ -54,7 +54,7 @@ public class BookingService {
         String customerEmail = (String) bookingData.get("customerEmail");
         String seats = (String) bookingData.get("seats");
 
-        // Input Validation Hardening
+        
         if (eventId == null || eventId.trim().isEmpty()) throw new IllegalArgumentException("eventId is strictly required");
         if (userId == null || userId.trim().isEmpty()) throw new IllegalArgumentException("userId is strictly required");
         if (seats == null || seats.trim().isEmpty()) throw new IllegalArgumentException("seats are strictly required");
@@ -77,7 +77,7 @@ public class BookingService {
                 throw new RuntimeException("No seats available for event: " + event.getEventName());
             }
 
-            // Create Booking (PostgreSQL)
+            
             Booking booking = new Booking();
             booking.setUserId(userId);
             booking.setCustomerName(customerName);
@@ -95,7 +95,7 @@ public class BookingService {
 
             Booking savedBooking = bookingRepository.save(booking);
 
-            // Create Stripe Payment Intent
+            
             Map<String, Object> paymentResult = paymentService.createPaymentIntent(booking.getTotalAmount(), "usd");
             
             if ("PAYMENT_INTENT_CREATED".equals(paymentResult.get("status"))) {
@@ -106,7 +106,7 @@ public class BookingService {
                 throw new RuntimeException("Payment Initialization failed: " + paymentResult.get("message"));
             }
 
-            // Update Event Availability (MongoDB)
+            
             event.setAvailableSeats(event.getAvailableSeats() - seatCount);
             eventRepository.save(event);
 

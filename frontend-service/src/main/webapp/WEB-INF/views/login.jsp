@@ -39,7 +39,7 @@
             overflow: hidden;
         }
 
-        /* ─── Background Effects ─── */
+        /*  Background Effects  */
         body::before {
             content: '';
             position: fixed;
@@ -65,7 +65,7 @@
             opacity: 0.4;
         }
 
-        /* ─── Floating Orbs ─── */
+        /*  Floating Orbs  */
         .orb {
             position: fixed;
             border-radius: 50%;
@@ -104,10 +104,10 @@
             66% { transform: translate(-35px, 25px) scale(0.92); }
         }
 
-        /* ─── Container ─── */
+        /*  Container  */
         .container { position: relative; z-index: 1; }
 
-        /* ─── Login Card ─── */
+        /*  Login Card  */
         .login-card {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
             border: 1.5px solid rgba(212, 175, 55, 0.25);
@@ -133,7 +133,7 @@
             }
         }
 
-        /* ─── Brand / Header ─── */
+        /*  Brand / Header  */
         .brand-wrap {
             display: flex;
             flex-direction: column;
@@ -179,7 +179,7 @@
             line-height: 1.5;
         }
 
-        /* ─── Alerts ─── */
+        /*  Alerts  */
         .alert-danger {
             background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.1)) !important;
             border: 1.5px solid rgba(239, 68, 68, 0.35) !important;
@@ -209,7 +209,7 @@
             opacity: 0.7;
         }
 
-        /* ─── Form Labels ─── */
+        /*  Form Labels  */
         .form-label {
             font-size: 0.7rem;
             font-weight: 700;
@@ -219,7 +219,7 @@
             margin-bottom: 10px;
         }
 
-        /* ─── Input Group ─── */
+        /*  Input Group  */
         .input-group {
             border-radius: 16px;
             overflow: visible;
@@ -273,7 +273,7 @@
             border-radius: 16px;
         }
 
-        /* ─── Submit Button ─── */
+        /*  Submit Button  */
         .btn-primary {
             background: linear-gradient(135deg, var(--ocean) 0%, var(--aqua) 100%) !important;
             border: none !important;
@@ -329,7 +329,7 @@
             height: 300px;
         }
 
-        /* ─── Footer Links ─── */
+        /*  Footer Links  */
         .footer-links {
             text-align: center;
             margin-top: 2rem;
@@ -404,7 +404,7 @@
             box-shadow: 0 0 10px var(--gold);
         }
 
-        /* ─── Responsive ─── */
+        /*  Responsive  */
         @media (max-width: 576px) {
             .login-card {
                 padding: 2.5rem 2rem;

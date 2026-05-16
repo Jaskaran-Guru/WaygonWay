@@ -9,7 +9,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import java.util.Arrays;
-import jakarta.annotation.PostConstruct; // FIXED: jakarta instead of javax
+import jakarta.annotation.PostConstruct; 
 
 @SpringBootApplication
 public class AuthAdminServiceApplication {
@@ -20,7 +20,7 @@ public class AuthAdminServiceApplication {
         System.out.println("WaygonWay Auth Admin Service started successfully!");
     }
 
-    @PostConstruct // NOW WORKS
+    @PostConstruct 
     public void init() {
         System.out.println("Initializing Auth Admin Service...");
         System.out.println("Service: WaygonWay Auth Admin Service");

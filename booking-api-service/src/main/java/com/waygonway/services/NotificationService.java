@@ -17,7 +17,7 @@ public class NotificationService {
             byte[] pdfBytes = generateBillPdf(booking);
             String recipientEmail = booking.getCustomerEmail();
             
-            // Email simulation - log the ticket would be sent
+            
             System.out.println("[TICKET] Booking confirmed for " + booking.getCustomerName() +
                 " | PNR: " + booking.getPnr() +
                 " | Email: " + (recipientEmail != null ? recipientEmail : "N/A") +

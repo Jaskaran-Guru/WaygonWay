@@ -44,7 +44,7 @@ public class User {
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt = LocalDateTime.now();
 
-    // Complete Address Information
+    
     public static class Address {
         private String street;
         private String city;
@@ -52,9 +52,9 @@ public class User {
         private String country = "India";
         private String zipCode;
         private String landmark;
-        private String addressType = "HOME"; // HOME, OFFICE, OTHER
+        private String addressType = "HOME"; 
 
-        // Constructors, getters, setters
+        
         public Address() {}
 
         public String getStreet() { return street; }
@@ -79,17 +79,17 @@ public class User {
         public void setAddressType(String addressType) { this.addressType = addressType; }
     }
 
-    // User Preferences
+    
     public static class UserPreferences {
         private String preferredLanguage = "English";
         private String currency = "INR";
         private boolean emailNotifications = true;
         private boolean smsNotifications = true;
-        private String seatPreference = "WINDOW"; // WINDOW, AISLE, ANY
-        private String mealPreference = "VEG"; // VEG, NON_VEG, JAIN, VEGAN
+        private String seatPreference = "WINDOW"; 
+        private String mealPreference = "VEG"; 
         private List<String> frequentRoutes;
 
-        // Constructors, getters, setters
+        
         public UserPreferences() {}
 
         public String getPreferredLanguage() { return preferredLanguage; }
@@ -114,7 +114,7 @@ public class User {
         public void setFrequentRoutes(List<String> frequentRoutes) { this.frequentRoutes = frequentRoutes; }
     }
 
-    // Login History & Session Data
+    
     public static class LoginHistory {
         private LocalDateTime lastLogin;
         private String lastLoginIp;
@@ -131,7 +131,7 @@ public class User {
             private String location;
             private String sessionId;
 
-            // Constructors, getters, setters
+            
             public LoginSession() {}
             public LoginSession(String sessionId, String ipAddress, String userAgent) {
                 this.sessionId = sessionId;
@@ -140,7 +140,7 @@ public class User {
                 this.loginTime = LocalDateTime.now();
             }
 
-            // All getters and setters
+            
             public LocalDateTime getLoginTime() { return loginTime; }
             public void setLoginTime(LocalDateTime loginTime) { this.loginTime = loginTime; }
 
@@ -160,7 +160,7 @@ public class User {
             public void setSessionId(String sessionId) { this.sessionId = sessionId; }
         }
 
-        // Constructors, getters, setters for LoginHistory
+        
         public LoginHistory() {}
 
         public LocalDateTime getLastLogin() { return lastLogin; }
@@ -182,7 +182,7 @@ public class User {
         public void setCurrentlyLoggedIn(boolean currentlyLoggedIn) { isCurrentlyLoggedIn = currentlyLoggedIn; }
     }
 
-    // Profile Data & Statistics
+    
     public static class ProfileData {
         private String profilePicture;
         private String bio;
@@ -194,13 +194,13 @@ public class User {
         private String emergencyContactName;
         private Map<String, Object> customFields;
 
-        // Travel Statistics
+        
         private int totalBookings = 0;
         private int cancelledBookings = 0;
         private double totalAmountSpent = 0.0;
         private List<String> visitedCities;
 
-        // Constructors, getters, setters
+        
         public ProfileData() {}
 
         public String getProfilePicture() { return profilePicture; }
@@ -243,14 +243,14 @@ public class User {
         public void setVisitedCities(List<String> visitedCities) { this.visitedCities = visitedCities; }
     }
 
-    // Constructors
+    
     public User() {
         this.preferences = new UserPreferences();
         this.loginHistory = new LoginHistory();
         this.profile = new ProfileData();
     }
 
-    // All Main Getters and Setters
+    
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
 
@@ -296,7 +296,7 @@ public class User {
     public LocalDateTime getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
 
-    // Utility Methods
+    
     public String getFullName() {
         return firstName + " " + lastName;
     }
@@ -320,15 +320,15 @@ public class User {
         loginHistory.setTotalLogins(loginHistory.getTotalLogins() + 1);
         loginHistory.setCurrentlyLoggedIn(true);
 
-        // Add to recent logins
+        
         if (loginHistory.getRecentLogins() == null) {
             loginHistory.setRecentLogins(new java.util.ArrayList<>());
         }
 
         LoginHistory.LoginSession session = new LoginHistory.LoginSession(sessionId, ipAddress, userAgent);
-        loginHistory.getRecentLogins().add(0, session); // Add at beginning
+        loginHistory.getRecentLogins().add(0, session); 
 
-        // Keep only last 10 sessions
+        
         if (loginHistory.getRecentLogins().size() > 10) {
             loginHistory.getRecentLogins().subList(10, loginHistory.getRecentLogins().size()).clear();
         }

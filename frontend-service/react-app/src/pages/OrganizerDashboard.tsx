@@ -7,7 +7,7 @@ const OrganizerDashboard = () => {
   const [events, setEvents] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Hardcoded for MVP, in real app this comes from JWT decoded token Context
+  
   const organizerId = "ORG123";
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const OrganizerDashboard = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
-      {/* Header */}
+      {}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center p-8 bg-slate-900 border border-slate-800 rounded-3xl space-y-4 md:space-y-0 shadow-xl relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
         <div className="z-10">
@@ -51,7 +51,7 @@ const OrganizerDashboard = () => {
         </button>
       </div>
 
-      {/* Stats Cards */}
+      {}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard title="Total Revenue" value={`$${stats?.totalRevenue?.toLocaleString() || '0'}`} icon={<DollarSign className="w-6 h-6 text-emerald-400" />} color="bg-emerald-500/10" border="border-emerald-500/20" />
         <StatCard title="Tickets Sold" value={stats?.ticketsSold?.toString() || '0'} icon={<TicketIcon className="w-6 h-6 text-indigo-400" />} color="bg-indigo-500/10" border="border-indigo-500/20" />
@@ -75,7 +75,7 @@ const OrganizerDashboard = () => {
                 <div key={event.id} className="flex flex-col md:flex-row justify-between items-center p-5 bg-slate-950/50 hover:bg-slate-800/80 rounded-2xl border border-slate-800 transition-colors">
                   <div className="flex flex-col mb-4 md:mb-0">
                     <span className="text-white font-bold text-lg">{event.eventName}</span>
-                    <span className="text-slate-500 text-sm mt-1">{new Date(event.startDateTime).toLocaleDateString()} • {event.venue}</span>
+                    <span className="text-slate-500 text-sm mt-1">{new Date(event.startDateTime).toLocaleDateString()}  {event.venue}</span>
                   </div>
                   <div className="flex items-center space-x-8">
                     <div className="text-center">

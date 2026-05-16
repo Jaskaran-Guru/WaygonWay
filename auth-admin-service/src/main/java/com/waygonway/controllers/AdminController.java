@@ -17,7 +17,7 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
-    // Get all users
+    
     @GetMapping("/users")
     public ResponseEntity<ApiResponse<List<User>>> getAllUsers() {
         try {
@@ -38,7 +38,7 @@ public class AdminController {
         }
     }
 
-    // Get users with pagination
+    
     @GetMapping("/users/paged")
     public ResponseEntity<ApiResponse<org.springframework.data.domain.Page<User>>> getUsersPaged(
             @RequestParam(defaultValue = "0") int page,
@@ -62,7 +62,7 @@ public class AdminController {
         }
     }
 
-    // Get user statistics
+    
     @GetMapping("/statistics")
     public ResponseEntity<ApiResponse<Map<String, Object>>> getUserStatistics() {
         try {
@@ -82,7 +82,7 @@ public class AdminController {
         }
     }
 
-    // Update user status
+    
     @PutMapping("/users/{userId}/status")
     public ResponseEntity<ApiResponse<User>> updateUserStatus(
             @PathVariable String userId,
@@ -105,7 +105,7 @@ public class AdminController {
         }
     }
 
-    // Update user role
+    
     @PutMapping("/users/{userId}/role")
     public ResponseEntity<ApiResponse<User>> updateUserRole(
             @PathVariable String userId,
@@ -128,7 +128,7 @@ public class AdminController {
         }
     }
 
-    // Delete user
+    
     @DeleteMapping("/users/{userId}")
     public ResponseEntity<ApiResponse<Map<String, Object>>> deleteUser(@PathVariable String userId) {
         try {
@@ -148,7 +148,7 @@ public class AdminController {
         }
     }
 
-    // Search users
+    
     @GetMapping("/users/search")
     public ResponseEntity<ApiResponse<List<User>>> searchUsers(@RequestParam String query) {
         try {
@@ -170,7 +170,7 @@ public class AdminController {
         }
     }
 
-    // Bulk update users
+    
     @PutMapping("/users/bulk-status")
     public ResponseEntity<ApiResponse<Map<String, Object>>> bulkUpdateUserStatus(
             @RequestBody Map<String, Object> request) {
@@ -195,7 +195,7 @@ public class AdminController {
         }
     }
 
-    // Get users by city/state
+    
     @GetMapping("/users/city/{city}")
     public ResponseEntity<ApiResponse<List<User>>> getUsersByCity(@PathVariable String city) {
         try {
@@ -217,7 +217,7 @@ public class AdminController {
         }
     }
 
-    // Export user data
+    
     @GetMapping("/users/export")
     public ResponseEntity<ApiResponse<Map<String, Object>>> exportUserData() {
         try {

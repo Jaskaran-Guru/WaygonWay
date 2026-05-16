@@ -36,7 +36,7 @@
             position: relative;
         }
 
-        /* ─── Elegant Background Pattern ─── */
+        /*  Elegant Background Pattern  */
         body::before {
             content: '';
             position: fixed;
@@ -62,7 +62,7 @@
             opacity: 0.4;
         }
 
-        /* ─── Navbar ─── */
+        /*  Navbar  */
         .navbar {
             background: rgba(26, 11, 46, 0.85);
             backdrop-filter: blur(30px);
@@ -184,7 +184,7 @@
             transform: translateY(-2px);
         }
 
-        /* ─── Hero Section ─── */
+        /*  Hero Section  */
         .hero-section {
             position: relative;
             z-index: 1;
@@ -253,7 +253,7 @@
             letter-spacing: 0.3px;
         }
 
-        /* ─── Search Card ─── */
+        /*  Search Card  */
         .search-card {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
             border: 1px solid rgba(212, 175, 55, 0.2);
@@ -305,7 +305,7 @@
             letter-spacing: 0.3px;
         }
 
-        /* ─── Form Fields ─── */
+        /*  Form Fields  */
         .field-group {
             display: flex;
             flex-direction: column;
@@ -386,7 +386,7 @@
             box-shadow: 0 4px 20px rgba(50, 130, 184, 0.4);
         }
 
-        /* ─── Search Button ─── */
+        /*  Search Button  */
         .btn-search {
             background: linear-gradient(135deg, var(--ocean) 0%, var(--aqua) 100%);
             border: none;
@@ -442,7 +442,7 @@
             height: 300px;
         }
 
-        /* ─── Elegant Floating Orbs ─── */
+        /*  Elegant Floating Orbs  */
         .floating-shapes {
             position: fixed;
             inset: 0;
@@ -495,7 +495,7 @@
             66% { transform: translate(-40px, 20px) scale(0.9); }
         }
 
-        /* ─── Entry Animations ─── */
+        /*  Entry Animations  */
         .hero-badge { animation: fade-up 0.8s ease both; }
         .hero-title { animation: fade-up 0.8s ease 0.15s both; }
         .hero-subtitle { animation: fade-up 0.8s ease 0.25s both; }
@@ -511,7 +511,7 @@
             to   { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* ─── Responsive ─── */
+        /*  Responsive  */
         @media (max-width: 768px) {
             .search-card { padding: 2rem 1.8rem; }
             .hero-section { padding: 140px 0 70px; }
@@ -587,7 +587,7 @@
         </h1>
 
         <p class="hero-subtitle">
-            Experience seamless railway booking with India's most trusted platform. Fast, secure, and reliable — your perfect travel companion.
+            Experience seamless railway booking with India's most trusted platform. Fast, secure, and reliable  your perfect travel companion.
         </p>
 
         <!-- Search Form -->

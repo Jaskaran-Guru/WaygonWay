@@ -19,7 +19,7 @@ public class DatabaseServiceClient {
 
     private static final Logger logger = LoggerFactory.getLogger(DatabaseServiceClient.class);
 
-    @Value("${waygonway.services.database:http://localhost:8083}")
+    @Value("${waygonway.services.database:http:
     private String databaseServiceUrl;
 
     private final RestTemplate restTemplate;
@@ -28,7 +28,7 @@ public class DatabaseServiceClient {
         this.restTemplate = new RestTemplate();
     }
 
-    // Create ticket in database-service
+    
     public Map<String, Object> createTicket(Map<String, Object> ticketData) {
         logger.info("Creating ticket via database-service");
         logger.info("Data: {}", ticketData);
@@ -69,7 +69,7 @@ public class DatabaseServiceClient {
         }
     }
 
-    // Get user tickets
+    
     public List<Map<String, Object>> getUserTickets(String userId) {
         try {
             ResponseEntity<Map[]> response = restTemplate.getForEntity(
@@ -87,7 +87,7 @@ public class DatabaseServiceClient {
         }
     }
 
-    // Get ticket by PNR
+    
     public Map<String, Object> getTicketByPNR(String pnr) {
         try {
             ResponseEntity<Map> response = restTemplate.getForEntity(
@@ -107,7 +107,7 @@ public class DatabaseServiceClient {
         }
     }
 
-    // Register user
+    
     public Map<String, Object> registerUser(String name, String email, String password, String phone) {
         try {
             Map<String, Object> request = new HashMap<>();
@@ -137,7 +137,7 @@ public class DatabaseServiceClient {
         }
     }
 
-    // Authenticate user
+    
     public Map<String, Object> authenticateUser(String email, String password) {
         try {
             Map<String, Object> request = new HashMap<>();
@@ -165,11 +165,9 @@ public class DatabaseServiceClient {
         }
     }
 
-    // ========== NEW METHOD - GET ALL USERS ==========
+    
 
-    /**
-     * Get all users for admin panel
-     */
+    
     public List<Map<String, Object>> getAllUsers() {
         logger.info("[DatabaseServiceClient] Getting all users from database-service");
 
@@ -198,11 +196,9 @@ public class DatabaseServiceClient {
         }
     }
 
-    // ========== HEALTH CHECK ==========
+    
 
-    /**
-     * Check if database-service is healthy
-     */
+    
     public boolean isServiceHealthy() {
         try {
             ResponseEntity<String> response = restTemplate.getForEntity(

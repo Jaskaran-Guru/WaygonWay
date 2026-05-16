@@ -38,8 +38,8 @@ public class Ticket {
     @NotNull(message = "Travel date is required")
     private LocalDateTime travelDate;
 
-    private String bookingStatus = "CONFIRMED"; // CONFIRMED, CANCELLED, WAITING, RAC
-    private String paymentStatus = "PAID"; // PAID, PENDING, REFUNDED
+    private String bookingStatus = "CONFIRMED"; 
+    private String paymentStatus = "PAID"; 
 
     private String sourceStation;
     private String destinationStation;
@@ -49,7 +49,7 @@ public class Ticket {
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt = LocalDateTime.now();
 
-    // Nested PassengerInfo class
+    
     public static class PassengerInfo {
         @NotBlank(message = "Passenger name is required")
         private String name;
@@ -62,9 +62,9 @@ public class Ticket {
         private String gender;
 
         private String seatNumber;
-        private String berthPreference; // LOWER, MIDDLE, UPPER, SIDE_LOWER, SIDE_UPPER
+        private String berthPreference; 
 
-        // Constructors
+        
         public PassengerInfo() {}
 
         public PassengerInfo(String name, int age, String gender) {
@@ -73,7 +73,7 @@ public class Ticket {
             this.gender = gender;
         }
 
-        // Getters and Setters
+        
         public String getName() { return name; }
         public void setName(String name) { this.name = name; }
 
@@ -100,7 +100,7 @@ public class Ticket {
         }
     }
 
-    // Constructors
+    
     public Ticket() {}
 
     public Ticket(String pnr, String userId, String trainId, List<PassengerInfo> passengers,
@@ -114,7 +114,7 @@ public class Ticket {
         this.bookingDate = LocalDateTime.now();
     }
 
-    // Getters and Setters
+    
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
 
@@ -166,7 +166,7 @@ public class Ticket {
     public LocalDateTime getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
 
-    // Utility methods
+    
     public boolean isConfirmed() {
         return "CONFIRMED".equalsIgnoreCase(bookingStatus);
     }

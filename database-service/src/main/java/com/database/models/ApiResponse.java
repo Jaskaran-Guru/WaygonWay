@@ -41,7 +41,7 @@ public class ApiResponse<T> {
         return this;
     }
 
-    // Getters and Setters
+    
     public boolean isSuccess() { return success; }
     public String getMessage() { return message; }
     public T getData() { return data; }

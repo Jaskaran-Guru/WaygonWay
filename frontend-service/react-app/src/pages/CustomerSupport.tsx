@@ -8,7 +8,7 @@ const CustomerSupport = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  // In real app, this comes from AuthContext
+  
   const mockUser = { id: 'usr_xyz', name: 'John Doe', email: 'john@example.com' };
 
   const handleSubmit = async (e: React.FormEvent) => {

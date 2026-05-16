@@ -16,7 +16,7 @@ import AdminSupportManagement from './pages/AdminSupportManagement';
 import AdminBookingManagement from './pages/AdminBookingManagement';
 import OrganizerDashboard from './pages/OrganizerDashboard';
 
-// Simple AdminRoute component if not found elsewhere
+
 const AdminRoute = ({ children }: { children: React.ReactNode }) => {
   const user = JSON.parse(localStorage.getItem('user') || 'null');
   const isAdmin = user && (user.role === 'ADMIN' || user.username === 'admin' || user.email === 'admin@waygonway.com');
@@ -60,7 +60,7 @@ function App() {
               <Ticket className="w-6 h-6 text-indigo-500" />
               <span className="text-xl font-bold text-slate-300">WaygonWay</span>
             </div>
-            <p className="text-slate-500 text-sm">© 2025 WaygonWay Ticket Reservation System. Built with React & Spring Boot.</p>
+            <p className="text-slate-500 text-sm"> 2025 WaygonWay Ticket Reservation System. Built with React & Spring Boot.</p>
           </div>
         </footer>
       </div>

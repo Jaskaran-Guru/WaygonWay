@@ -60,7 +60,7 @@
             pointer-events: none;
         }
 
-        /* ─── Navbar ─── */
+        /*  Navbar  */
         .navbar {
             background: rgba(10,15,46,0.75);
             backdrop-filter: blur(20px);
@@ -121,10 +121,10 @@
             box-shadow: 0 6px 18px rgba(37,99,235,0.35);
         }
 
-        /* ─── Container ─── */
+        /*  Container  */
         .container { position: relative; z-index: 1; padding-top: 2.5rem; padding-bottom: 3rem; }
 
-        /* ─── Page Header ─── */
+        /*  Page Header  */
         .page-header { text-align: center; margin-bottom: 2.2rem; animation: fade-up 0.5s ease both; }
 
         .page-header h2 {
@@ -141,7 +141,7 @@
             font-size: 0.9rem;
         }
 
-        /* ─── Step Indicator ─── */
+        /*  Step Indicator  */
         .step-indicator {
             display: flex;
             justify-content: center;
@@ -188,7 +188,7 @@
             background: rgba(255,255,255,0.1);
         }
 
-        /* ─── Train Info Banner ─── */
+        /*  Train Info Banner  */
         .train-info {
             background: rgba(255,255,255,0.05);
             border: 1px solid rgba(59,130,246,0.25);
@@ -246,7 +246,7 @@
             color: var(--white);
         }
 
-        /* ─── Booking Card ─── */
+        /*  Booking Card  */
         .booking-card {
             background: rgba(255,255,255,0.04);
             border: 1px solid var(--glass-border);
@@ -262,7 +262,7 @@
             animation: fade-up 0.6s ease 0.15s both;
         }
 
-        /* ─── Section Headings ─── */
+        /*  Section Headings  */
         .section-heading {
             display: flex;
             align-items: center;
@@ -298,7 +298,7 @@
             margin: 1.8rem 0;
         }
 
-        /* ─── Form Elements ─── */
+        /*  Form Elements  */
         .form-label {
             font-size: 0.72rem;
             font-weight: 600;
@@ -336,7 +336,7 @@
             box-shadow: 0 0 0 3px rgba(239,68,68,0.12) !important;
         }
 
-        /* ─── Fare Breakdown ─── */
+        /*  Fare Breakdown  */
         .fare-breakdown {
             background: rgba(255,255,255,0.04);
             border: 1px solid var(--glass-border);
@@ -378,7 +378,7 @@
             color: #6ee7b7;
         }
 
-        /* ─── Benefits List ─── */
+        /*  Benefits List  */
         .benefits-list {
             margin-top: 1.4rem;
             padding-top: 1.2rem;
@@ -416,7 +416,7 @@
             flex-shrink: 0;
         }
 
-        /* ─── Checkboxes ─── */
+        /*  Checkboxes  */
         .form-check-input {
             background-color: rgba(255,255,255,0.07) !important;
             border-color: rgba(255,255,255,0.2) !important;
@@ -435,7 +435,7 @@
 
         .form-check-label a { color: var(--ice); }
 
-        /* ─── Book Button ─── */
+        /*  Book Button  */
         .btn-book {
             background: linear-gradient(135deg, var(--emerald) 0%, #059669 100%);
             border: none;
@@ -470,7 +470,7 @@
         .btn-book:hover::before { opacity: 1; }
         .btn-book:active { transform: translateY(0); }
 
-        /* ─── Alert ─── */
+        /*  Alert  */
         .alert-danger {
             background: rgba(239,68,68,0.1) !important;
             border: 1px solid rgba(239,68,68,0.25) !important;
@@ -480,7 +480,7 @@
             margin-bottom: 1.5rem;
         }
 
-        /* ─── Animations ─── */
+        /*  Animations  */
         @keyframes fade-up {
             from { opacity: 0; transform: translateY(20px); }
             to   { opacity: 1; transform: translateY(0); }
@@ -535,7 +535,7 @@
                         <div class="col-md-6">
                             <h4><i class="fas fa-train me-2" style="color:var(--ice)"></i>${selectedEvent.eventName}</h4>
                             <p class="mb-1">Train No: ${selectedEvent.eventCode}</p>
-                            <p class="mb-0"><i class="fas fa-route me-2"></i>${selectedEvent.source} → ${selectedEvent.destination}</p>
+                            <p class="mb-0"><i class="fas fa-route me-2"></i>${selectedEvent.source}  ${selectedEvent.destination}</p>
                         </div>
                         <div class="col-md-3">
                             <h6>Departure</h6>
@@ -543,7 +543,7 @@
                         </div>
                         <div class="col-md-3">
                             <h6>Base Fare</h6>
-                            <div class="fare-highlight">₹${selectedEvent.price}</div>
+                            <div class="fare-highlight">${selectedEvent.price}</div>
                         </div>
                     </div>
                 </div>
@@ -616,10 +616,10 @@
                                     <label class="form-label">Travel Class *</label>
                                     <select class="form-select" name="trainClass" id="trainClass" required onchange="updateFare()">
                                         <option value="">Select Class</option>
-                                        <option value="SL" data-fare="500">Sleeper (SL) - ₹500</option>
-                                        <option value="3A" data-fare="1200">AC 3 Tier (3A) - ₹1,200</option>
-                                        <option value="2A" data-fare="1800">AC 2 Tier (2A) - ₹1,800</option>
-                                        <option value="1A" data-fare="3000">AC First Class (1A) - ₹3,000</option>
+                                        <option value="SL" data-fare="500">Sleeper (SL) - 500</option>
+                                        <option value="3A" data-fare="1200">AC 3 Tier (3A) - 1,200</option>
+                                        <option value="2A" data-fare="1800">AC 2 Tier (2A) - 1,800</option>
+                                        <option value="1A" data-fare="3000">AC First Class (1A) - 3,000</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6 mb-3">
@@ -659,23 +659,23 @@
                             <div class="fare-breakdown">
                                 <div class="fare-row">
                                     <span>Base Fare</span>
-                                    <span id="baseFare">₹0</span>
+                                    <span id="baseFare">0</span>
                                 </div>
                                 <div class="fare-row">
                                     <span>Reservation Charges</span>
-                                    <span id="reservationCharges">₹50</span>
+                                    <span id="reservationCharges">50</span>
                                 </div>
                                 <div class="fare-row">
                                     <span>Service Tax</span>
-                                    <span id="serviceTax">₹0</span>
+                                    <span id="serviceTax">0</span>
                                 </div>
                                 <div class="fare-row">
                                     <span>Convenience Fee</span>
-                                    <span id="convenienceFee">₹20</span>
+                                    <span id="convenienceFee">20</span>
                                 </div>
                                 <div class="fare-total-row">
                                     <span class="label">Total Amount</span>
-                                    <span class="value" id="totalAmount">₹70</span>
+                                    <span class="value" id="totalAmount">70</span>
                                 </div>
 
                                 <div class="benefits-list">
@@ -743,9 +743,9 @@
         const convenienceFee = 20;
         const total = parseInt(baseFare) + reservationCharges + serviceTax + convenienceFee;
 
-        document.getElementById('baseFare').textContent = '₹' + baseFare;
-        document.getElementById('serviceTax').textContent = '₹' + serviceTax;
-        document.getElementById('totalAmount').textContent = '₹' + total;
+        document.getElementById('baseFare').textContent = '' + baseFare;
+        document.getElementById('serviceTax').textContent = '' + serviceTax;
+        document.getElementById('totalAmount').textContent = '' + total;
     }
 
     // Form validation

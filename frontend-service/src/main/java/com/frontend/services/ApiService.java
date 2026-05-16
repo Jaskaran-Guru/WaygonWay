@@ -12,10 +12,10 @@ public class ApiService {
     @Autowired
     private RestTemplate restTemplate;
 
-    // Health check methods
+    
     public boolean isAuthServiceHealthy() {
         try {
-            ResponseEntity<Map> response = restTemplate.getForEntity("http://localhost:8081/health", Map.class);
+            ResponseEntity<Map> response = restTemplate.getForEntity("http:
             return response.getStatusCode() == HttpStatus.OK;
         } catch (Exception e) {
             System.err.println("Auth service health check failed: " + e.getMessage());
@@ -25,7 +25,7 @@ public class ApiService {
 
     public boolean isBookingServiceHealthy() {
         try {
-            ResponseEntity<Map> response = restTemplate.getForEntity("http://localhost:8082/events/health", Map.class);
+            ResponseEntity<Map> response = restTemplate.getForEntity("http:
             return response.getStatusCode() == HttpStatus.OK;
         } catch (Exception e) {
             System.err.println("Booking service health check failed: " + e.getMessage());
@@ -35,7 +35,7 @@ public class ApiService {
 
     public boolean isDatabaseServiceHealthy() {
         try {
-            ResponseEntity<Map> response = restTemplate.getForEntity("http://localhost:8083/bookings/health", Map.class);
+            ResponseEntity<Map> response = restTemplate.getForEntity("http:
             return response.getStatusCode() == HttpStatus.OK;
         } catch (Exception e) {
             System.err.println("Database service health check failed: " + e.getMessage());
@@ -52,10 +52,10 @@ public class ApiService {
         return health;
     }
 
-    // Authentication methods
+    
     public Map<String, Object> login(String email, String password) {
         try {
-            String url = "http://localhost:8081/auth/login";
+            String url = "http:
 
             Map<String, String> loginData = new HashMap<>();
             loginData.put("email", email);
@@ -71,7 +71,7 @@ public class ApiService {
         } catch (Exception e) {
             System.err.println("Login API error: " + e.getMessage());
 
-            // Mock successful login
+            
             Map<String, Object> user = new HashMap<>();
             user.put("id", "user123");
             user.put("name", "Demo User");
@@ -84,7 +84,7 @@ public class ApiService {
     public Map<String, Object> register(String name, String email, String password, String phone,
                                         String address, String city, String state, String pincode) {
         try {
-            String url = "http://localhost:8081/auth/register";
+            String url = "http:
 
             Map<String, String> registerData = new HashMap<>();
             registerData.put("name", name);
@@ -106,7 +106,7 @@ public class ApiService {
         } catch (Exception e) {
             System.err.println("Register API error: " + e.getMessage());
 
-            // Mock successful registration
+            
             Map<String, Object> user = new HashMap<>();
             user.put("id", "user" + System.currentTimeMillis());
             user.put("name", name);
@@ -116,10 +116,10 @@ public class ApiService {
         }
     }
 
-    // Train search methods
+    
     public Map<String, Object> searchTrains(String source, String destination, String travelDate) {
         try {
-            String url = String.format("http://localhost:8082/events/search?source=%s&destination=%s&travelDate=%s",
+            String url = String.format("http:
                     source, destination, travelDate);
 
             Map<String, Object> response = restTemplate.getForObject(url, Map.class);
@@ -128,7 +128,7 @@ public class ApiService {
         } catch (Exception e) {
             System.err.println("Search API error: " + e.getMessage());
 
-            // Return mock trains
+            
             List<Map<String, Object>> mockTrains = createMockTrains(source, destination);
             return Map.of("success", true, "data", mockTrains, "count", mockTrains.size());
         }
@@ -136,14 +136,14 @@ public class ApiService {
 
     public Map<String, Object> getEventById(String id) {
         try {
-            String url = "http://localhost:8082/events/" + id;
+            String url = "http:
             Map<String, Object> response = restTemplate.getForObject(url, Map.class);
             return response != null ? response : Map.of("success", false, "error", "Event not found");
 
         } catch (Exception e) {
             System.err.println("Get event API error: " + e.getMessage());
 
-            // Return mock event
+            
             Map<String, Object> mockEvent = new HashMap<>();
             mockEvent.put("id", id);
             mockEvent.put("eventName", "Sample Train");
@@ -155,10 +155,10 @@ public class ApiService {
         }
     }
 
-    // Booking methods
+    
     public Map<String, Object> createBooking(Map<String, Object> bookingData) {
         try {
-            String url = "http://localhost:8082/bookings";
+            String url = "http:
 
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
@@ -170,7 +170,7 @@ public class ApiService {
         } catch (Exception e) {
             System.err.println("Create booking API error: " + e.getMessage());
 
-            // Return mock successful booking
+            
             Map<String, Object> mockBooking = new HashMap<>();
             mockBooking.put("id", UUID.randomUUID().toString());
             mockBooking.put("pnr", "WW" + System.currentTimeMillis());
@@ -182,7 +182,7 @@ public class ApiService {
         }
     }
 
-    // Alternative createBooking method for HomeController compatibility
+    
     public Map<String, Object> createBooking(String eventId, String userId, String passengerName,
                                              Integer age, String gender, String trainClass, String journeyDate) {
         Map<String, Object> bookingData = new HashMap<>();
@@ -204,14 +204,14 @@ public class ApiService {
 
     public Map<String, Object> getBookingByPNR(String pnr) {
         try {
-            String url = "http://localhost:8082/bookings/pnr/" + pnr;
+            String url = "http:
             Map<String, Object> response = restTemplate.getForObject(url, Map.class);
             return response != null ? response : Map.of("success", false, "error", "PNR not found");
 
         } catch (Exception e) {
             System.err.println("Get booking API error: " + e.getMessage());
 
-            // Return mock booking
+            
             Map<String, Object> mockBooking = new HashMap<>();
             mockBooking.put("pnr", pnr);
             mockBooking.put("passengerName", "Demo Passenger");
@@ -228,14 +228,14 @@ public class ApiService {
 
     public Map<String, Object> getUserTickets(String userId) {
         try {
-            String url = "http://localhost:8082/bookings/user/" + userId;
+            String url = "http:
             Map<String, Object> response = restTemplate.getForObject(url, Map.class);
             return response != null ? response : Map.of("success", false, "data", new ArrayList<>());
 
         } catch (Exception e) {
             System.err.println("Get user tickets API error: " + e.getMessage());
 
-            // Return mock tickets
+            
             List<Map<String, Object>> mockTickets = new ArrayList<>();
 
             Map<String, Object> ticket1 = new HashMap<>();
@@ -260,7 +260,7 @@ public class ApiService {
         }
     }
 
-    // Statistics methods
+    
     public Map<String, Object> getUserStatistics() {
         Map<String, Object> stats = new HashMap<>();
         stats.put("totalBookings", 5);
@@ -279,10 +279,10 @@ public class ApiService {
         return Map.of("success", true, "data", stats);
     }
 
-    // Demo data method
+    
     public Map<String, Object> createDemoData() {
         try {
-            String url = "http://localhost:8082/events/create-demo-data";
+            String url = "http:
             ResponseEntity<Map> response = restTemplate.postForEntity(url, null, Map.class);
             return response.getBody();
 
@@ -292,7 +292,7 @@ public class ApiService {
         }
     }
 
-    // Helper methods
+    
     private List<Map<String, Object>> createMockTrains(String source, String destination) {
         List<Map<String, Object>> trains = new ArrayList<>();
 

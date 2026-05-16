@@ -12,7 +12,7 @@ const Home = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
   
-  // Pagination State
+  
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   
@@ -23,7 +23,7 @@ const Home = () => {
     else setLoading(true);
     
     try {
-      // Map frontend category to backend category
+      
       let apiCategory = currentCategory;
       if (currentCategory === 'movies') apiCategory = 'MOVIE';
       else if (currentCategory === 'concerts') apiCategory = 'CONCERT';
@@ -48,11 +48,11 @@ const Home = () => {
   };
 
   useEffect(() => {
-    // Reset and fetch on category change
+    
     setPage(0);
     fetchEvents(0, false);
 
-    // Real-time syncing (Active polling every 5 seconds)
+    
     const interval = setInterval(() => {
       let apiCategory = currentCategory;
       if (currentCategory === 'movies') apiCategory = 'MOVIE';
@@ -61,9 +61,9 @@ const Home = () => {
       else if (currentCategory === 'evergreen') apiCategory = 'EVERGREEN';
 
       bookingApi.getEventsPaged(0, 6, apiCategory || undefined).then(res => {
-        // Silently sync newest events so buttons show 'Sold Out' instantly without hard refresh
+        
         setEvents(prev => {
-          if ((prev || []).length <= 6) return res.data?.content || []; // only sync if not loaded more
+          if ((prev || []).length <= 6) return res.data?.content || []; 
           return prev;
         });
       }).catch(console.error);
@@ -84,20 +84,20 @@ const Home = () => {
   });
 
   const getCategoryImage = (category: string) => {
-    if (!category) return "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&q=80&w=800";
+    if (!category) return "https:
     
     const cat = category.toUpperCase();
-    if (cat === 'MOVIE') return "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&q=80&w=800";
-    if (cat === 'CONCERT') return "https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?auto=format&fit=crop&q=80&w=800";
-    if (cat === 'COMEDY' || cat === 'STANDUP' || cat === 'STAND-UP') return "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&q=80&w=800";
-    if (cat === 'EVERGREEN') return "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&q=80&w=800";
+    if (cat === 'MOVIE') return "https:
+    if (cat === 'CONCERT') return "https:
+    if (cat === 'COMEDY' || cat === 'STANDUP' || cat === 'STAND-UP') return "https:
+    if (cat === 'EVERGREEN') return "https:
     
-    return "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&q=80&w=800";
+    return "https:
   };
 
   return (
     <div className="w-full">
-      {/* Hero Section */}
+      {}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center space-y-8">
         <h1 className="text-6xl md:text-8xl font-black tracking-tight leading-none text-white">
           EVERY <span className="text-indigo-500">EXPERIENCE</span>,<br />
@@ -123,7 +123,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Categories */}
+      {}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           <CategoryCard icon={<Film className="w-6 h-6" />} label="Movies" color="bg-orange-500" />
@@ -133,7 +133,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Featured Events */}
+      {}
       <section id="featured-events" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 space-y-12">
         <div className="flex flex-col md:flex-row justify-between items-end space-y-6 md:space-y-0">
           <div>

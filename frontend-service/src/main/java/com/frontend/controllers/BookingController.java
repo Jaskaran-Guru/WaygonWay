@@ -46,7 +46,7 @@ public class BookingController {
         System.out.println("Confirming booking: " + bookingData);
 
         try {
-            // Call backend API
+            
             Map<String, Object> response = apiService.createBooking(bookingData);
 
             if (response != null && Boolean.TRUE.equals(response.get("success"))) {
@@ -58,7 +58,7 @@ public class BookingController {
         } catch (Exception e) {
             System.err.println("Booking error: " + e.getMessage());
 
-            // Create mock successful booking
+            
             Map<String, Object> mockBooking = new HashMap<>();
             mockBooking.put("pnr", "WW" + System.currentTimeMillis());
             mockBooking.put("passengerName", bookingData.get("passengerName"));

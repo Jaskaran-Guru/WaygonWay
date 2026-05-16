@@ -20,12 +20,12 @@ public class TicketService {
     @Autowired
     private TrainService trainService;
 
-    // Generate PNR
+    
     private String generatePNR() {
         Random random = new Random();
         StringBuilder pnr = new StringBuilder();
 
-        // PNR format: 3 letters + 7 digits
+        
         String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         for (int i = 0; i < 3; i++) {
             pnr.append(letters.charAt(random.nextInt(letters.length())));
@@ -38,7 +38,7 @@ public class TicketService {
         return pnr.toString();
     }
 
-    // Generate unique PNR
+    
     private String generateUniquePNR() {
         String pnr;
         do {
@@ -48,57 +48,57 @@ public class TicketService {
         return pnr;
     }
 
-    // Book ticket
+    
     public Ticket bookTicket(Ticket ticketRequest) {
         try {
             System.out.println("TicketService: Booking ticket for user - " + ticketRequest.getUserId());
 
-            // Get train details
+            
             Train train = trainService.getTrainById(ticketRequest.getTrainId());
 
             int seatsRequested = ticketRequest.getPassengers().size();
 
-            // Check seat availability
+            
             if (!train.hasAvailableSeats() || train.getAvailableSeats() < seatsRequested) {
                 throw new RuntimeException("Not enough seats available. Available: " + train.getAvailableSeats() + ", Requested: " + seatsRequested);
             }
 
-            // Generate unique PNR
+            
             String pnr = generateUniquePNR();
             ticketRequest.setPnr(pnr);
 
-            // Set train details in ticket
+            
             ticketRequest.setTrainNumber(train.getTrainNumber());
             ticketRequest.setTrainName(train.getTrainName());
             ticketRequest.setSourceStation(train.getSource());
             ticketRequest.setDestinationStation(train.getDestination());
 
-            // Generate seat numbers
+            
             List<String> seatNumbers = generateSeatNumbers(train, seatsRequested);
             ticketRequest.setSeatNumbers(seatNumbers);
 
-            // Assign seat numbers to passengers
+            
             for (int i = 0; i < ticketRequest.getPassengers().size() && i < seatNumbers.size(); i++) {
                 ticketRequest.getPassengers().get(i).setSeatNumber(seatNumbers.get(i));
             }
 
-            // Set booking details
+            
             ticketRequest.setBookingDate(LocalDateTime.now());
             ticketRequest.setBookingStatus("CONFIRMED");
             ticketRequest.setPaymentStatus("PAID");
             ticketRequest.setCreatedAt(LocalDateTime.now());
             ticketRequest.setUpdatedAt(LocalDateTime.now());
 
-            // Calculate total amount if not set
+            
             if (ticketRequest.getTotalAmount() == 0) {
                 double totalAmount = train.getPrice() * seatsRequested;
                 ticketRequest.setTotalAmount(totalAmount);
             }
 
-            // Save ticket
+            
             Ticket savedTicket = ticketRepository.save(ticketRequest);
 
-            // Update train seat availability
+            
             trainService.bookSeats(train.getId(), seatsRequested);
 
             System.out.println("TicketService: Ticket booked successfully - PNR: " + pnr);
@@ -110,13 +110,13 @@ public class TicketService {
         }
     }
 
-    // Generate seat numbers
+    
     private List<String> generateSeatNumbers(Train train, int seatsCount) {
         List<String> seatNumbers = new ArrayList<>();
         Random random = new Random();
 
-        // Simple seat numbering: Coach-SeatNumber (e.g., S1-01, S2-15)
-        int coachCount = (train.getTotalSeats() / 80) + 1; // Assume 80 seats per coach
+        
+        int coachCount = (train.getTotalSeats() / 80) + 1; 
 
         for (int i = 0; i < seatsCount; i++) {
             int coach = random.nextInt(coachCount) + 1;
@@ -128,7 +128,7 @@ public class TicketService {
         return seatNumbers;
     }
 
-    // Get ticket by PNR
+    
     public Ticket getTicketByPNR(String pnr) {
         try {
             System.out.println("TicketService: Getting ticket by PNR - " + pnr);
@@ -148,7 +148,7 @@ public class TicketService {
         }
     }
 
-    // Get user tickets
+    
     public List<Ticket> getUserTickets(String userId) {
         try {
             System.out.println("TicketService: Getting tickets for user - " + userId);
@@ -164,7 +164,7 @@ public class TicketService {
         }
     }
 
-    // Get upcoming tickets for user
+    
     public List<Ticket> getUpcomingTickets(String userId) {
         try {
             System.out.println("TicketService: Getting upcoming tickets for user - " + userId);
@@ -180,37 +180,37 @@ public class TicketService {
         }
     }
 
-    // Cancel ticket
+    
     public Ticket cancelTicket(String pnr, String userId) {
         try {
             System.out.println("TicketService: Cancelling ticket - PNR: " + pnr);
 
             Ticket ticket = getTicketByPNR(pnr);
 
-            // Verify user ownership
+            
             if (!ticket.getUserId().equals(userId)) {
                 throw new RuntimeException("Ticket does not belong to this user");
             }
 
-            // Check if already cancelled
+            
             if (ticket.isCancelled()) {
                 throw new RuntimeException("Ticket is already cancelled");
             }
 
-            // Check cancellation policy (example: can cancel up to 2 hours before departure)
+            
             LocalDateTime departureTime = ticket.getTravelDate();
             if (LocalDateTime.now().isAfter(departureTime.minusHours(2))) {
                 throw new RuntimeException("Cannot cancel ticket within 2 hours of departure");
             }
 
-            // Cancel ticket
+            
             ticket.setBookingStatus("CANCELLED");
             ticket.setPaymentStatus("REFUNDED");
             ticket.setUpdatedAt(LocalDateTime.now());
 
             Ticket savedTicket = ticketRepository.save(ticket);
 
-            // Release seats back to train
+            
             trainService.cancelSeats(ticket.getTrainId(), ticket.getPassengerCount());
 
             System.out.println("TicketService: Ticket cancelled successfully - PNR: " + pnr);
@@ -222,7 +222,7 @@ public class TicketService {
         }
     }
 
-    // Get all tickets
+    
     public List<Ticket> getAllTickets() {
         try {
             System.out.println("TicketService: Getting all tickets");
@@ -235,7 +235,7 @@ public class TicketService {
         }
     }
 
-    // Get tickets by status
+    
     public List<Ticket> getTicketsByStatus(String status) {
         try {
             System.out.println("TicketService: Getting tickets by status - " + status);
@@ -248,7 +248,7 @@ public class TicketService {
         }
     }
 
-    // Get ticket statistics
+    
     public Map<String, Object> getTicketStatistics() {
         try {
             System.out.println("TicketService: Calculating ticket statistics");
@@ -258,7 +258,7 @@ public class TicketService {
             List<Ticket> cancelledTickets = ticketRepository.findCancelledTickets();
             List<Ticket> paidTickets = ticketRepository.findPaidConfirmedTickets();
 
-            // Today's bookings
+            
             LocalDateTime startOfDay = LocalDate.now().atStartOfDay();
             LocalDateTime endOfDay = LocalDate.now().atTime(LocalTime.MAX);
             List<Ticket> todaysBookings = ticketRepository.findTicketsBookedToday(startOfDay, endOfDay);
@@ -269,7 +269,7 @@ public class TicketService {
             stats.put("cancelledTickets", cancelledTickets.size());
             stats.put("todaysBookings", todaysBookings.size());
 
-            // Revenue calculation
+            
             double totalRevenue = paidTickets.stream()
                     .mapToDouble(Ticket::getTotalAmount)
                     .sum();
@@ -281,17 +281,17 @@ public class TicketService {
                     .sum();
             stats.put("todaysRevenue", Math.round(todaysRevenue * 100.0) / 100.0);
 
-            // Passenger statistics
+            
             int totalPassengers = allTickets.stream()
                     .mapToInt(Ticket::getPassengerCount)
                     .sum();
             stats.put("totalPassengers", totalPassengers);
 
-            // Average ticket value
+            
             double avgTicketValue = totalRevenue / Math.max(paidTickets.size(), 1);
             stats.put("averageTicketValue", Math.round(avgTicketValue * 100.0) / 100.0);
 
-            // Popular routes
+            
             Map<String, Long> routeStats = allTickets.stream()
                     .filter(t -> t.getSourceStation() != null && t.getDestinationStation() != null)
                     .collect(Collectors.groupingBy(
@@ -311,12 +311,12 @@ public class TicketService {
         }
     }
 
-    // Search tickets
+    
     public List<Ticket> searchTickets(String searchQuery) {
         try {
             System.out.println("TicketService: Searching tickets - " + searchQuery);
 
-            // Search by PNR pattern
+            
             List<Ticket> tickets = ticketRepository.findByPnrContaining(searchQuery);
 
             System.out.println("TicketService: Search completed - Found " + tickets.size() + " tickets");
@@ -328,7 +328,7 @@ public class TicketService {
         }
     }
 
-    // Get tickets by date range
+    
     public List<Ticket> getTicketsByDateRange(LocalDateTime startDate, LocalDateTime endDate) {
         try {
             System.out.println("TicketService: Getting tickets by date range");

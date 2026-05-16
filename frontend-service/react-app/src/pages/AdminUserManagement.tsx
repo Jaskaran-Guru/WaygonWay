@@ -24,13 +24,13 @@ const AdminUserManagement = () => {
   const [filterRole, setFilterRole] = useState('ALL');
   const [filterStatus, setFilterStatus] = useState('ALL');
   
-  // Pagination State
+  
   const [page, setPage] = useState(0);
   const [size] = useState(10);
   const [totalPages, setTotalPages] = useState(0);
   const [totalElements, setTotalElements] = useState(0);
 
-  // Bulk Selection State
+  
   const [selectedUserIds, setSelectedUserIds] = useState<string[]>([]);
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const AdminUserManagement = () => {
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      // Use paged API for better performance
+      
       const response = await adminApi.getUsersPaged(page, size);
       const data = response.data.data;
       setUsers(data.content);
@@ -153,7 +153,7 @@ const AdminUserManagement = () => {
 
   return (
     <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
-      {/* Header */}
+      {}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
         <div>
           <h1 className="text-4xl font-black text-white flex items-center space-x-3">
@@ -171,7 +171,7 @@ const AdminUserManagement = () => {
         </button>
       </div>
 
-      {/* Filters & Search */}
+      {}
       <div className="bg-slate-900/50 border border-slate-800 p-6 rounded-3xl flex flex-col md:flex-row gap-4">
         <div className="relative flex-1">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
@@ -205,7 +205,7 @@ const AdminUserManagement = () => {
         </div>
       </div>
 
-      {/* Bulk Actions Bar */}
+      {}
       {selectedUserIds.length > 0 && (
         <div className="bg-indigo-600 px-6 py-4 rounded-3xl flex items-center justify-between animate-in slide-in-from-top-4 duration-300">
           <div className="flex items-center space-x-4">
@@ -232,7 +232,7 @@ const AdminUserManagement = () => {
         </div>
       )}
 
-      {/* Users Table */}
+      {}
       <div className="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl">
         {loading ? (
           <div className="py-20 flex flex-col items-center justify-center space-y-4">
@@ -279,7 +279,7 @@ const AdminUserManagement = () => {
                           <p className="text-white font-bold text-lg leading-none">{user.firstName} {user.lastName}</p>
                           <p className="text-slate-500 text-sm mt-1 flex items-center">
                             <Mail className="w-3 h-3 mr-1" />
-                            @{user.username} • {user.email}
+                            @{user.username}  {user.email}
                           </p>
                         </div>
                       </div>
@@ -343,7 +343,7 @@ const AdminUserManagement = () => {
               </tbody>
             </table>
 
-            {/* Pagination Controls */}
+            {}
             <div className="bg-slate-950/50 px-8 py-5 border-t border-slate-800 flex items-center justify-between">
               <div className="text-slate-500 text-xs font-bold">
                 Showing <span className="text-white">{users.length}</span> of <span className="text-white">{totalElements}</span> users

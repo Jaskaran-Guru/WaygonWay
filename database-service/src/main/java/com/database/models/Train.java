@@ -41,16 +41,16 @@ public class Train {
     @DecimalMin(value = "0.0", message = "Price must be non-negative")
     private double price;
 
-    private String trainType; // Express, Passenger, Superfast
-    private String status = "ACTIVE"; // ACTIVE, INACTIVE, CANCELLED
+    private String trainType; 
+    private String status = "ACTIVE"; 
 
-    private List<String> stoppages; // Intermediate stations
-    private int duration; // Journey duration in minutes
+    private List<String> stoppages; 
+    private int duration; 
 
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt = LocalDateTime.now();
 
-    // Constructors
+    
     public Train() {}
 
     public Train(String trainNumber, String trainName, String source, String destination,
@@ -66,7 +66,7 @@ public class Train {
         this.price = price;
     }
 
-    // Getters and Setters
+    
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
 
@@ -115,7 +115,7 @@ public class Train {
     public LocalDateTime getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
 
-    // Utility methods
+    
     public boolean hasAvailableSeats() {
         return availableSeats > 0;
     }

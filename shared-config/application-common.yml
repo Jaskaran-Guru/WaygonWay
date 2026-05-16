@@ -1,4 +1,4 @@
-# Common configuration for all services
+
 server:
   port: ${SERVICE_PORT:8080}
 

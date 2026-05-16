@@ -26,12 +26,12 @@ public class TransportBooking {
     private String destination;
     private LocalDateTime departureTime;
 
-    // Instead of precise seats mapping, Transport uses passenger count
+    
     private int passengerCount;
 
     private Double totalAmount;
 
-    // PENDING, PAID, CANCELLED
+    
     private String status;
 
     public TransportBooking() {

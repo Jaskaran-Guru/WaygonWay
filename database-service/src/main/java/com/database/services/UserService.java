@@ -15,7 +15,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    // Get all users
+    
     public List<User> getAllUsers() {
         try {
             System.out.println("UserService: Getting all users");
@@ -28,7 +28,7 @@ public class UserService {
         }
     }
 
-    // Get user by ID
+    
     public User getUserById(String userId) {
         try {
             System.out.println("UserService: Getting user by ID - " + userId);
@@ -47,7 +47,7 @@ public class UserService {
         }
     }
 
-    // Search users
+    
     public List<User> searchUsers(String query) {
         try {
             System.out.println("UserService: Searching users with query - " + query);
@@ -62,7 +62,7 @@ public class UserService {
         }
     }
 
-    // Get users by status
+    
     public List<User> getUsersByStatus(String status) {
         try {
             System.out.println("UserService: Getting users by status - " + status);
@@ -77,12 +77,12 @@ public class UserService {
         }
     }
 
-    // Get active users - FIXED
+    
     public List<User> getActiveUsers() {
         try {
             System.out.println("UserService: Getting active users");
 
-            List<User> users = userRepository.findActiveUsers(); // Using correct method
+            List<User> users = userRepository.findActiveUsers(); 
 
             System.out.println("UserService: Retrieved " + users.size() + " active users");
             return users;
@@ -92,7 +92,7 @@ public class UserService {
         }
     }
 
-    // Get users created today - FIXED
+    
     public List<User> getUsersCreatedToday() {
         try {
             System.out.println("UserService: Getting users created today");
@@ -100,7 +100,7 @@ public class UserService {
             LocalDateTime startOfDay = LocalDate.now().atStartOfDay();
             LocalDateTime endOfDay = LocalDate.now().atTime(LocalTime.MAX);
 
-            List<User> users = userRepository.findUsersCreatedBetween(startOfDay, endOfDay); // Using correct method
+            List<User> users = userRepository.findUsersCreatedBetween(startOfDay, endOfDay); 
 
             System.out.println("UserService: Retrieved " + users.size() + " users created today");
             return users;
@@ -110,7 +110,7 @@ public class UserService {
         }
     }
 
-    // Get user statistics
+    
     public Map<String, Object> getUserStatistics() {
         try {
             System.out.println("UserService: Calculating user statistics");
@@ -125,7 +125,7 @@ public class UserService {
             stats.put("adminUsers", allUsers.stream().filter(u -> "ADMIN".equals(u.getRole())).count());
             stats.put("regularUsers", allUsers.stream().filter(u -> "USER".equals(u.getRole())).count());
 
-            // Today's registrations
+            
             List<User> todaysUsers = getUsersCreatedToday();
             stats.put("todaysRegistrations", todaysUsers.size());
 
@@ -139,12 +139,12 @@ public class UserService {
         }
     }
 
-    // Check if user exists by username
+    
     public boolean existsByUsername(String username) {
         return userRepository.existsByUsername(username);
     }
 
-    // Check if user exists by email
+    
     public boolean existsByEmail(String email) {
         return userRepository.existsByEmail(email);
     }

@@ -23,7 +23,7 @@ const EventCard: React.FC<EventCardProps> = ({ id, image, title, date, location,
           alt={title} 
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           onError={(e) => {
-            (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&q=80&w=800";
+            (e.target as HTMLImageElement).src = "https:
           }}
         />
         <div className="absolute bottom-4 right-4 bg-indigo-600 px-3 py-1 rounded-full font-bold text-sm text-white">

@@ -61,7 +61,7 @@
             opacity: 0.4;
         }
 
-        /* ─── Floating Orbs ─── */
+        /*  Floating Orbs  */
         .floating-shapes {
             position: fixed;
             inset: 0;
@@ -114,7 +114,7 @@
             66% { transform: translate(-40px, 20px) scale(0.9); }
         }
 
-        /* ─── Navbar ─── */
+        /*  Navbar  */
         .navbar {
             background: rgba(26, 11, 46, 0.85);
             backdrop-filter: blur(30px);
@@ -229,14 +229,14 @@
             transform: translateY(-2px);
         }
 
-        /* ─── Page Wrapper ─── */
+        /*  Page Wrapper  */
         .page-wrapper {
             position: relative;
             z-index: 1;
             padding: 120px 0 60px;
         }
 
-        /* ─── Page Header ─── */
+        /*  Page Header  */
         .page-header {
             text-align: center;
             margin-bottom: 2.5rem;
@@ -298,7 +298,7 @@
             letter-spacing: 0.3px;
         }
 
-        /* ─── Main Search Card ─── */
+        /*  Main Search Card  */
         .search-card {
             background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%);
             border: 1px solid rgba(212, 175, 55, 0.2);
@@ -350,7 +350,7 @@
             margin: 0;
         }
 
-        /* ─── Form Fields ─── */
+        /*  Form Fields  */
         .field-group {
             display: flex;
             flex-direction: column;
@@ -401,7 +401,7 @@
             cursor: pointer;
         }
 
-        /* ─── Swap Button ─── */
+        /*  Swap Button  */
         .swap-wrapper {
             display: flex;
             align-items: flex-end;
@@ -431,7 +431,7 @@
             box-shadow: 0 4px 20px rgba(50, 130, 184, 0.4);
         }
 
-        /* ─── Toggle Switches ─── */
+        /*  Toggle Switches  */
         .toggle-row {
             padding: 14px 20px;
             background: rgba(255,255,255,0.04);
@@ -466,7 +466,7 @@
             cursor: pointer;
         }
 
-        /* ─── Search Button ─── */
+        /*  Search Button  */
         .btn-search {
             background: linear-gradient(135deg, var(--ocean) 0%, var(--aqua) 100%);
             border: none;
@@ -501,7 +501,7 @@
         .btn-search:hover::before { opacity: 1; }
         .btn-search:active { transform: translateY(-1px); }
 
-        /* ─── Info Cards ─── */
+        /*  Info Cards  */
         .info-card {
             background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 100%);
             border: 1px solid rgba(212, 175, 55, 0.15);
@@ -538,7 +538,7 @@
             font-size: 0.8rem;
         }
 
-        /* ─── Route Buttons ─── */
+        /*  Route Buttons  */
         .route-btn {
             background: rgba(255,255,255,0.06);
             border: 1.5px solid rgba(212, 175, 55, 0.25);
@@ -561,7 +561,7 @@
             box-shadow: 0 4px 15px rgba(50, 130, 184, 0.25);
         }
 
-        /* ─── Tips ─── */
+        /*  Tips  */
         .tip-item {
             display: flex;
             align-items: center;
@@ -587,7 +587,7 @@
             flex-shrink: 0;
         }
 
-        /* ─── Animations ─── */
+        /*  Animations  */
         @keyframes fade-up {
             from { opacity: 0; transform: translateY(30px); }
             to   { opacity: 1; transform: translateY(0); }
@@ -600,7 +600,7 @@
 
         .page-header { animation: fade-up 0.8s ease both; }
 
-        /* ─── Responsive ─── */
+        /*  Responsive  */
         @media (max-width: 768px) {
             .search-card { padding: 2rem 1.8rem; }
             .page-wrapper { padding: 100px 0 40px; }
@@ -664,7 +664,7 @@
         <div class="page-header">
             <div class="page-badge">
                 <span class="dot"></span>
-                All Routes · All Classes
+                All Routes  All Classes
             </div>
             <h1 class="page-title">
                 Find Your <span class="accent">Perfect Train</span>
@@ -782,7 +782,7 @@
                                     <label class="form-check-label" for="flexibleDates">
                                         <i class="fas fa-calendar-week me-2" style="color: var(--gold-light);"></i>
                                         Flexible dates
-                                        <span style="color: rgba(254,246,228,0.4); font-size: 0.8rem;">(±3 days)</span>
+                                        <span style="color: rgba(254,246,228,0.4); font-size: 0.8rem;">(3 days)</span>
                                     </label>
                                 </div>
                             </div>
@@ -815,12 +815,12 @@
                         Popular Routes
                     </div>
                     <div class="text-center">
-                        <button class="btn route-btn" onclick="fillRoute('Delhi','Mumbai')">Delhi ↔ Mumbai</button>
-                        <button class="btn route-btn" onclick="fillRoute('Bangalore','Chennai')">Bangalore ↔ Chennai</button>
-                        <button class="btn route-btn" onclick="fillRoute('Delhi','Kolkata')">Delhi ↔ Kolkata</button>
-                        <button class="btn route-btn" onclick="fillRoute('Mumbai','Pune')">Mumbai ↔ Pune</button>
-                        <button class="btn route-btn" onclick="fillRoute('Delhi','Jaipur')">Delhi ↔ Jaipur</button>
-                        <button class="btn route-btn" onclick="fillRoute('Bangalore','Hyderabad')">Bangalore ↔ Hyderabad</button>
+                        <button class="btn route-btn" onclick="fillRoute('Delhi','Mumbai')">Delhi  Mumbai</button>
+                        <button class="btn route-btn" onclick="fillRoute('Bangalore','Chennai')">Bangalore  Chennai</button>
+                        <button class="btn route-btn" onclick="fillRoute('Delhi','Kolkata')">Delhi  Kolkata</button>
+                        <button class="btn route-btn" onclick="fillRoute('Mumbai','Pune')">Mumbai  Pune</button>
+                        <button class="btn route-btn" onclick="fillRoute('Delhi','Jaipur')">Delhi  Jaipur</button>
+                        <button class="btn route-btn" onclick="fillRoute('Bangalore','Hyderabad')">Bangalore  Hyderabad</button>
                     </div>
                 </div>
 

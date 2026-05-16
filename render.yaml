@@ -1,5 +1,5 @@
 services:
-  # API Gateway
+  
   - type: web
     name: api-gateway
     env: image
@@ -18,7 +18,7 @@ services:
       - key: DATABASE_SERVICE_URL
         value: https://database-service-42qw.onrender.com
 
-  # Auth Admin Service
+  
   - type: web
     name: auth-admin-service
     env: image
@@ -35,7 +35,7 @@ services:
       - key: JWT_SECRET
         sync: false
 
-  # Booking API Service
+  
   - type: web
     name: booking-api-service
     env: image
@@ -54,7 +54,7 @@ services:
       - key: STRIPE_SECRET_KEY
         sync: false
 
-  # Database Service
+  
   - type: web
     name: database-service
     env: image

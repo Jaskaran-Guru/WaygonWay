@@ -30,4 +30,4 @@ management:
         enabled: true
   health:
     mongo:
-      enabled: false  # Allow service to report UP even if MongoDB is still connecting
+      enabled: false  

@@ -9,13 +9,13 @@ spring:
   application:
     name: booking-api-service
 
-  # MongoDB Atlas (All data storage)
+  
   data:
     mongodb:
       uri: ${MONGODB_URI:mongodb+srv://gurujaskaran2006_db_user:123@cluster0.imdqenc.mongodb.net/waygonway_db?retryWrites=true&w=majority&connectTimeoutMS=10000&socketTimeoutMS=30000&serverSelectionTimeoutMS=5000&maxIdleTimeMS=60000}
       auto-index-creation: true
 
-  # Disable H2, JPA, and Redis auto-configurations
+  
   autoconfigure:
     exclude:
       - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration

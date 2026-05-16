@@ -17,7 +17,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        // Fetch all data from MongoDB & H2 concurrently
+        
         const [eventRes, transportRes, supportRes] = await Promise.all([
           bookingApi.getDashboardStats().catch(() => ({ data: { totalRevenue: 0, totalBookings: 0, totalEvents: 0, recentBookings: [], categoryDistribution: {} } })),
           transportApi.getAllBookings().catch(() => ({ data: { data: [] } })),
@@ -31,7 +31,7 @@ const AdminDashboard = () => {
         const transportRevenue = transportBookings.reduce((sum: number, b: any) => sum + (b.totalAmount || 0), 0);
         const openTickets = supportTickets.filter((t: any) => t.status === 'OPEN').length;
 
-        // Normalize recent bookings for display
+        
         const recentTransport = transportBookings.slice(-5).map((b: any) => ({
           pnr: b.pnr,
           customerName: b.customerName,
@@ -42,7 +42,7 @@ const AdminDashboard = () => {
         }));
         
         let allRecent = [...eventStats.recentBookings, ...recentTransport];
-        // simple sort
+        
         allRecent = allRecent.slice(-10);
 
         setStats({
@@ -61,7 +61,7 @@ const AdminDashboard = () => {
     };
 
     fetchStats();
-    // REAL-TIME POLLING EVERY 5 SECONDS
+    
     const interval = setInterval(fetchStats, 5000);
     return () => clearInterval(interval);
   }, []);
@@ -85,7 +85,7 @@ const AdminDashboard = () => {
         </div>
       </div>
 
-      {/* Stat Cards */}
+      {}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard 
           icon={<DollarSign className="w-6 h-6" />} 
@@ -118,7 +118,7 @@ const AdminDashboard = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-        {/* Recent Bookings */}
+        {}
         <div className="lg:col-span-2 space-y-6">
           <div className="flex justify-between items-center">
             <h2 className="text-2xl font-bold text-white">Live Transactions Stream</h2>
@@ -172,7 +172,7 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        {/* Category Sales */}
+        {}
         <div className="space-y-6">
           <h2 className="text-2xl font-bold text-white">Event Distribution</h2>
           <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8 space-y-6 shadow-2xl">

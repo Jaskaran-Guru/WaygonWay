@@ -1,21 +1,21 @@
 import axios from 'axios';
 
-// Use current origin for API calls to support both localhost and public tunnels
+
 const GATEWAY_URL = window.location.origin;
 export const AUTH_SERVICE_URL = GATEWAY_URL;
 export const BOOKING_SERVICE_URL = GATEWAY_URL;
 
-// Auth service (port 8081)
+
 const authAxios = axios.create({
   baseURL: AUTH_SERVICE_URL,
 });
 
-// Booking/Events/Transport/Support service (port 8082)
+
 const api = axios.create({
   baseURL: BOOKING_SERVICE_URL,
 });
 
-// Add JWT token to all requests
+
 const addAuthInterceptor = (instance: ReturnType<typeof axios.create>) => {
   instance.interceptors.request.use((config) => {
     const token = localStorage.getItem('token');

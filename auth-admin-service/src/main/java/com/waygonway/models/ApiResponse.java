@@ -15,7 +15,7 @@ public class ApiResponse<T> {
     private LocalDateTime timestamp;
     private Map<String, Object> meta;
 
-    // Private constructor
+    
     private ApiResponse(boolean success, String message, T data, String error) {
         this.success = success;
         this.message = message;
@@ -25,7 +25,7 @@ public class ApiResponse<T> {
         this.meta = new HashMap<>();
     }
 
-    // Static factory methods
+    
     public static <T> ApiResponse<T> success(String message, T data) {
         return new ApiResponse<>(true, message, data, null);
     }
@@ -42,13 +42,13 @@ public class ApiResponse<T> {
         return new ApiResponse<>(false, message, null, error);
     }
 
-    // Add meta information
+    
     public ApiResponse<T> addMeta(String key, Object value) {
         this.meta.put(key, value);
         return this;
     }
 
-    // Getters and Setters
+    
     public boolean isSuccess() { return success; }
     public void setSuccess(boolean success) { this.success = success; }
 

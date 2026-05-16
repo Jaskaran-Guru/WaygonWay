@@ -39,7 +39,7 @@
             position: relative;
         }
 
-        /* ─── Background Effects ─── */
+        /*  Background Effects  */
         body::before {
             content: '';
             position: fixed;
@@ -65,7 +65,7 @@
             opacity: 0.4;
         }
 
-        /* ─── Navbar ─── */
+        /*  Navbar  */
         .navbar {
             background: rgba(26, 11, 46, 0.85);
             backdrop-filter: blur(30px);
@@ -131,7 +131,7 @@
             box-shadow: 0 6px 20px rgba(50, 130, 184, 0.35);
         }
 
-        /* ─── Container ─── */
+        /*  Container  */
         .container { 
             position: relative; 
             z-index: 1; 
@@ -139,7 +139,7 @@
             padding-bottom: 3.5rem; 
         }
 
-        /* ─── Page Header ─── */
+        /*  Page Header  */
         .page-header { 
             text-align: center; 
             margin-bottom: 2.5rem; 
@@ -161,7 +161,7 @@
             letter-spacing: 0.3px;
         }
 
-        /* ─── Step Indicator ─── */
+        /*  Step Indicator  */
         .step-indicator {
             display: flex;
             justify-content: center;
@@ -209,7 +209,7 @@
             background: linear-gradient(90deg, rgba(212, 175, 55, 0.2), rgba(50, 130, 184, 0.2));
         }
 
-        /* ─── Train Info Banner ─── */
+        /*  Train Info Banner  */
         .train-info {
             background: linear-gradient(135deg, rgba(50, 130, 184, 0.08), rgba(77, 168, 218, 0.04));
             border: 1.5px solid rgba(77, 168, 218, 0.3);
@@ -271,7 +271,7 @@
             letter-spacing: -0.5px;
         }
 
-        /* ─── Booking Card ─── */
+        /*  Booking Card  */
         .booking-card {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
             border: 1px solid rgba(212, 175, 55, 0.2);
@@ -287,7 +287,7 @@
             animation: fade-up 0.8s ease 0.2s both;
         }
 
-        /* ─── Section Headings ─── */
+        /*  Section Headings  */
         .section-heading {
             display: flex;
             align-items: center;
@@ -346,7 +346,7 @@
             box-shadow: 0 0 10px var(--gold);
         }
 
-        /* ─── Form Elements ─── */
+        /*  Form Elements  */
         .form-label {
             font-size: 0.7rem;
             font-weight: 700;
@@ -396,7 +396,7 @@
             box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15) !important;
         }
 
-        /* ─── Fare Breakdown ─── */
+        /*  Fare Breakdown  */
         .fare-breakdown {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
             border: 1.5px solid rgba(212, 175, 55, 0.2);
@@ -444,7 +444,7 @@
             letter-spacing: -0.5px;
         }
 
-        /* ─── Benefits List ─── */
+        /*  Benefits List  */
         .benefits-list {
             margin-top: 1.8rem;
             padding-top: 1.5rem;
@@ -484,7 +484,7 @@
             box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
         }
 
-        /* ─── Checkboxes ─── */
+        /*  Checkboxes  */
         .form-check-input {
             background-color: rgba(255,255,255,0.08) !important;
             border: 1.5px solid rgba(212, 175, 55, 0.3) !important;
@@ -514,7 +514,7 @@
             color: var(--gold-light);
         }
 
-        /* ─── Book Button ─── */
+        /*  Book Button  */
         .btn-book {
             background: linear-gradient(135deg, var(--emerald) 0%, #059669 100%);
             border: none;
@@ -571,7 +571,7 @@
             height: 300px;
         }
 
-        /* ─── Alert ─── */
+        /*  Alert  */
         .alert-danger {
             background: linear-gradient(135deg, rgba(239, 68, 68, 0.12), rgba(239, 68, 68, 0.08)) !important;
             border: 1.5px solid rgba(239, 68, 68, 0.3) !important;
@@ -584,13 +584,13 @@
             box-shadow: 0 4px 20px rgba(239, 68, 68, 0.15);
         }
 
-        /* ─── Animations ─── */
+        /*  Animations  */
         @keyframes fade-up {
             from { opacity: 0; transform: translateY(30px); }
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* ─── Responsive ─── */
+        /*  Responsive  */
         @media (max-width: 768px) {
             .booking-card { padding: 2rem 1.8rem; }
             .container { padding-top: 2rem; }
@@ -652,7 +652,7 @@
                         <div class="col-md-6">
                             <h4><i class="fas fa-train me-2" style="color:var(--aqua)"></i>${selectedEvent.eventName}</h4>
                             <p class="mb-1">Train No: ${selectedEvent.eventCode}</p>
-                            <p class="mb-0"><i class="fas fa-route me-2"></i>${selectedEvent.source} → ${selectedEvent.destination}</p>
+                            <p class="mb-0"><i class="fas fa-route me-2"></i>${selectedEvent.source}  ${selectedEvent.destination}</p>
                         </div>
                         <div class="col-md-3">
                             <h6>Departure</h6>
@@ -660,7 +660,7 @@
                         </div>
                         <div class="col-md-3">
                             <h6>Base Fare</h6>
-                            <div class="fare-highlight">₹${selectedEvent.price}</div>
+                            <div class="fare-highlight">${selectedEvent.price}</div>
                         </div>
                     </div>
                 </div>
@@ -733,10 +733,10 @@
                                     <label class="form-label">Travel Class *</label>
                                     <select class="form-select" name="trainClass" id="trainClass" required onchange="updateFare()">
                                         <option value="">Select Class</option>
-                                        <option value="SL" data-fare="500">Sleeper (SL) - ₹500</option>
-                                        <option value="3A" data-fare="1200">AC 3 Tier (3A) - ₹1,200</option>
-                                        <option value="2A" data-fare="1800">AC 2 Tier (2A) - ₹1,800</option>
-                                        <option value="1A" data-fare="3000">AC First Class (1A) - ₹3,000</option>
+                                        <option value="SL" data-fare="500">Sleeper (SL) - 500</option>
+                                        <option value="3A" data-fare="1200">AC 3 Tier (3A) - 1,200</option>
+                                        <option value="2A" data-fare="1800">AC 2 Tier (2A) - 1,800</option>
+                                        <option value="1A" data-fare="3000">AC First Class (1A) - 3,000</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6 mb-3">
@@ -776,23 +776,23 @@
                             <div class="fare-breakdown">
                                 <div class="fare-row">
                                     <span>Base Fare</span>
-                                    <span id="baseFare">₹0</span>
+                                    <span id="baseFare">0</span>
                                 </div>
                                 <div class="fare-row">
                                     <span>Reservation Charges</span>
-                                    <span id="reservationCharges">₹50</span>
+                                    <span id="reservationCharges">50</span>
                                 </div>
                                 <div class="fare-row">
                                     <span>Service Tax</span>
-                                    <span id="serviceTax">₹0</span>
+                                    <span id="serviceTax">0</span>
                                 </div>
                                 <div class="fare-row">
                                     <span>Convenience Fee</span>
-                                    <span id="convenienceFee">₹20</span>
+                                    <span id="convenienceFee">20</span>
                                 </div>
                                 <div class="fare-total-row">
                                     <span class="label">Total Amount</span>
-                                    <span class="value" id="totalAmount">₹70</span>
+                                    <span class="value" id="totalAmount">70</span>
                                 </div>
 
                                 <div class="benefits-list">
@@ -860,9 +860,9 @@
         const convenienceFee = 20;
         const total = parseInt(baseFare) + reservationCharges + serviceTax + convenienceFee;
 
-        document.getElementById('baseFare').textContent = '₹' + baseFare;
-        document.getElementById('serviceTax').textContent = '₹' + serviceTax;
-        document.getElementById('totalAmount').textContent = '₹' + total;
+        document.getElementById('baseFare').textContent = '' + baseFare;
+        document.getElementById('serviceTax').textContent = '' + serviceTax;
+        document.getElementById('totalAmount').textContent = '' + total;
     }
 
     // Form validation

@@ -57,7 +57,7 @@
             pointer-events: none;
         }
 
-        /* ─── Navbar ─── */
+        /*  Navbar  */
         .navbar {
             background: rgba(10,15,46,0.75);
             backdrop-filter: blur(20px);
@@ -111,10 +111,10 @@
 
         .btn-nav:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(37,99,235,0.35); }
 
-        /* ─── Container ─── */
+        /*  Container  */
         .container { position: relative; z-index: 1; padding-top: 2.5rem; padding-bottom: 3rem; }
 
-        /* ─── Base Card ─── */
+        /*  Base Card  */
         .confirmation-card {
             background: rgba(255,255,255,0.04);
             border: 1px solid var(--glass-border);
@@ -139,7 +139,7 @@
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* ─── Success Hero ─── */
+        /*  Success Hero  */
         .success-ring {
             width: 100px;
             height: 100px;
@@ -191,7 +191,7 @@
             line-height: 1.7;
         }
 
-        /* ─── PNR Highlight ─── */
+        /*  PNR Highlight  */
         .pnr-highlight {
             background: rgba(255,255,255,0.05);
             border: 1px solid rgba(59,130,246,0.3);
@@ -235,7 +235,7 @@
             color: rgba(255,255,255,0.35);
         }
 
-        /* ─── Section Heading ─── */
+        /*  Section Heading  */
         .section-heading {
             display: flex;
             align-items: center;
@@ -265,7 +265,7 @@
         .section-heading h4 { font-size: 1.1rem; }
         .section-heading h5 { font-size: 1rem; }
 
-        /* ─── Ticket Details Panel ─── */
+        /*  Ticket Details Panel  */
         .ticket-details {
             background: rgba(255,255,255,0.03);
             border: 1px solid var(--glass-border);
@@ -354,7 +354,7 @@
             margin-left: 10px;
         }
 
-        /* ─── Action Buttons ─── */
+        /*  Action Buttons  */
         .action-buttons .btn {
             border-radius: 12px !important;
             padding: 11px 22px !important;
@@ -404,7 +404,7 @@
 
         .btn-success:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(16,185,129,0.4) !important; }
 
-        /* ─── Instructions ─── */
+        /*  Instructions  */
         .instruction-item {
             display: flex;
             align-items: flex-start;
@@ -499,7 +499,7 @@
                             </div>
                             <div class="detail-item">
                                 <span class="d-icon blue"><i class="fas fa-route"></i></span>
-                                ${booking.source} → ${booking.destination}
+                                ${booking.source}  ${booking.destination}
                             </div>
                             <div class="detail-item">
                                 <span class="d-icon blue"><i class="fas fa-calendar"></i></span>
@@ -531,7 +531,7 @@
                             </div>
                             <div class="detail-item">
                                 <span class="d-icon green"><i class="fas fa-credit-card"></i></span>
-                                Total Fare: <strong style="color:#6ee7b7">₹${booking.totalAmount}</strong>
+                                Total Fare: <strong style="color:#6ee7b7">${booking.totalAmount}</strong>
                             </div>
                         </div>
                     </div>

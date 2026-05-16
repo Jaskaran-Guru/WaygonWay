@@ -12,7 +12,7 @@ public class AuthResponse {
     private String status;
     private LocalDateTime expiresAt;
 
-    // Constructors
+    
     public AuthResponse() {}
 
     public AuthResponse(String token, String userId, String username, String email, String role) {
@@ -23,7 +23,7 @@ public class AuthResponse {
         this.role = role;
     }
 
-    // Getters and Setters
+    
     public String getToken() { return token; }
     public void setToken(String token) { this.token = token; }
 

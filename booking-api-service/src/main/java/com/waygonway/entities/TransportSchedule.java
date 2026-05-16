@@ -11,10 +11,10 @@ public class TransportSchedule {
     @Id
     private String id;
     
-    // Type: FLIGHT, TRAIN, BUS
+    
     private String type;
     
-    // e.g., "Air India AI-101", "Rajdhani Express", "Volvo AC Sleeper"
+    
     private String operatorName;
     private String transportId;
     

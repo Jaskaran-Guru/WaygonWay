@@ -22,7 +22,7 @@ const AdminTransportManagement = () => {
     operatorName: '',
     source: '',
     destination: '',
-    departureTime: '2026-10-10T10:00', // Pre-filled to avoid 'incomplete' errors
+    departureTime: '2026-10-10T10:00', 
     arrivalTime: '2026-10-10T22:00',
     basePrice: 0,
     totalSeats: 0,
@@ -124,7 +124,7 @@ const AdminTransportManagement = () => {
                     <div className="font-bold text-white">{s.operatorName}</div>
                     <div className="text-xs text-slate-500 flex items-center mt-1">
                       <MapPin className="w-3 h-3 mr-1" />
-                      {s.source} ➔ {s.destination}
+                      {s.source}  {s.destination}
                     </div>
                   </td>
                   <td className="px-8 py-6">

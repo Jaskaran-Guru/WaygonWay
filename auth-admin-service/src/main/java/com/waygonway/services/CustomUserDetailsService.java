@@ -31,13 +31,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 
             User user = userOpt.get();
 
-            // Check if user is active
+            
             if (!"ACTIVE".equals(user.getStatus())) {
                 System.err.println("User account is " + user.getStatus() + ": " + usernameOrEmail);
                 throw new UsernameNotFoundException("User account is " + user.getStatus());
             }
 
-            // Create UserDetails object
+            
             UserDetails userDetails = org.springframework.security.core.userdetails.User.builder()
                     .username(user.getUsername())
                     .password(user.getPassword())
@@ -59,7 +59,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
     }
 
-    // Additional method to get User entity
+    
     public User getUserByUsername(String username) {
         Optional<User> userOpt = userRepository.findByUsername(username);
         if (userOpt.isEmpty()) {
@@ -68,7 +68,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         return userOpt.get();
     }
 
-    // Additional method to get User entity by email
+    
     public User getUserByEmail(String email) {
         Optional<User> userOpt = userRepository.findByEmail(email);
         if (userOpt.isEmpty()) {

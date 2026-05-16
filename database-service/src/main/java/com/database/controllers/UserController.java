@@ -17,7 +17,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    // Health check
+    
     @GetMapping("/health")
     public ResponseEntity<ApiResponse<String>> health() {
         return ResponseEntity.ok(
@@ -25,7 +25,7 @@ public class UserController {
         );
     }
 
-    // Get all users
+    
     @GetMapping
     public ResponseEntity<ApiResponse<List<User>>> getAllUsers() {
         try {
@@ -46,7 +46,7 @@ public class UserController {
         }
     }
 
-    // Get user by ID
+    
     @GetMapping("/{userId}")
     public ResponseEntity<ApiResponse<User>> getUserById(@PathVariable String userId) {
         try {
@@ -66,7 +66,7 @@ public class UserController {
         }
     }
 
-    // Search users
+    
     @GetMapping("/search")
     public ResponseEntity<ApiResponse<List<User>>> searchUsers(@RequestParam String query) {
         try {
@@ -88,7 +88,7 @@ public class UserController {
         }
     }
 
-    // Get users by status
+    
     @GetMapping("/status/{status}")
     public ResponseEntity<ApiResponse<List<User>>> getUsersByStatus(@PathVariable String status) {
         try {
@@ -110,7 +110,7 @@ public class UserController {
         }
     }
 
-    // Get user statistics
+    
     @GetMapping("/statistics")
     public ResponseEntity<ApiResponse<Map<String, Object>>> getUserStatistics() {
         try {

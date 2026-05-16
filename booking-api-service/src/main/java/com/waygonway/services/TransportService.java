@@ -86,16 +86,16 @@ public class TransportService {
             booking.setTotalAmount(totalAmount);
             booking.setStatus("PENDING");
 
-            // Persist booking first to generate PNR
+            
             TransportBooking savedBooking = bookingRepository.save(booking);
 
-            // Attempt Payment Intent
+            
             Map<String, Object> paymentResult = paymentService.createPaymentIntent(totalAmount, "usd");
             if (!"PAYMENT_INTENT_CREATED".equals(paymentResult.get("status"))) {
                 throw new RuntimeException("Payment Initialization failed.");
             }
 
-            // Deduct available seats in Mongo
+            
             schedule.setAvailableSeats(schedule.getAvailableSeats() - passengerCount);
             scheduleRepository.save(schedule);
 

@@ -40,7 +40,7 @@
             position: relative;
         }
 
-        /* ─── Background Effects ─── */
+        /*  Background Effects  */
         body::before {
             content: '';
             position: fixed;
@@ -66,7 +66,7 @@
             opacity: 0.4;
         }
 
-        /* ─── Navbar ─── */
+        /*  Navbar  */
         .navbar {
             background: rgba(26, 11, 46, 0.85);
             backdrop-filter: blur(30px);
@@ -131,7 +131,7 @@
             transform: translateY(-2px);
         }
 
-        /* ─── Container ─── */
+        /*  Container  */
         .container { 
             position: relative; 
             z-index: 1; 
@@ -139,7 +139,7 @@
             padding-bottom: 3.5rem; 
         }
 
-        /* ─── Cards ─── */
+        /*  Cards  */
         .admin-card {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
             border: 1px solid rgba(212, 175, 55, 0.2);
@@ -163,7 +163,7 @@
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* ─── Card Heading ─── */
+        /*  Card Heading  */
         .card-heading {
             font-family: 'Playfair Display', serif;
             font-weight: 700;
@@ -205,7 +205,7 @@
             letter-spacing: 0.3px;
         }
 
-        /* ─── Stat Cards ─── */
+        /*  Stat Cards  */
         .stat-card {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
             border: 1.5px solid var(--glass-border);
@@ -312,7 +312,7 @@
             text-transform: uppercase;
         }
 
-        /* ─── Action Buttons ─── */
+        /*  Action Buttons  */
         .btn-admin {
             background: linear-gradient(135deg, var(--ocean) 0%, var(--aqua) 100%);
             border: none;
@@ -398,7 +398,7 @@
             box-shadow: 0 8px 25px rgba(16, 185, 129, 0.25);
         }
 
-        /* ─── Section Divider ─── */
+        /*  Section Divider  */
         .section-divider {
             height: 1px;
             background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
@@ -419,7 +419,7 @@
             box-shadow: 0 0 10px var(--gold);
         }
 
-        /* ─── Floating Orbs ─── */
+        /*  Floating Orbs  */
         .floating-shapes {
             position: fixed;
             inset: 0;
@@ -456,7 +456,7 @@
             66% { transform: translate(-40px, 20px) scale(0.9); }
         }
 
-        /* ─── Responsive ─── */
+        /*  Responsive  */
         @media (max-width: 768px) {
             .admin-card { padding: 2rem 1.8rem; }
             .container { padding-top: 2rem; }
@@ -526,7 +526,7 @@
             <div class="col-md-3">
                 <div class="stat-card stat-revenue">
                     <div class="stat-icon-wrap"><i class="fas fa-rupee-sign"></i></div>
-                    <div class="stat-value">₹45,000</div>
+                    <div class="stat-value">45,000</div>
                     <div class="stat-label">Revenue Today</div>
                 </div>
             </div>

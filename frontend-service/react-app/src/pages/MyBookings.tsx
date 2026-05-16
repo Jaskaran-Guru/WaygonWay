@@ -6,7 +6,7 @@ const MyBookings = () => {
   const [bookings, setBookings] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedTicket, setSelectedTicket] = useState<any>(null);
-  const userId = "USER123"; // Mock User
+  const userId = "USER123"; 
 
   useEffect(() => {
     const fetchBookings = async () => {
@@ -96,11 +96,11 @@ const MyBookings = () => {
         </div>
       )}
 
-      {/* E-Ticket Modal */}
+      {}
       {selectedTicket && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md">
           <div className="bg-white rounded-[2.5rem] w-full max-w-sm overflow-hidden shadow-2xl relative transform transition-all">
-            {/* Ticket Top (Indented Design) */}
+            {}
             <div className="bg-indigo-600 px-8 py-10 text-white relative">
               <button 
                 onClick={() => setSelectedTicket(null)}
@@ -118,9 +118,9 @@ const MyBookings = () => {
               </div>
             </div>
 
-            {/* Ticket Body */}
+            {}
             <div className="p-8 space-y-8 bg-white relative">
-              {/* Perforated Line Decoration */}
+              {}
               <div className="absolute -top-3 left-0 right-0 flex justify-between px-4">
                 {[...Array(20)].map((_, i) => (
                   <div key={i} className="w-2 h-2 bg-indigo-600 rounded-full"></div>
@@ -146,11 +146,11 @@ const MyBookings = () => {
                 </div>
               </div>
 
-              {/* QR Code Container */}
+              {}
               <div className="bg-slate-50 border-2 border-dashed border-slate-200 rounded-3xl p-8 flex flex-col items-center justify-center space-y-4">
                 <div className="w-48 h-48 bg-white p-4 shadow-inner rounded-2xl">
                   <img 
-                    src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${selectedTicket.pnr}`} 
+                    src={`https:
                     alt="Ticket QR Code"
                     className="w-full h-full mix-blend-multiply"
                   />
@@ -158,7 +158,7 @@ const MyBookings = () => {
                 <p className="text-[10px] text-slate-500 font-bold tracking-[0.3em] uppercase">Scan for Entry</p>
               </div>
 
-              {/* Actions */}
+              {}
               <div className="flex space-x-4 pt-4">
                 <button className="flex-1 border-2 border-slate-100 hover:bg-slate-50 text-slate-600 font-bold py-4 rounded-2xl flex items-center justify-center space-x-2 transition-all">
                   <Download className="w-5 h-5" />
@@ -171,7 +171,7 @@ const MyBookings = () => {
               </div>
             </div>
             
-            {/* Bottom Curve Decoration */}
+            {}
             <div className="h-6 bg-slate-900 flex items-center justify-center space-x-1">
                <div className="w-1 h-1 bg-slate-800 rounded-full"></div>
                <div className="w-1 h-1 bg-slate-800 rounded-full"></div>

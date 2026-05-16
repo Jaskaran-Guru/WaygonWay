@@ -27,15 +27,15 @@ spring:
       name: ${ADMIN_USERNAME:admin}
       password: ${ADMIN_PASSWORD:admin123}
 
-# JWT Configuration
+
 jwt:
-  secret: ${JWT_SECRET:WaygonWaySecretKeyForTokenGeneration2024!@#$%}
-  expiration: ${JWT_EXPIRATION:86400000}  # 24 hours in milliseconds
+  secret: ${JWT_SECRET:WaygonWaySecretKeyForTokenGeneration2024!@
+  expiration: ${JWT_EXPIRATION:86400000}  
   issuer: WaygonWay-AuthService
   header: Authorization
   prefix: Bearer
 
-# Logging Configuration
+
 logging:
   level:
     com.waygonway: INFO
@@ -50,7 +50,7 @@ logging:
   file:
     name: logs/auth-admin-service.log
 
-# Management endpoints
+
 management:
   endpoints:
     web:
@@ -63,7 +63,7 @@ management:
     env:
       enabled: true
 
-# Application Info
+
 info:
   app:
     name: WaygonWay Auth Admin Service

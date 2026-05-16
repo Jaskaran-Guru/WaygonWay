@@ -7,7 +7,7 @@ interface SeatLayoutProps {
 const SeatLayout: React.FC<SeatLayoutProps> = ({ onSelect }) => {
   const [selected, setSelected] = useState<string[]>([]);
 
-  // Generate mock seats (rows A-J, numbers 1-10)
+  
   const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
   const seatsPerRow = 10;
   
@@ -37,7 +37,7 @@ const SeatLayout: React.FC<SeatLayoutProps> = ({ onSelect }) => {
               {Array.from({ length: seatsPerRow }).map((_, i) => {
                 const id = `${row}${i + 1}`;
                 const isSelected = selected.includes(id);
-                const isReserved = Math.random() < 0.1; // Randomly mock some reserved seats
+                const isReserved = Math.random() < 0.1; 
 
                 return (
                   <button

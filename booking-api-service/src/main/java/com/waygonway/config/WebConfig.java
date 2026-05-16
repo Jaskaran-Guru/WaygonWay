@@ -13,7 +13,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        // Apply rate limiting to all API endpoints
+        
         registry.addInterceptor(rateLimitInterceptor)
                 .addPathPatterns("/api/v1/**");
     }

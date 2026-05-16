@@ -103,7 +103,7 @@ const AdminSupportManagement = () => {
                   <div className="flex items-center space-x-2 text-xs text-slate-300">
                     <User className="w-4 h-4 text-slate-500" />
                     <span className="font-bold">{t.customerName}</span>
-                    <span className="text-slate-600">•</span>
+                    <span className="text-slate-600"></span>
                     <span className="text-slate-500 font-mono">{t.customerEmail}</span>
                   </div>
                   {t.pnr && (

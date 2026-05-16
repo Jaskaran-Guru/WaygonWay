@@ -13,7 +13,7 @@ public class TrainService {
     @Autowired
     private TrainRepository trainRepository;
 
-    // Get all trains
+    
     public List<Train> getAllTrains() {
         try {
             System.out.println("TrainService: Getting all trains");
@@ -26,7 +26,7 @@ public class TrainService {
         }
     }
 
-    // Get train by ID
+    
     public Train getTrainById(String trainId) {
         try {
             System.out.println("TrainService: Getting train by ID - " + trainId);
@@ -43,7 +43,7 @@ public class TrainService {
         }
     }
 
-    // Get train by number
+    
     public Train getTrainByNumber(String trainNumber) {
         try {
             System.out.println("TrainService: Getting train by number - " + trainNumber);
@@ -60,7 +60,7 @@ public class TrainService {
         }
     }
 
-    // Search trains by route
+    
     public List<Train> searchTrainsByRoute(String source, String destination) {
         try {
             System.out.println("TrainService: Searching trains from " + source + " to " + destination);
@@ -73,12 +73,12 @@ public class TrainService {
         }
     }
 
-    // Add new train
+    
     public Train addTrain(Train train) {
         try {
             System.out.println("TrainService: Adding new train - " + train.getTrainNumber());
 
-            // Check if train number already exists
+            
             if (trainRepository.findByTrainNumber(train.getTrainNumber()).isPresent()) {
                 throw new RuntimeException("Train with number " + train.getTrainNumber() + " already exists");
             }
@@ -95,14 +95,14 @@ public class TrainService {
         }
     }
 
-    // Update train
+    
     public Train updateTrain(String trainId, Train updatedTrain) {
         try {
             System.out.println("TrainService: Updating train - " + trainId);
 
             Train existingTrain = getTrainById(trainId);
 
-            // Update fields
+            
             if (updatedTrain.getTrainName() != null) {
                 existingTrain.setTrainName(updatedTrain.getTrainName());
             }
@@ -142,7 +142,7 @@ public class TrainService {
         }
     }
 
-    // Delete train
+    
     public Map<String, Object> deleteTrain(String trainId) {
         try {
             System.out.println("TrainService: Deleting train - " + trainId);
@@ -164,7 +164,7 @@ public class TrainService {
         }
     }
 
-    // Book seats (reduce available seats)
+    
     public boolean bookSeats(String trainId, int seatsToBook) {
         try {
             System.out.println("TrainService: Booking " + seatsToBook + " seats for train - " + trainId);
@@ -188,7 +188,7 @@ public class TrainService {
         }
     }
 
-    // Cancel seats (increase available seats)
+    
     public boolean cancelSeats(String trainId, int seatsToCancel) {
         try {
             System.out.println("TrainService: Cancelling " + seatsToCancel + " seats for train - " + trainId);
@@ -213,7 +213,7 @@ public class TrainService {
         }
     }
 
-    // Get trains with available seats
+    
     public List<Train> getTrainsWithAvailableSeats() {
         try {
             System.out.println("TrainService: Getting trains with available seats");
@@ -226,7 +226,7 @@ public class TrainService {
         }
     }
 
-    // Get train statistics
+    
     public Map<String, Object> getTrainStatistics() {
         try {
             System.out.println("TrainService: Calculating train statistics");
@@ -238,14 +238,14 @@ public class TrainService {
             stats.put("activeTrains", allTrains.stream().filter(Train::isActive).count());
             stats.put("trainsWithSeats", allTrains.stream().filter(Train::hasAvailableSeats).count());
 
-            // Calculate total and available seats
+            
             int totalSeats = allTrains.stream().mapToInt(Train::getTotalSeats).sum();
             int availableSeats = allTrains.stream().mapToInt(Train::getAvailableSeats).sum();
             stats.put("totalSeats", totalSeats);
             stats.put("availableSeats", availableSeats);
             stats.put("bookedSeats", totalSeats - availableSeats);
 
-            // Calculate average occupancy
+            
             double avgOccupancy = allTrains.stream()
                     .mapToDouble(Train::getOccupancyPercentage)
                     .average()

@@ -28,7 +28,7 @@ const TravelHome = () => {
     }
   };
 
-  // Real-time polling when a search is active (every 10 seconds)
+  
   useEffect(() => {
     if (!hasSearched) return;
     const interval = setInterval(() => {
@@ -41,7 +41,7 @@ const TravelHome = () => {
 
   return (
     <div className="min-h-screen bg-slate-950 text-white pb-20">
-      {/* Hero Header */}
+      {}
       <div className="relative pt-24 pb-32 overflow-hidden flex justify-center items-center flex-col">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-slate-900 z-0" />
         <h1 className="text-5xl md:text-6xl font-black text-white text-center z-10 tracking-tight leading-tight">
@@ -55,11 +55,11 @@ const TravelHome = () => {
         </p>
       </div>
 
-      {/* Booking Widget */}
+      {}
       <div className="max-w-5xl mx-auto -mt-16 relative z-20 px-4">
         <div className="bg-slate-900/80 backdrop-blur-xl rounded-3xl border border-slate-800 shadow-2xl overflow-hidden p-2">
           
-          {/* Tabs */}
+          {}
           <div className="flex space-x-2 p-2 border-b border-slate-800/50">
             {[
               { id: 'FLIGHT', icon: <Plane className="w-5 h-5"/>, label: 'Flights' },
@@ -81,7 +81,7 @@ const TravelHome = () => {
             ))}
           </div>
 
-          {/* Search Form */}
+          {}
           <form onSubmit={handleSearch} className="p-6 grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
             <div className="space-y-2">
               <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">From</label>
@@ -138,7 +138,7 @@ const TravelHome = () => {
         </div>
       </div>
 
-      {/* Results Section */}
+      {}
       <div className="max-w-5xl mx-auto px-4 mt-12">
         {hasSearched && !loading && schedules.length === 0 && (
           <div className="text-center py-20 bg-slate-900/50 rounded-3xl border border-slate-800/50">
