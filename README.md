@@ -1,3 +1,12 @@
+---
+title: WaygonWay
+emoji: 🎟️
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+pinned: false
+---
+
 # WaygonWay Ticket Reservation System
 
 WaygonWay is a robust, enterprise-grade microservices-based ticket reservation platform. It is engineered for high scalability, fault tolerance, and secure transaction handling.
